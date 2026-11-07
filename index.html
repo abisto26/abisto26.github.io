@@ -15,12 +15,35 @@
 @font-face{font-family:"Open Sans";font-weight:400;font-display:swap;src:url(assets/fonts/open-sans-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Open Sans";font-weight:700;font-display:swap;src:url(assets/fonts/open-sans-latin-700-normal.woff2) format("woff2")}
 @font-face{font-family:"Open Sans";font-weight:800;font-display:swap;src:url(assets/fonts/open-sans-latin-800-normal.woff2) format("woff2")}
-:root{--bg:#f0efea;--ink:#1d1d1b;--soft:#6b6a65;--panel:#dddcd2}
+:root{--bg:#f0efea;--ink:#282828;--soft:#6b6a65;--panel:#dddcd2;--overlay:rgba(231,229,221,.96);--mark:#d4c6e6}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
-  display:flex;flex-direction:column;align-items:center;padding:env(safe-area-inset-top,0px) 16px calc(24px + env(safe-area-inset-bottom,0px))}
+  display:flex;flex-direction:column;align-items:center;padding:0 16px calc(24px + env(safe-area-inset-bottom,0px))}
+/* top bar */
+.bar{position:sticky;top:0;z-index:5;width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:calc(18px + env(safe-area-inset-top,0px)) 4px 18px;background:var(--bg)}
+.brand{font:400 15px/1 "Open Sans",system-ui,sans-serif;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.brand b{font-weight:800}
+.menu-btn{appearance:none;border:0;background:none;padding:10px;margin:-10px;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.menu-btn svg{width:24px;height:24px}
+/* lavender highlighter on the right half of a word */
+.hl{position:relative;z-index:0}
+.hl::before{content:"";position:absolute;z-index:-1;inset:-6px -.2em -6px 50%;background:var(--mark);transition:left .3s ease}
+a:hover .hl::before,a:focus-visible .hl::before{left:-.2em}
+/* full-screen menu */
+.menu{position:fixed;inset:0;z-index:10;background:var(--overlay);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s .25s}
+.menu.open{opacity:1;visibility:visible;transition:opacity .25s ease}
+.menu nav{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding:24px}
+.menu .close{margin-bottom:6px}
+.menu a,.menu span{font:800 16px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.menu span.soon{opacity:.35}
+.menu .light{font-weight:400}
+.menu hr{width:40px;border:0;border-top:2px solid var(--ink);margin:8px 0}
 main{flex:1;display:grid;place-items:center}
+footer{display:flex;flex-direction:column;align-items:center;gap:22px}
+.legal{font:700 11px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);margin:0;padding-inline-start:.3em}
 .game{display:flex;flex-direction:column;align-items:center;gap:18px;text-decoration:none;color:var(--ink)}
 .game img{display:block;width:min(36vw,170px);height:auto;transition:transform .25s ease}
 .game:hover img{transform:translateY(-4px) scale(1.03)}
@@ -36,11 +59,40 @@ main{flex:1;display:grid;place-items:center}
 </style>
 </head>
 <body>
+<header class="bar">
+  <a class="brand" href="/">by <b>Abisto</b></a>
+  <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" onclick="toggleMenu(true)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h18M3 12h18M3 16h18"/></svg>
+  </button>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <nav>
+    <button class="menu-btn close" type="button" aria-label="Close menu" onclick="toggleMenu(false)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <a href="/globe/"><span class="hl">Globe</span></a>
+    <span class="soon">Soon</span>
+    <hr>
+    <a class="light" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a>
+    <a class="light" href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a>
+    <a class="light" href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener">TikTok</a>
+    <a class="light" href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener">YouTube</a>
+  </nav>
+</div>
+<script>
+function toggleMenu(open){
+  var m=document.getElementById('menu'),b=document.querySelector('.bar .menu-btn');
+  m.classList.toggle('open',open);b.setAttribute('aria-expanded',open);
+  document.body.style.overflow=open?'hidden':'';
+  (open?m.querySelector('.close'):b).focus();
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(false)});
+</script>
 <main>
   <div class="games">
   <a class="game" href="/globe/" aria-label="Play Globe by Abisto">
     <img src="assets/globe-logo.webp" alt="">
-    <span class="name">Globe</span>
+    <span class="name"><span class="hl">Globe</span></span>
   </a>
   <!-- not open to everyone yet: shown greyed and not clickable; the game itself works at abisto26.com/soual -->
   <div class="game soon" aria-disabled="true">
@@ -56,6 +108,7 @@ main{flex:1;display:grid;place-items:center}
     <a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"/></svg></a>
     <a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg></a>
   </nav>
+  <p class="legal">Abisto © 2026</p>
 </footer>
 </body>
 </html>
