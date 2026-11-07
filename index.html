@@ -27,10 +27,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans",syst
 .brand b{font-weight:800}
 .menu-btn{appearance:none;border:0;background:none;padding:10px;margin:-10px;color:var(--ink);cursor:pointer;display:grid;place-items:center}
 .menu-btn svg{width:24px;height:24px}
-/* lavender highlighter on the right half of a word */
+/* green highlighter on the right half of a word */
 .hl{position:relative;z-index:0}
 .hl::before{content:"";position:absolute;z-index:-1;inset:-6px -.2em -6px 50%;background:var(--mark);transition:left .3s ease}
-a:hover .hl::before,a:focus-visible .hl::before{left:-.2em}
+a:hover .hl::before,a:focus-visible .hl::before,.game:hover .hl::before,.menu-soon:hover .hl::before{left:-.2em}
 /* full-screen menu */
 .menu{position:fixed;inset:0;z-index:10;background:var(--overlay);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
   display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s .25s}
@@ -38,7 +38,7 @@ a:hover .hl::before,a:focus-visible .hl::before{left:-.2em}
 .menu nav{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding:24px}
 .menu .close{margin-bottom:6px}
 .menu a,.menu span{font:800 16px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none}
-.menu span.soon{opacity:.35}
+.menu .menu-soon{cursor:default}
 .menu .light{font-weight:400}
 .menu hr{width:40px;border:0;border-top:2px solid var(--ink);margin:8px 0}
 main{flex:1;display:grid;place-items:center}
@@ -57,7 +57,9 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
 .game:active img{transform:scale(.97)}
 .name{position:relative;font:800 .95rem/1 "Open Sans",system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;padding-inline-start:.42em}
 .games{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(28px,8vw,72px)}
-.game.soon{filter:grayscale(1);opacity:.4;cursor:default;pointer-events:none;user-select:none}
+.game.soon{cursor:default;user-select:none}
+.game.soon img{filter:grayscale(1);opacity:.4}
+.game.soon:hover img,.game.soon:active img{transform:none}
 .game:focus-visible{outline:2px solid var(--ink);outline-offset:10px}
 .socials{display:flex;gap:24px}
 .socials a{color:var(--ink);display:grid;place-items:center;width:28px;height:28px;transition:opacity .15s,transform .15s}
@@ -78,7 +80,7 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
     </button>
     <a href="/globe/"><span class="hl">Globe</span></a>
-    <span class="soon">Soon</span>
+    <span class="menu-soon"><span class="hl">Soual</span></span>
     <hr>
     <a class="light" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a>
     <a class="light" href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a>
@@ -104,7 +106,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   <!-- not open to everyone yet: shown greyed and not clickable; the game itself works at abisto26.com/soual -->
   <div class="game soon" aria-disabled="true">
     <img src="assets/soual-logo.webp" alt="">
-    <span class="name">Soon</span>
+    <span class="name"><span class="hl">Soual</span></span>
   </div>
   </div>
 </main>
@@ -116,7 +118,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
     <a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg></a>
   </nav>
   <p class="legal">Abisto26 © 2026</p>
-  <p class="tagline">Play. Learn. Share.</p>
+  <p class="tagline">Smile. Play. Learn.</p>
 </footer>
 </body>
 </html>
