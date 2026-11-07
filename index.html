@@ -22,10 +22,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans",syst
   display:flex;flex-direction:column;align-items:center;padding:env(safe-area-inset-top,0px) 16px calc(24px + env(safe-area-inset-bottom,0px))}
 main{flex:1;display:grid;place-items:center}
 .game{display:flex;flex-direction:column;align-items:center;gap:18px;text-decoration:none;color:var(--ink)}
-.game img{display:block;width:min(40vw,170px);height:auto;transition:transform .25s ease}
+.game img{display:block;width:min(36vw,170px);height:auto;transition:transform .25s ease}
 .game:hover img{transform:translateY(-4px) scale(1.03)}
 .game:active img{transform:scale(.97)}
 .name{position:relative;font:800 .95rem/1 "Open Sans",system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;padding-inline-start:.42em}
+.games{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(28px,8vw,72px)}
+.game.soon{filter:grayscale(1);opacity:.4;cursor:default;pointer-events:none;user-select:none}
 .game:focus-visible{outline:2px solid var(--ink);outline-offset:10px}
 .socials{display:flex;gap:30px}
 .socials a{color:var(--ink);display:grid;place-items:center;width:28px;height:28px;transition:opacity .15s,transform .15s}
@@ -35,10 +37,17 @@ main{flex:1;display:grid;place-items:center}
 </head>
 <body>
 <main>
+  <div class="games">
   <a class="game" href="/globe/" aria-label="Play Globe by Abisto">
     <img src="assets/globe-logo.webp" alt="">
     <span class="name">Globe</span>
   </a>
+  <!-- not open to everyone yet: shown greyed and not clickable; the game itself works at abisto26.com/sual -->
+  <div class="game soon" aria-disabled="true">
+    <img src="assets/sual-logo.webp" alt="">
+    <span class="name">Soon</span>
+  </div>
+  </div>
 </main>
 <footer>
   <nav class="socials" aria-label="Abisto on social media">
