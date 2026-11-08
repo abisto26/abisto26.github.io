@@ -12,6 +12,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
+@font-face{font-family:"Open Sans";font-weight:300;font-display:swap;src:url(assets/fonts/open-sans-latin-300-normal.woff2) format("woff2")}
 @font-face{font-family:"Open Sans";font-weight:400;font-display:swap;src:url(assets/fonts/open-sans-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Open Sans";font-weight:700;font-display:swap;src:url(assets/fonts/open-sans-latin-700-normal.woff2) format("woff2")}
 @font-face{font-family:"Open Sans";font-weight:800;font-display:swap;src:url(assets/fonts/open-sans-latin-800-normal.woff2) format("woff2")}
@@ -60,6 +61,14 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
 .game.soon{cursor:default;user-select:none}
 .game.soon img{filter:grayscale(1);opacity:.4}
 .game:focus-visible{outline:2px solid var(--ink);outline-offset:10px}
+.soon-tag{margin-top:-6px;font:300 .8rem/1 "Open Sans",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);padding-inline-start:.3em}
+@media (max-width:600px){
+  .games{flex-wrap:nowrap;gap:10px;width:100%}
+  .game{gap:14px;flex:1 1 0;min-width:0}
+  .game img{width:100%;max-width:130px}
+  .name{font-size:.72rem;letter-spacing:.3em;padding-inline-start:.3em}
+  .soon-tag{font-size:.66rem;margin-top:-4px}
+}
 .socials{display:flex;gap:24px}
 .socials a{color:var(--ink);display:grid;place-items:center;width:28px;height:28px;transition:opacity .15s,transform .15s}
 .socials a:hover{opacity:.6}.socials a:active{transform:scale(.9)}
@@ -107,11 +116,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   <div class="game soon" aria-disabled="true">
     <img src="assets/soual-logo.webp" alt="">
     <span class="name"><span class="hl">Soual</span></span>
+    <span class="soon-tag">Soon</span>
   </div>
   <!-- rock paper scissors, not built yet: greyed and not clickable -->
   <div class="game soon" aria-disabled="true">
     <img src="assets/tatahi-logo.webp" alt="">
     <span class="name"><span class="hl">TaTaHi</span></span>
+    <span class="soon-tag">Soon</span>
   </div>
   </div>
 </main>
