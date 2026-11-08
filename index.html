@@ -197,7 +197,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl" data-i18n="videos">Viral videos</span>
     <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5"/></svg></a></h2>
   <!-- Instagram reels in a sideways slider: add or remove a <blockquote> to change the list -->
-  <div class="reels" id="reels">
+  <div class="reels" id="reels" dir="ltr">
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/DWJ1KWbCHet/" data-instgrm-version="14">
       <a class="reel-fallback" href="https://www.instagram.com/reel/DWJ1KWbCHet/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span data-i18n="watch">Watch</span></a>
     </blockquote>
@@ -246,7 +246,13 @@ function setLang(l){
   document.querySelectorAll('[data-i18n-aria]').forEach(function(e){e.setAttribute('aria-label',d[e.dataset.i18nAria]);});
   document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l);});
   try{localStorage.setItem('lang',l);}catch(e){}
-  var r=document.getElementById('reels');if(r){r.style.scrollBehavior='auto';r.scrollLeft=0;r.style.scrollBehavior='';}
+  /* Arabic: same left-to-right slider, videos in reverse order, starting at the far right */
+  var r=document.getElementById('reels');
+  if(r){
+    var ar=l==='ar';
+    if((r.dataset.rev==='1')!==ar){Array.prototype.slice.call(r.children).reverse().forEach(function(k){r.appendChild(k);});r.dataset.rev=ar?'1':'0';}
+    r.style.scrollBehavior='auto';r.scrollLeft=ar?r.scrollWidth:0;r.style.scrollBehavior='';
+  }
   if(typeof reels!=='undefined'&&reels)updBtns();
 }
 document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
@@ -255,9 +261,9 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   setLang(l);})();
 /* slider arrows: move by one video, grey out at the ends */
 var reels=document.getElementById('reels'),btns=document.querySelectorAll('.slide-btn');
-function rtl(){return getComputedStyle(reels).direction==='rtl';}
+function rtl(){return document.documentElement.dir==='rtl';}
 function slideReels(d){var c=reels.children[0];reels.scrollBy({left:(rtl()?-d:d)*(c.getBoundingClientRect().width+24),behavior:'smooth'});}
-function updBtns(){var x=Math.abs(reels.scrollLeft);btns[0].disabled=x<4;btns[1].disabled=x+reels.clientWidth>=reels.scrollWidth-4;}
+function updBtns(){var x=reels.scrollLeft,atL=x<4,atR=x+reels.clientWidth>=reels.scrollWidth-4;btns[0].disabled=rtl()?atR:atL;btns[1].disabled=rtl()?atL:atR;}
 reels.addEventListener('scroll',updBtns,{passive:true});addEventListener('resize',updBtns);updBtns();
 /* load Instagram's player only when the videos get close, so the page opens fast */
 (function(){
