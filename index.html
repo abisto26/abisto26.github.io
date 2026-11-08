@@ -84,7 +84,7 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 .sec-head{display:inline-flex;align-items:center;gap:14px;margin:0 0 40px;font:800 14px/1 "Open Sans","Tajawal",system-ui,sans-serif;
   letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding-inline-start:.4em}
 .sec-head svg{width:22px;height:12px;flex:none}
-.sec-games{min-height:calc(100svh - 150px);justify-content:center}
+.sec-games{justify-content:center}
 .sec-games .games{width:100%}
 /* videos */
 /* about */
@@ -176,9 +176,9 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
     <button class="menu-btn close" type="button" aria-label="Close menu" data-i18n-aria="close" onclick="toggleMenu(false)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
     </button>
-    <a href="#games" onclick="toggleMenu(false)"><span class="hl" data-i18n="games">Games</span></a>
-    <a href="#videos" onclick="toggleMenu(false)"><span class="hl" data-i18n="videos">Viral videos</span></a>
     <a href="#about" onclick="toggleMenu(false)"><span class="hl" data-i18n="about">About</span></a>
+    <a href="#videos" onclick="toggleMenu(false)"><span class="hl" data-i18n="videos">Viral videos</span></a>
+    <a href="#games" onclick="toggleMenu(false)"><span class="hl" data-i18n="games">Games</span></a>
   </nav>
 </div>
 <script>
@@ -191,23 +191,16 @@ function toggleMenu(open){
 document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(false)});
 </script>
 <main>
-<section class="sec sec-games" id="games" aria-labelledby="games-h">
-  <h2 class="sec-head" id="games-h"><span class="hl" data-i18n="games">Games</span></h2>
-  <div class="games">
-  <a class="game" href="/globe/" aria-label="Play Globe by Abisto" data-i18n-aria="playGlobe">
-    <img src="assets/globe-logo.webp" alt="">
-    <span class="name" data-i18n="globe">Globe</span>
-  </a>
-  <!-- not open to everyone yet: shown greyed and not clickable; the game itself works at abisto26.com/soual -->
-  <div class="game soon" aria-disabled="true">
-    <img src="assets/soual-logo.webp" alt="">
-    <span class="name" data-i18n="soual">Soual</span>
-  </div>
-  <!-- rock paper scissors, not built yet: greyed and not clickable -->
-  <div class="game soon" aria-disabled="true">
-    <img src="assets/tatahi-logo.webp" alt="">
-    <span class="name" data-i18n="tatahi">TaTaHi</span>
-  </div>
+<section class="sec sec-about" id="about" aria-labelledby="about-h">
+  <h2 class="sec-head" id="about-h"><span class="hl" data-i18n="about">About</span></h2>
+  <div class="about">
+    <img class="about-photo" src="assets/abisto.webp" width="800" height="1000" loading="lazy" alt="Abisto in his helmet" data-i18n-alt="aboutAlt">
+    <div class="about-text">
+      <blockquote class="about-quote"><p data-i18n="aboutQuote">“Fun is how I fix any problem. That’s the way I live.”</p><cite>Abisto</cite></blockquote>
+      <p data-i18n="aboutP1">Abisto is a Moroccan rider who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since. He even rode the whole coast of Morocco, all the way down to Laâyoune.</p>
+      <p data-i18n="aboutP2">Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.</p>
+      <p data-i18n="aboutP3">Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.</p>
+    </div>
   </div>
 </section>
 <section class="sec" id="videos" aria-labelledby="videos-h">
@@ -235,16 +228,23 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
     <button class="slide-btn" type="button" aria-label="Next videos" data-i18n-aria="next" onclick="slideReels(1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h32M26 1l6 6-6 6"/></svg></button>
   </div>
 </section>
-<section class="sec sec-about" id="about" aria-labelledby="about-h">
-  <h2 class="sec-head" id="about-h"><span class="hl" data-i18n="about">About</span></h2>
-  <div class="about">
-    <img class="about-photo" src="assets/abisto.webp" width="800" height="1000" loading="lazy" alt="Abisto in his helmet" data-i18n-alt="aboutAlt">
-    <div class="about-text">
-      <blockquote class="about-quote"><p data-i18n="aboutQuote">“Fun is how I fix any problem. That’s the way I live.”</p><cite>Abisto</cite></blockquote>
-      <p data-i18n="aboutP1">Abisto is a Moroccan rider who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since. He even rode the whole coast of Morocco, all the way down to Laâyoune.</p>
-      <p data-i18n="aboutP2">Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.</p>
-      <p data-i18n="aboutP3">Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.</p>
-    </div>
+<section class="sec sec-games" id="games" aria-labelledby="games-h">
+  <h2 class="sec-head" id="games-h"><span class="hl" data-i18n="games">Games</span></h2>
+  <div class="games">
+  <a class="game" href="/globe/" aria-label="Play Globe by Abisto" data-i18n-aria="playGlobe">
+    <img src="assets/globe-logo.webp" alt="">
+    <span class="name" data-i18n="globe">Globe</span>
+  </a>
+  <!-- not open to everyone yet: shown greyed and not clickable; the game itself works at abisto26.com/soual -->
+  <div class="game soon" aria-disabled="true">
+    <img src="assets/soual-logo.webp" alt="">
+    <span class="name" data-i18n="soual">Soual</span>
+  </div>
+  <!-- rock paper scissors, not built yet: greyed and not clickable -->
+  <div class="game soon" aria-disabled="true">
+    <img src="assets/tatahi-logo.webp" alt="">
+    <span class="name" data-i18n="tatahi">TaTaHi</span>
+  </div>
   </div>
 </section>
 </main>
