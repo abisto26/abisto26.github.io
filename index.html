@@ -57,14 +57,15 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans","Taj
 .langs button:hover{opacity:1}
 .langs button[aria-pressed=true]{color:var(--ink);opacity:1}
 /* Arabic: right to left, no letter spacing (it breaks the joined letters) */
-[dir=rtl] .sec-head,[dir=rtl] .name,[dir=rtl] .menu a,[dir=rtl] .reel-more,[dir=rtl] .reel-fallback,[dir=rtl] .legal,[dir=rtl] .tagline{letter-spacing:0;padding-inline-start:0}
-[dir=rtl] .sec-head,[dir=rtl] .menu a{font-size:20px}
+[dir=rtl] .sec-head,[dir=rtl] .name,[dir=rtl] .menu a,[dir=rtl] .menu span,[dir=rtl] .reel-more,[dir=rtl] .reel-fallback,[dir=rtl] .legal,[dir=rtl] .tagline{letter-spacing:0;padding-inline-start:0}
+[dir=rtl] .sec-head,[dir=rtl] .menu a,[dir=rtl] .menu span{font-size:20px}
 [dir=rtl] .name{font-size:1.15rem}
 [dir=rtl] .hl::before{left:-.2em;right:50%;transition:right .3s ease}
 [dir=rtl] a:hover .hl::before,[dir=rtl] a:focus-visible .hl::before{right:-.2em}
 [dir=rtl] .sec-head svg{transform:scaleX(-1)}
 [dir=rtl] .reel-more svg{transform:scaleX(-1)}
 [dir=rtl] .reel-more:hover svg{transform:scaleX(-1) translateX(6px)}
+[dir=rtl] .slide-btn svg{transform:scaleX(-1)}
 @media (max-width:600px){[dir=rtl] .name{font-size:.95rem}}
 /* green highlighter on the right half of a word */
 .hl{position:relative;z-index:0}
@@ -196,7 +197,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl" data-i18n="videos">Viral videos</span>
     <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5"/></svg></a></h2>
   <!-- Instagram reels in a sideways slider: add or remove a <blockquote> to change the list -->
-  <div class="reels" id="reels" dir="ltr">
+  <div class="reels" id="reels">
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/DWJ1KWbCHet/" data-instgrm-version="14">
       <a class="reel-fallback" href="https://www.instagram.com/reel/DWJ1KWbCHet/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span data-i18n="watch">Watch</span></a>
     </blockquote>
@@ -212,7 +213,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
     <a class="reel-more" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="More videos on Instagram" data-i18n-aria="moreAria"><span data-i18n="more">More</span>
       <svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h26M20 1l6 6-6 6"/></svg></a>
   </div>
-  <div class="slide-btns" dir="ltr">
+  <div class="slide-btns">
     <button class="slide-btn" type="button" aria-label="Previous videos" data-i18n-aria="prev" onclick="slideReels(-1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M34 7H2M8 1L2 7l6 6"/></svg></button>
     <button class="slide-btn" type="button" aria-label="Next videos" data-i18n-aria="next" onclick="slideReels(1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h32M26 1l6 6-6 6"/></svg></button>
   </div>
@@ -245,6 +246,8 @@ function setLang(l){
   document.querySelectorAll('[data-i18n-aria]').forEach(function(e){e.setAttribute('aria-label',d[e.dataset.i18nAria]);});
   document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l);});
   try{localStorage.setItem('lang',l);}catch(e){}
+  var r=document.getElementById('reels');if(r){r.style.scrollBehavior='auto';r.scrollLeft=0;r.style.scrollBehavior='';}
+  if(typeof reels!=='undefined'&&reels)updBtns();
 }
 document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
 (function(){var l=null;try{l=localStorage.getItem('lang');}catch(e){}
@@ -252,8 +255,9 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   setLang(l);})();
 /* slider arrows: move by one video, grey out at the ends */
 var reels=document.getElementById('reels'),btns=document.querySelectorAll('.slide-btn');
-function slideReels(d){var c=reels.children[0];reels.scrollBy({left:d*(c.getBoundingClientRect().width+24),behavior:'smooth'});}
-function updBtns(){btns[0].disabled=reels.scrollLeft<4;btns[1].disabled=reels.scrollLeft+reels.clientWidth>=reels.scrollWidth-4;}
+function rtl(){return getComputedStyle(reels).direction==='rtl';}
+function slideReels(d){var c=reels.children[0];reels.scrollBy({left:(rtl()?-d:d)*(c.getBoundingClientRect().width+24),behavior:'smooth'});}
+function updBtns(){var x=Math.abs(reels.scrollLeft);btns[0].disabled=x<4;btns[1].disabled=x+reels.clientWidth>=reels.scrollWidth-4;}
 reels.addEventListener('scroll',updBtns,{passive:true});addEventListener('resize',updBtns);updBtns();
 /* load Instagram's player only when the videos get close, so the page opens fast */
 (function(){
