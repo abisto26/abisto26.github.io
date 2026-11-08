@@ -80,6 +80,10 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
   font:800 12px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
 .reel-fallback svg{width:54px;height:54px}
 .reel-fallback:hover .hl::before{left:-.2em}
+.reel-more{aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;gap:16px;border:2px solid var(--ink);
+  color:var(--ink);text-decoration:none;font:800 16px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;padding-inline-start:.4em}
+.reel-more svg{width:28px;height:14px;flex:none;transition:transform .25s ease}
+.reel-more:hover svg{transform:translateX(6px)}
 .slide-btns{display:flex;gap:28px;margin-top:28px}
 .slide-btn{appearance:none;border:0;background:none;padding:10px;color:var(--ink);cursor:pointer;transition:opacity .2s}
 .slide-btn svg{width:34px;height:14px;display:block}
@@ -135,7 +139,7 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
     <a href="/globe/"><span class="hl">Globe</span></a>
     <span class="menu-soon"><span class="hl">Soual</span></span>
     <span class="menu-soon"><span class="hl">TaTaHi</span></span>
-    <a href="#videos" onclick="toggleMenu(false)"><span class="hl">Videos</span></a>
+    <a href="#videos" onclick="toggleMenu(false)"><span class="hl">Viral videos</span></a>
     <hr>
     <a class="light" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a>
     <a class="light" href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a>
@@ -173,7 +177,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   </div>
 </section>
 <section class="sec" id="videos" aria-labelledby="videos-h">
-  <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl">Videos</span>
+  <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl">Viral videos</span>
     <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5"/></svg></a></h2>
   <!-- Instagram reels in a sideways slider: add or remove a <blockquote> to change the list -->
   <div class="reels" id="reels">
@@ -189,6 +193,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/De9xrPnoFrb/" data-instgrm-version="14">
       <a class="reel-fallback" href="https://www.instagram.com/reel/De9xrPnoFrb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span class="hl">Watch</span></a>
     </blockquote>
+    <a class="reel-more" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="More videos on Instagram"><span class="hl">More</span>
+      <svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h26M20 1l6 6-6 6"/></svg></a>
   </div>
   <div class="slide-btns">
     <button class="slide-btn" type="button" aria-label="Previous videos" onclick="slideReels(-1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M34 7H2M8 1L2 7l6 6"/></svg></button>
