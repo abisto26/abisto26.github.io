@@ -34,19 +34,39 @@
 <style>
 @font-face{font-family:"Open Sans";font-weight:400;font-display:swap;src:url(assets/fonts/open-sans-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Open Sans";font-weight:700;font-display:swap;src:url(assets/fonts/open-sans-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Tajawal";font-weight:400;font-display:swap;src:url(assets/fonts/tajawal-arabic-400-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
+@font-face{font-family:"Tajawal";font-weight:700;font-display:swap;src:url(assets/fonts/tajawal-arabic-700-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
+@font-face{font-family:"Tajawal";font-weight:800;font-display:swap;src:url(assets/fonts/tajawal-arabic-800-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
 @font-face{font-family:"Open Sans";font-weight:800;font-display:swap;src:url(assets/fonts/open-sans-latin-800-normal.woff2) format("woff2")}
 :root{--bg:#f0efea;--ink:#282828;--soft:#6b6a65;--panel:#dddcd2;--overlay:rgba(231,229,221,.96);--mark:#adff2f}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans","Tajawal",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
   display:flex;flex-direction:column;align-items:center;padding:0 16px calc(24px + env(safe-area-inset-bottom,0px))}
 /* top bar */
 .bar{position:sticky;top:0;z-index:5;width:100%;display:flex;align-items:center;justify-content:space-between;
   padding:calc(18px + env(safe-area-inset-top,0px)) 4px 18px;background:var(--bg)}
-.brand{font:400 15px/1 "Open Sans",system-ui,sans-serif;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.brand{font:400 15px/1 "Open Sans","Tajawal",system-ui,sans-serif;color:var(--ink);text-decoration:none;letter-spacing:.01em}
 .brand b{font-weight:800}
 .menu-btn{appearance:none;border:0;background:none;padding:10px;margin:-10px;color:var(--ink);cursor:pointer;display:grid;place-items:center}
 .menu-btn svg{width:24px;height:24px}
+.bar-r{display:flex;align-items:center;gap:22px}
+.langs{display:flex;gap:4px}
+.langs button{appearance:none;border:0;background:none;cursor:pointer;padding:6px 6px;font:800 12px/1 "Open Sans","Tajawal",system-ui,sans-serif;
+  letter-spacing:.15em;color:var(--soft);opacity:.7;transition:opacity .15s,color .15s}
+.langs button[lang=ar]{font-size:15px;letter-spacing:0;padding-top:3px}
+.langs button:hover{opacity:1}
+.langs button[aria-pressed=true]{color:var(--ink);opacity:1}
+/* Arabic: right to left, no letter spacing (it breaks the joined letters) */
+[dir=rtl] .sec-head,[dir=rtl] .name,[dir=rtl] .menu a,[dir=rtl] .reel-more,[dir=rtl] .reel-fallback,[dir=rtl] .legal,[dir=rtl] .tagline{letter-spacing:0;padding-inline-start:0}
+[dir=rtl] .sec-head,[dir=rtl] .menu a{font-size:20px}
+[dir=rtl] .name{font-size:1.15rem}
+[dir=rtl] .hl::before{left:-.2em;right:50%;transition:right .3s ease}
+[dir=rtl] a:hover .hl::before,[dir=rtl] a:focus-visible .hl::before{right:-.2em}
+[dir=rtl] .sec-head svg{transform:scaleX(-1)}
+[dir=rtl] .reel-more svg{transform:scaleX(-1)}
+[dir=rtl] .reel-more:hover svg{transform:scaleX(-1) translateX(6px)}
+@media (max-width:600px){[dir=rtl] .name{font-size:.95rem}}
 /* green highlighter on the right half of a word */
 .hl{position:relative;z-index:0}
 .hl::before{content:"";position:absolute;z-index:-1;inset:-6px -.2em -6px 50%;background:var(--mark);transition:left .3s ease}
@@ -57,11 +77,11 @@ a:hover .hl::before,a:focus-visible .hl::before{left:-.2em}
 .menu.open{opacity:1;visibility:visible;transition:opacity .25s ease}
 .menu nav{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding:24px}
 .menu .close{margin-bottom:6px}
-.menu a,.menu span{font:800 16px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.menu a,.menu span{font:800 16px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none}
 main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 /* sections */
 .sec{width:100%;max-width:1100px;padding:40px 4px 64px;display:flex;flex-direction:column;align-items:center;scroll-margin-top:64px}
-.sec-head{display:inline-flex;align-items:center;gap:14px;margin:0 0 40px;font:800 14px/1 "Open Sans",system-ui,sans-serif;
+.sec-head{display:inline-flex;align-items:center;gap:14px;margin:0 0 40px;font:800 14px/1 "Open Sans","Tajawal",system-ui,sans-serif;
   letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding-inline-start:.4em}
 .sec-head svg{width:22px;height:12px;flex:none}
 .sec-games{min-height:calc(100svh - 150px);justify-content:center}
@@ -74,11 +94,11 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 .reels > *{flex:0 0 320px!important;width:320px!important;min-width:0!important;max-width:none!important;margin:0!important;scroll-snap-align:start}
 .reel{margin:0;aspect-ratio:9/16;background:var(--panel);display:grid}
 .reel-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--ink);text-decoration:none;
-  font:800 12px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
+  font:800 12px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
 .reel-fallback svg{width:54px;height:54px}
 .reels > .reel-more{flex-basis:200px!important;width:200px!important}
 .reel-more{display:flex;align-items:center;justify-content:center;gap:16px;
-  color:var(--ink);text-decoration:none;font:800 16px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;padding-inline-start:.4em}
+  color:var(--ink);text-decoration:none;font:800 16px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;padding-inline-start:.4em}
 .reel-more svg{width:28px;height:14px;flex:none;transition:transform .25s ease}
 .reel-more:hover svg{transform:translateX(6px)}
 .slide-btns{display:flex;gap:28px;margin-top:28px}
@@ -92,7 +112,7 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 }
 
 footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px;padding:8px 4px 4px}
-.legal,.tagline{font:700 14px/1.2 "Open Sans",system-ui,sans-serif;text-transform:uppercase;color:var(--ink);margin:0}
+.legal,.tagline{font:700 14px/1.2 "Open Sans","Tajawal",system-ui,sans-serif;text-transform:uppercase;color:var(--ink);margin:0}
 .tagline{display:none}
 @media (min-width:768px){
   footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
@@ -104,7 +124,7 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
 .game img{display:block;width:min(36vw,170px);height:auto;transition:transform .25s ease}
 .game:hover img{transform:translateY(-4px) scale(1.03)}
 .game:active img{transform:scale(.97)}
-.name{position:relative;font:800 .95rem/1 "Open Sans",system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;padding-inline-start:.42em}
+.name{position:relative;font:800 .95rem/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;padding-inline-start:.42em}
 .games{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(28px,8vw,72px)}
 .game.soon{cursor:default;user-select:none}
 .game.soon img{filter:grayscale(1);opacity:.4}
@@ -123,18 +143,25 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="/"><b>Abisto</b>26</a>
-  <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" onclick="toggleMenu(true)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h18M3 12h18M3 16h18"/></svg>
-  </button>
+  <a class="brand" href="/" dir="ltr"><b>Abisto</b>26</a>
+  <div class="bar-r">
+    <div class="langs" role="group" aria-label="Language" dir="ltr">
+      <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="fr" lang="fr" aria-pressed="false">FR</button>
+      <button type="button" data-lang="ar" lang="ar" aria-pressed="false">ع</button>
+    </div>
+    <button class="menu-btn" type="button" aria-label="Menu" data-i18n-aria="menu" aria-expanded="false" aria-controls="menu" onclick="toggleMenu(true)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h18M3 12h18M3 16h18"/></svg>
+    </button>
+  </div>
 </header>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
   <nav>
-    <button class="menu-btn close" type="button" aria-label="Close menu" onclick="toggleMenu(false)">
+    <button class="menu-btn close" type="button" aria-label="Close menu" data-i18n-aria="close" onclick="toggleMenu(false)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
     </button>
-    <a href="#games" onclick="toggleMenu(false)"><span class="hl">Games</span></a>
-    <a href="#videos" onclick="toggleMenu(false)"><span class="hl">Viral videos</span></a>
+    <a href="#games" onclick="toggleMenu(false)"><span class="hl" data-i18n="games">Games</span></a>
+    <a href="#videos" onclick="toggleMenu(false)"><span class="hl" data-i18n="videos">Viral videos</span></a>
   </nav>
 </div>
 <script>
@@ -148,61 +175,82 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
 </script>
 <main>
 <section class="sec sec-games" id="games" aria-labelledby="games-h">
-  <h2 class="sec-head" id="games-h"><span class="hl">Games</span></h2>
+  <h2 class="sec-head" id="games-h"><span class="hl" data-i18n="games">Games</span></h2>
   <div class="games">
-  <a class="game" href="/globe/" aria-label="Play Globe by Abisto">
+  <a class="game" href="/globe/" aria-label="Play Globe by Abisto" data-i18n-aria="playGlobe">
     <img src="assets/globe-logo.webp" alt="">
-    <span class="name">Globe</span>
+    <span class="name" data-i18n="globe">Globe</span>
   </a>
   <!-- not open to everyone yet: shown greyed and not clickable; the game itself works at abisto26.com/soual -->
   <div class="game soon" aria-disabled="true">
     <img src="assets/soual-logo.webp" alt="">
-    <span class="name">Soual</span>
+    <span class="name" data-i18n="soual">Soual</span>
   </div>
   <!-- rock paper scissors, not built yet: greyed and not clickable -->
   <div class="game soon" aria-disabled="true">
     <img src="assets/tatahi-logo.webp" alt="">
-    <span class="name">TaTaHi</span>
+    <span class="name" data-i18n="tatahi">TaTaHi</span>
   </div>
   </div>
 </section>
 <section class="sec" id="videos" aria-labelledby="videos-h">
-  <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl">Viral videos</span>
+  <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl" data-i18n="videos">Viral videos</span>
     <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5"/></svg></a></h2>
   <!-- Instagram reels in a sideways slider: add or remove a <blockquote> to change the list -->
-  <div class="reels" id="reels">
+  <div class="reels" id="reels" dir="ltr">
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/DWJ1KWbCHet/" data-instgrm-version="14">
-      <a class="reel-fallback" href="https://www.instagram.com/reel/DWJ1KWbCHet/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Watch</a>
+      <a class="reel-fallback" href="https://www.instagram.com/reel/DWJ1KWbCHet/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span data-i18n="watch">Watch</span></a>
     </blockquote>
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/DZdP2eBIVaP/" data-instgrm-version="14">
-      <a class="reel-fallback" href="https://www.instagram.com/reel/DZdP2eBIVaP/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Watch</a>
+      <a class="reel-fallback" href="https://www.instagram.com/reel/DZdP2eBIVaP/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span data-i18n="watch">Watch</span></a>
     </blockquote>
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/DaJXaXuo51n/" data-instgrm-version="14">
-      <a class="reel-fallback" href="https://www.instagram.com/reel/DaJXaXuo51n/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Watch</a>
+      <a class="reel-fallback" href="https://www.instagram.com/reel/DaJXaXuo51n/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span data-i18n="watch">Watch</span></a>
     </blockquote>
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/De9xrPnoFrb/" data-instgrm-version="14">
-      <a class="reel-fallback" href="https://www.instagram.com/reel/De9xrPnoFrb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Watch</a>
+      <a class="reel-fallback" href="https://www.instagram.com/reel/De9xrPnoFrb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span data-i18n="watch">Watch</span></a>
     </blockquote>
-    <a class="reel-more" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="More videos on Instagram">More
+    <a class="reel-more" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="More videos on Instagram" data-i18n-aria="moreAria"><span data-i18n="more">More</span>
       <svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h26M20 1l6 6-6 6"/></svg></a>
   </div>
-  <div class="slide-btns">
-    <button class="slide-btn" type="button" aria-label="Previous videos" onclick="slideReels(-1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M34 7H2M8 1L2 7l6 6"/></svg></button>
-    <button class="slide-btn" type="button" aria-label="Next videos" onclick="slideReels(1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h32M26 1l6 6-6 6"/></svg></button>
+  <div class="slide-btns" dir="ltr">
+    <button class="slide-btn" type="button" aria-label="Previous videos" data-i18n-aria="prev" onclick="slideReels(-1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M34 7H2M8 1L2 7l6 6"/></svg></button>
+    <button class="slide-btn" type="button" aria-label="Next videos" data-i18n-aria="next" onclick="slideReels(1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h32M26 1l6 6-6 6"/></svg></button>
   </div>
 </section>
 </main>
 <footer>
-  <nav class="socials" aria-label="Abisto on social media">
+  <nav class="socials" aria-label="Abisto on social media" data-i18n-aria="socials">
     <a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388 5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552 1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388 5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912.056-1.28.07-1.69.063-4.948-.006-3.258-.02-3.667-.081-4.947-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123 5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895 3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228-.06-1.264-.072-1.644-.08-4.848-.006-3.204.006-3.583.061-4.848.05-1.169.246-1.805.408-2.228.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417 1.265-.06 1.644-.072 4.848-.08 3.203-.006 3.583.006 4.85.062 1.168.05 1.804.244 2.227.408.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227.06 1.265.074 1.645.08 4.848.005 3.203-.006 3.583-.061 4.848-.051 1.17-.245 1.805-.408 2.23-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442 1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024 6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16 4 4 0 0 1 8 12.008"/></svg></a>
     <a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a9 9 0 0 1 1.141.195v3.325a9 9 0 0 0-.653-.036 27 27 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.7 1.7 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647"/></svg></a>
     <a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"/></svg></a>
     <a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg></a>
   </nav>
-  <p class="legal">Abisto26 © 2026</p>
-  <p class="tagline">Smile. Play. Learn.</p>
+  <p class="legal" dir="ltr">Abisto26 © 2026</p>
+  <p class="tagline" data-i18n="tagline">Smile. Play. Learn.</p>
 </footer>
 <script>
+/* languages: EN FR ع. Every visible text has data-i18n (or data-i18n-aria for screen readers) */
+var T={
+ en:{games:"Games",videos:"Viral videos",globe:"Globe",soual:"Soual",tatahi:"TaTaHi",watch:"Watch",more:"More",tagline:"Smile. Play. Learn.",
+     menu:"Menu",close:"Close menu",playGlobe:"Play Globe by Abisto",moreAria:"More videos on Instagram",prev:"Previous videos",next:"Next videos",socials:"Abisto on social media"},
+ fr:{games:"Jeux",videos:"Vidéos virales",globe:"Globe",soual:"Soual",tatahi:"TaTaHi",watch:"Regarder",more:"Plus",tagline:"Souriez. Jouez. Apprenez.",
+     menu:"Menu",close:"Fermer le menu",playGlobe:"Jouer à Globe par Abisto",moreAria:"Plus de vidéos sur Instagram",prev:"Vidéos précédentes",next:"Vidéos suivantes",socials:"Abisto sur les réseaux sociaux"},
+ ar:{games:"الألعاب",videos:"فيديوهات رائجة",globe:"العالم",soual:"سؤال",tatahi:"طاطاهي",watch:"شاهد",more:"المزيد",tagline:"ابتسم. العب. تعلّم.",
+     menu:"القائمة",close:"إغلاق القائمة",playGlobe:"العب العالم مع Abisto",moreAria:"المزيد من الفيديوهات على إنستغرام",prev:"الفيديوهات السابقة",next:"الفيديوهات التالية",socials:"Abisto على مواقع التواصل"}
+};
+function setLang(l){
+  if(!T[l])l='en';var d=T[l],h=document.documentElement;
+  h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(function(e){e.textContent=d[e.dataset.i18n];});
+  document.querySelectorAll('[data-i18n-aria]').forEach(function(e){e.setAttribute('aria-label',d[e.dataset.i18nAria]);});
+  document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l);});
+  try{localStorage.setItem('lang',l);}catch(e){}
+}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+(function(){var l=null;try{l=localStorage.getItem('lang');}catch(e){}
+  if(!l){var n=(navigator.language||'en').slice(0,2);l=T[n]?n:'en';}
+  setLang(l);})();
 /* slider arrows: move by one video, grey out at the ends */
 var reels=document.getElementById('reels'),btns=document.querySelectorAll('.slide-btn');
 function slideReels(d){var c=reels.children[0];reels.scrollBy({left:d*(c.getBoundingClientRect().width+24),behavior:'smooth'});}
