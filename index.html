@@ -70,21 +70,26 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 .sec-games{min-height:calc(100svh - 150px);justify-content:center}
 .sec-games .games{width:100%}
 /* videos */
-.reels{display:grid;gap:28px;justify-content:center;grid-template-columns:repeat(2,minmax(0,360px))}
-.reels:has(> :nth-child(5)){grid-template-columns:repeat(3,minmax(0,340px))}
-.reels > *{width:100%!important;min-width:0!important;max-width:none!important;margin:0!important}
+/* sideways slider */
+.reels{width:100%;display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.reels::-webkit-scrollbar{display:none}
+.reels > *{flex:0 0 320px!important;width:320px!important;min-width:0!important;max-width:none!important;margin:0!important;scroll-snap-align:start}
 .reel{margin:0;aspect-ratio:9/16;background:var(--panel);display:grid}
 .reel-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--ink);text-decoration:none;
   font:800 12px/1 "Open Sans",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
 .reel-fallback svg{width:54px;height:54px}
 .reel-fallback:hover .hl::before{left:-.2em}
-.reels{width:100%}
+.slide-btns{display:flex;gap:28px;margin-top:28px}
+.slide-btn{appearance:none;border:0;background:none;padding:10px;color:var(--ink);cursor:pointer;transition:opacity .2s}
+.slide-btn svg{width:34px;height:14px;display:block}
+.slide-btn:disabled{opacity:.25;cursor:default}
 @media (max-width:760px){
-  .reels{width:auto;align-self:stretch;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -20px;padding:0 20px 8px;justify-content:flex-start;
-    scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .reels::-webkit-scrollbar{display:none}
-  .reels > *{flex:0 0 min(82vw,340px)!important;width:min(82vw,340px)!important;scroll-snap-align:center}
+  .reels{width:auto;align-self:stretch;gap:14px;margin:0 -20px;padding:0 20px 8px;scroll-padding:0 20px}
+  .reels > *{flex-basis:min(68vw,300px)!important;width:min(68vw,300px)!important}
+  .slide-btns{display:none}
 }
+
 footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px;padding:8px 4px 4px}
 .legal,.tagline{font:700 14px/1.2 "Open Sans",system-ui,sans-serif;text-transform:uppercase;color:var(--ink);margin:0}
 .tagline{display:none}
@@ -170,8 +175,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
 <section class="sec" id="videos" aria-labelledby="videos-h">
   <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl">Videos</span>
     <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5"/></svg></a></h2>
-  <!-- Instagram reels: add or remove a <blockquote> to change the list (4 shows 2x2, 5 or 6 shows 3 per row on a computer) -->
-  <div class="reels">
+  <!-- Instagram reels in a sideways slider: add or remove a <blockquote> to change the list -->
+  <div class="reels" id="reels">
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/DWJ1KWbCHet/" data-instgrm-version="14">
       <a class="reel-fallback" href="https://www.instagram.com/reel/DWJ1KWbCHet/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span class="hl">Watch</span></a>
     </blockquote>
@@ -184,6 +189,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
     <blockquote class="instagram-media reel" data-instgrm-permalink="https://www.instagram.com/reel/De9xrPnoFrb/" data-instgrm-version="14">
       <a class="reel-fallback" href="https://www.instagram.com/reel/De9xrPnoFrb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span class="hl">Watch</span></a>
     </blockquote>
+  </div>
+  <div class="slide-btns">
+    <button class="slide-btn" type="button" aria-label="Previous videos" onclick="slideReels(-1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M34 7H2M8 1L2 7l6 6"/></svg></button>
+    <button class="slide-btn" type="button" aria-label="Next videos" onclick="slideReels(1)"><svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 7h32M26 1l6 6-6 6"/></svg></button>
   </div>
 </section>
 </main>
@@ -198,6 +207,11 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   <p class="tagline">Smile. Play. Learn.</p>
 </footer>
 <script>
+/* slider arrows: move by one video, grey out at the ends */
+var reels=document.getElementById('reels'),btns=document.querySelectorAll('.slide-btn');
+function slideReels(d){var c=reels.children[0];reels.scrollBy({left:d*(c.getBoundingClientRect().width+24),behavior:'smooth'});}
+function updBtns(){btns[0].disabled=reels.scrollLeft<4;btns[1].disabled=reels.scrollLeft+reels.clientWidth>=reels.scrollWidth-4;}
+reels.addEventListener('scroll',updBtns,{passive:true});addEventListener('resize',updBtns);updBtns();
 /* load Instagram's player only when the videos get close, so the page opens fast */
 (function(){
   var sec=document.getElementById('videos'),done=false;
