@@ -38,7 +38,7 @@
 @font-face{font-family:"Tajawal";font-weight:700;font-display:swap;src:url(assets/fonts/tajawal-arabic-700-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
 @font-face{font-family:"Tajawal";font-weight:800;font-display:swap;src:url(assets/fonts/tajawal-arabic-800-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
 @font-face{font-family:"Open Sans";font-weight:800;font-display:swap;src:url(assets/fonts/open-sans-latin-800-normal.woff2) format("woff2")}
-:root{--bg:#f0efea;--ink:#282828;--soft:#6b6a65;--panel:#dddcd2;--overlay:rgba(231,229,221,.96);--mark:#adff2f}
+:root{--bg:#f0efea;--ink:#282828;--soft:#6b6a65;--panel:#dddcd2;--overlay:rgba(231,229,221,.96);--mark:#adff2f;--band:#e1dfd3}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans","Tajawal",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
@@ -141,6 +141,9 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 [dir=rtl] .about-quote cite{letter-spacing:0;font-size:13px}
 [dir=rtl] .about-text p{font-size:17px;line-height:1.9}
 [dir=rtl] .about-quote p{line-height:1.6}
+/* dark beige band, full width (like the score block on cssdesignawards.com) */
+.sec-band{background:var(--band);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);padding-top:72px;padding-bottom:80px;margin:40px 0}
+.sec-band .reel{background:var(--bg)}
 /* sideways slider */
 .reels{width:100%;display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
   scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
@@ -254,7 +257,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
     </div>
   </div>
 </section>
-<section class="sec" id="videos" aria-labelledby="videos-h">
+<section class="sec sec-band" id="videos" aria-labelledby="videos-h">
   <h2 id="videos-h" style="margin:0"><a class="sec-head" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener"><span class="hl" data-i18n="videos">Viral videos</span>
     <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5"/></svg></a></h2>
   <!-- Instagram reels in a sideways slider: add or remove a <blockquote> to change the list -->
