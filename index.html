@@ -54,7 +54,6 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans","Taj
 .langs{display:flex;gap:4px}
 .langs button{appearance:none;border:0;background:none;cursor:pointer;padding:6px 6px;font:800 12px/1 "Open Sans","Tajawal",system-ui,sans-serif;
   letter-spacing:.15em;color:var(--soft);opacity:.7;transition:opacity .15s,color .15s}
-.langs button[lang=ar]{font-size:15px;letter-spacing:0;padding-top:3px}
 .langs button:hover{opacity:1}
 .langs button[aria-pressed=true]{color:var(--ink);opacity:1}
 /* Arabic: right to left, no letter spacing (it breaks the joined letters) */
@@ -148,7 +147,7 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
     <div class="langs" role="group" aria-label="Language" dir="ltr">
       <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="fr" lang="fr" aria-pressed="false">FR</button>
-      <button type="button" data-lang="ar" lang="ar" aria-pressed="false">ع</button>
+      <button type="button" data-lang="ar" aria-pressed="false">AR</button>
     </div>
     <button class="menu-btn" type="button" aria-label="Menu" data-i18n-aria="menu" aria-expanded="false" aria-controls="menu" onclick="toggleMenu(true)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h18M3 12h18M3 16h18"/></svg>
