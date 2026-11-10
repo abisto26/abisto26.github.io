@@ -34,25 +34,25 @@
 <style>
 @font-face{font-family:"Open Sans";font-weight:400;font-display:swap;src:url(assets/fonts/open-sans-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Open Sans";font-weight:700;font-display:swap;src:url(assets/fonts/open-sans-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Tajawal";font-weight:400;font-display:swap;src:url(assets/fonts/tajawal-arabic-400-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
-@font-face{font-family:"Tajawal";font-weight:700;font-display:swap;src:url(assets/fonts/tajawal-arabic-700-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
-@font-face{font-family:"Tajawal";font-weight:800;font-display:swap;src:url(assets/fonts/tajawal-arabic-800-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
+@font-face{font-family:"Alexandria";font-weight:400;font-display:swap;src:url(assets/fonts/alexandria-arabic-400-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
+@font-face{font-family:"Alexandria";font-weight:700;font-display:swap;src:url(assets/fonts/alexandria-arabic-700-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
+@font-face{font-family:"Alexandria";font-weight:800;font-display:swap;src:url(assets/fonts/alexandria-arabic-800-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
 @font-face{font-family:"Open Sans";font-weight:800;font-display:swap;src:url(assets/fonts/open-sans-latin-800-normal.woff2) format("woff2")}
 :root{--bg:#f0efea;--ink:#282828;--soft:#6b6a65;--panel:#dddcd2;--overlay:rgba(231,229,221,.96);--mark:#adff2f;--band:#e1dfd3}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans","Tajawal",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans","Alexandria",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
   display:flex;flex-direction:column;align-items:center;padding:0 16px calc(24px + env(safe-area-inset-bottom,0px))}
 /* top bar */
 .bar{position:sticky;top:0;z-index:5;width:100%;display:flex;align-items:center;justify-content:space-between;
   padding:calc(18px + env(safe-area-inset-top,0px)) 4px 18px;background:var(--bg)}
-.brand{font:400 15px/1 "Open Sans","Tajawal",system-ui,sans-serif;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.brand{font:400 15px/1 "Open Sans","Alexandria",system-ui,sans-serif;color:var(--ink);text-decoration:none;letter-spacing:.01em}
 .brand b{font-weight:800}
 .menu-btn{appearance:none;border:0;background:none;padding:10px;margin:-10px;color:var(--ink);cursor:pointer;display:grid;place-items:center}
 .menu-btn svg{width:24px;height:24px}
 .bar-r{display:flex;align-items:center;gap:22px}
 .langs{display:flex;gap:4px}
-.langs button{appearance:none;border:0;background:none;cursor:pointer;padding:6px 6px;font:800 12px/1 "Open Sans","Tajawal",system-ui,sans-serif;
+.langs button{appearance:none;border:0;background:none;cursor:pointer;padding:6px 6px;font:800 12px/1 "Open Sans","Alexandria",system-ui,sans-serif;
   letter-spacing:.15em;color:var(--soft);opacity:.7;transition:opacity .15s,color .15s}
 .langs button:hover{opacity:1}
 .langs button[aria-pressed=true]{color:var(--ink);opacity:1}
@@ -78,11 +78,11 @@ a:hover .hl::before,a:focus-visible .hl::before{left:-.2em}
 .menu nav{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding:24px}
 .menu .close{margin-bottom:6px}
 [hidden]{display:none!important}
-.menu a,.menu span{font:800 16px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.menu a,.menu span{font:800 16px/1 "Open Sans","Alexandria",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none}
 main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 /* sections */
 .sec{width:100%;max-width:1100px;padding:40px 4px 64px;display:flex;flex-direction:column;align-items:center;scroll-margin-top:64px}
-.sec-head{display:inline-flex;align-items:center;gap:14px;margin:0 0 40px;font:800 14px/1 "Open Sans","Tajawal",system-ui,sans-serif;
+.sec-head{display:inline-flex;align-items:center;gap:14px;margin:0 0 40px;font:800 14px/1 "Open Sans","Alexandria",system-ui,sans-serif;
   letter-spacing:.4em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding-inline-start:.4em}
 .sec-head svg{width:22px;height:12px;flex:none}
 .sec-games{justify-content:center}
@@ -91,17 +91,17 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 /* hero: promotes Globe */
 .hero{width:100%;max-width:1100px;min-height:calc(100svh - 70px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
   align-items:center;gap:40px;padding:24px 4px 56px}
-.hero-kicker{margin:0 0 22px;font:800 12px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--soft)}
-.hero-title{margin:0 0 24px;font:800 clamp(38px,5.6vw,68px)/1.06 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:-.02em}
+.hero-kicker{margin:0 0 22px;font:800 12px/1 "Open Sans","Alexandria",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--soft)}
+.hero-title{margin:0 0 24px;font:800 clamp(38px,5.6vw,68px)/1.06 "Open Sans","Alexandria",system-ui,sans-serif;letter-spacing:-.02em}
 .mark{position:relative;z-index:0;white-space:nowrap}
 .mark::before{content:"";position:absolute;z-index:-1;inset:48% -.08em 4% -.08em;background:var(--mark)}
-.hero-sub{margin:0 0 34px;max-width:46ch;font:400 18px/1.6 "Open Sans","Tajawal",system-ui,sans-serif}
+.hero-sub{margin:0 0 34px;max-width:46ch;font:400 18px/1.6 "Open Sans","Alexandria",system-ui,sans-serif}
 .hero-cta{display:inline-flex;align-items:center;gap:16px;padding:19px 28px;background:var(--ink);color:var(--bg);text-decoration:none;
-  font:800 13px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
+  font:800 13px/1 "Open Sans","Alexandria",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
 .hero-cta svg{width:26px;height:13px;transition:transform .25s ease}
 .hero-cta:hover svg,.hero-cta:focus-visible svg{transform:translateX(6px)}
 .hero-cta:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
-.hero-tags{margin:22px 0 0;font:700 13px/1.4 "Open Sans","Tajawal",system-ui,sans-serif;color:var(--soft)}
+.hero-tags{margin:22px 0 0;font:700 13px/1.4 "Open Sans","Alexandria",system-ui,sans-serif;color:var(--soft)}
 .hero-visual{position:relative;justify-self:center;display:block;padding:40px 0 0 60px}
 .phone{display:block;width:280px;border:10px solid #1d1d1b;border-radius:44px;overflow:hidden;background:#1d1d1b;
   box-shadow:0 30px 60px -20px rgba(40,40,40,.35);transform:rotate(3deg)}
@@ -129,10 +129,10 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 /* about */
 .about{width:100%;max-width:1000px;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:28px 64px;align-items:start}
 .about-photo{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
-.about-text p{margin:0 0 18px;font:400 16px/1.75 "Open Sans","Tajawal",system-ui,sans-serif;max-width:62ch}
+.about-text p{margin:0 0 18px;font:400 16px/1.75 "Open Sans","Alexandria",system-ui,sans-serif;max-width:62ch}
 .about-quote{margin:0 0 34px;padding:0}
-.about-quote p{margin:0 0 14px;font:800 26px/1.35 "Open Sans","Tajawal",system-ui,sans-serif;max-width:none}
-.about-quote cite{font:800 12px/1 "Open Sans","Tajawal",system-ui,sans-serif;font-style:normal;letter-spacing:.4em;text-transform:uppercase;color:var(--soft)}
+.about-quote p{margin:0 0 14px;font:800 26px/1.35 "Open Sans","Alexandria",system-ui,sans-serif;max-width:none}
+.about-quote cite{font:800 12px/1 "Open Sans","Alexandria",system-ui,sans-serif;font-style:normal;letter-spacing:.4em;text-transform:uppercase;color:var(--soft)}
 .about-quote cite::before{content:"— "}
 @media (max-width:760px){
   .about{grid-template-columns:1fr;gap:28px}
@@ -152,11 +152,11 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 .reels > *{flex:0 0 320px!important;width:320px!important;min-width:0!important;max-width:none!important;margin:0!important;scroll-snap-align:start}
 .reel{margin:0;aspect-ratio:9/16;background:var(--panel);display:grid}
 .reel-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--ink);text-decoration:none;
-  font:800 12px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
+  font:800 12px/1 "Open Sans","Alexandria",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase}
 .reel-fallback svg{width:54px;height:54px}
 .reels > .reel-more{flex-basis:200px!important;width:200px!important}
 .reel-more{display:flex;align-items:center;justify-content:center;gap:16px;
-  color:var(--ink);text-decoration:none;font:800 16px/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;padding-inline-start:.4em}
+  color:var(--ink);text-decoration:none;font:800 16px/1 "Open Sans","Alexandria",system-ui,sans-serif;letter-spacing:.4em;text-transform:uppercase;padding-inline-start:.4em}
 .reel-more svg{width:28px;height:14px;flex:none;transition:transform .25s ease}
 .reel-more:hover svg{transform:translateX(6px)}
 .slide-btns{display:flex;gap:28px;margin-top:28px}
@@ -170,7 +170,7 @@ main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center}
 }
 
 footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px;padding:8px 4px 4px}
-.legal,.tagline{font:700 14px/1.2 "Open Sans","Tajawal",system-ui,sans-serif;text-transform:uppercase;color:var(--ink);margin:0}
+.legal,.tagline{font:700 14px/1.2 "Open Sans","Alexandria",system-ui,sans-serif;text-transform:uppercase;color:var(--ink);margin:0}
 .tagline{display:none}
 @media (min-width:768px){
   footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
@@ -182,7 +182,7 @@ footer{width:100%;display:flex;flex-direction:column;align-items:center;gap:26px
 .game img{display:block;width:min(36vw,170px);height:auto;aspect-ratio:1;object-fit:contain;transition:transform .25s ease}
 .game:hover img{transform:translateY(-4px) scale(1.03)}
 .game:active img{transform:scale(.97)}
-.name{position:relative;font:800 .95rem/1 "Open Sans","Tajawal",system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;padding-inline-start:.42em}
+.name{position:relative;font:800 .95rem/1 "Open Sans","Alexandria",system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;padding-inline-start:.42em}
 .games{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(28px,8vw,72px)}
 .game.soon{cursor:default;user-select:none}
 .game.soon img{filter:grayscale(1);opacity:.4}
@@ -219,7 +219,7 @@ body{background:var(--cloud)}
    radial-gradient(55% 65% at 85% 100%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%)}
 .hero-text,.hero-visual{position:relative;z-index:1}
 .hero-kicker{color:#fff;opacity:.9;letter-spacing:.3em;margin-bottom:14px;font-size:13px}
-.hero-title{font-family:"Anton","Tajawal",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:0;line-height:.92;
+.hero-title{font-family:"Anton","Alexandria",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:0;line-height:.92;
   font-size:clamp(64px,7vw,104px);color:#fff;margin-bottom:26px}
 .mark::before{display:none}
 .hero-sub{color:#fff;font-weight:700;font-size:20px;line-height:1.35;max-width:24ch;position:relative;padding-top:22px}
@@ -230,7 +230,7 @@ body{background:var(--cloud)}
 /* section titles: red bar instead of highlight */
 .hl::before{inset:auto -.2em -10px auto;width:auto;left:-.2em;height:3px;top:auto;bottom:-10px;background:var(--acc)}
 a:hover .hl::before{left:-.2em}
-.sec-head{font-family:"Anton","Tajawal",sans-serif;font-weight:400;font-size:30px;letter-spacing:.06em;color:var(--ink)}
+.sec-head{font-family:"Anton","Alexandria",sans-serif;font-weight:400;font-size:30px;letter-spacing:.06em;color:var(--ink)}
 .name{color:var(--ink)}
 .menu{background:rgba(44,153,214,.96)}
 .menu a,.menu span{color:#fff}
@@ -241,8 +241,8 @@ footer .socials a{color:var(--ink)}
   .hero-sub{margin-inline:0}
   .hero-title{font-size:clamp(54px,16vw,80px)}
 }
-[dir=rtl] .hero-title{font-family:"Tajawal",sans-serif;font-weight:800;line-height:1.15}
-[dir=rtl] .sec-head{font-family:"Tajawal",sans-serif;font-weight:800;letter-spacing:0}
+[dir=rtl] .hero-title{font-family:"Alexandria",sans-serif;font-weight:800;line-height:1.15}
+[dir=rtl] .sec-head{font-family:"Alexandria",sans-serif;font-weight:800;letter-spacing:0}
 
 /* floating clouds behind the phone */
 .hero-visual .phone{position:relative;z-index:1}
@@ -321,10 +321,14 @@ footer .socials a{color:var(--ink)}
 
 /* Arabic display font (heavy, matches Anton's punch) for the big headline and section titles */
 @font-face{font-family:"Alexandria";font-weight:900;font-display:swap;src:url(assets/fonts/alexandria-arabic-900-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
-[dir=rtl] .hero-title,[dir=rtl] .sec-head{font-family:"Alexandria","Tajawal",sans-serif!important;font-weight:900!important}
+[dir=rtl] .hero-title,[dir=rtl] .sec-head{font-family:"Alexandria",sans-serif!important;font-weight:900!important}
 [dir=rtl] .hero-title{line-height:1.12!important}
 @media (max-width:760px){[dir=rtl] .hero-title{font-size:clamp(48px,16vw,66px)!important;line-height:1.08!important}}
 @media (max-width:760px) and (max-height:620px){.phone{width:min(200px,30svh,56vw)!important}.hero{padding-bottom:110px!important}}
+
+/* all Arabic in Alexandria; title underline spans the whole word in every language */
+.sec-head .hl::before,[dir=rtl] .sec-head .hl::before,.menu .hl::before,[dir=rtl] .menu .hl::before{left:-.15em!important;right:-.15em!important}
+[dir=rtl] .name{font-weight:800}
 </style>
 </head>
 <body>
