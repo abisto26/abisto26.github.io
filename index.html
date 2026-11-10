@@ -304,6 +304,15 @@ footer .socials a{color:var(--ink)}
   html[lang=fr] .hero-title{font-size:clamp(84px,8.4vw,128px)!important}
   [dir=rtl] .hero-title{font-size:clamp(72px,7vw,108px)!important;line-height:1.2!important}
 }
+
+/* landing: more breathing room on phones */
+@media (max-width:760px){
+  .hero{justify-content:center!important;padding:clamp(20px,6svh,64px) 4px clamp(120px,18svh,170px)!important}
+  .hero-visual{margin-top:clamp(-16px,-1svh,-6px)!important}
+  .phone{width:min(220px,33svh,58vw)!important}
+  .hero-cta{margin-top:clamp(-40px,-3svh,-24px)!important}
+  .c1{top:auto!important;bottom:28%!important}
+}
 </style>
 </head>
 <body>
