@@ -318,6 +318,13 @@ footer .socials a{color:var(--ink)}
 @media (max-width:760px){
   .hero-cta{margin-top:clamp(-10px,1svh,14px)!important}
 }
+
+/* Arabic display font (heavy, matches Anton's punch) for the big headline and section titles */
+@font-face{font-family:"Alexandria";font-weight:900;font-display:swap;src:url(assets/fonts/alexandria-arabic-900-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200E}
+[dir=rtl] .hero-title,[dir=rtl] .sec-head{font-family:"Alexandria","Tajawal",sans-serif!important;font-weight:900!important}
+[dir=rtl] .hero-title{line-height:1.12!important}
+@media (max-width:760px){[dir=rtl] .hero-title{font-size:clamp(48px,16vw,66px)!important;line-height:1.08!important}}
+@media (max-width:760px) and (max-height:620px){.phone{width:min(200px,30svh,56vw)!important}.hero{padding-bottom:110px!important}}
 </style>
 </head>
 <body>
