@@ -346,6 +346,47 @@ html[lang=ar] .brand b{font-weight:800}
 .bar{background:none!important;box-shadow:none!important;clip-path:none!important;isolation:isolate}
 .bar::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:0;bottom:-44px;left:calc(50% - 50vw);right:calc(50% - 50vw);
   background:linear-gradient(to bottom,var(--sky) 0,var(--sky) calc(100% - 44px),rgba(44,153,214,.7) calc(100% - 30px),rgba(44,153,214,.25) calc(100% - 12px),rgba(44,153,214,0) 100%)}
+
+/* ===== Contact: one question at a time ===== */
+.sec-contact{padding-top:24px}
+.cf{width:100%;max-width:560px;background:#fff;border-radius:22px;box-shadow:0 24px 50px -24px rgba(10,40,70,.35),0 0 0 1px rgba(20,33,46,.05);overflow:hidden}
+.cf-top{display:flex;justify-content:space-between;align-items:center;padding:18px 24px 14px;font:700 12px/1 "Open Sans","Alexandria",sans-serif;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+.cf-bar{height:3px;background:#e8eef4}
+.cf-bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .35s ease}
+.cf-body{padding:26px 24px 24px;position:relative}
+.cf-hp{position:absolute;left:-9999px;opacity:0}
+.cf-q{margin:0 0 20px;font:800 clamp(24px,6vw,30px)/1.15 "Open Sans","Alexandria",sans-serif;letter-spacing:-.02em;color:var(--ink)}
+.cf-chips{display:flex;flex-direction:column;gap:10px}
+.cf-chip{display:flex;align-items:center;gap:12px;width:100%;text-align:start;padding:15px 18px;border-radius:999px;border:1.5px solid #dfe6ee;background:#fff;
+  cursor:pointer;font:600 16px/1.2 "Open Sans","Alexandria",sans-serif;color:var(--ink);transition:background .15s,border-color .15s,transform .1s}
+.cf-chip b{font-weight:700}
+.cf-chip:hover{border-color:var(--sky)}
+.cf-chip:active{transform:scale(.98)}
+.cf-chip[aria-checked=true]{background:var(--sky);border-color:var(--sky);color:#fff}
+.cf-field{display:block;margin-bottom:16px}
+.cf-field>span:not(.sr){display:block;margin-bottom:6px;font:700 13px/1 "Open Sans","Alexandria",sans-serif;color:var(--soft)}
+.cf input:not(.cf-hp),.cf textarea{width:100%;border:0;border-bottom:2px solid #dfe6ee;background:transparent;padding:10px 2px;
+  font:400 18px/1.4 "Open Sans","Alexandria",sans-serif;color:var(--ink);border-radius:0;outline:none;resize:vertical}
+.cf input:focus,.cf textarea:focus{border-bottom-color:var(--sky)}
+.cf textarea{min-height:110px}
+.cf-note{margin:0 0 6px;font:400 14px/1.5 "Open Sans","Alexandria",sans-serif;color:var(--soft)}
+.cf-err{margin:0 0 12px;font:700 14px/1.4 "Open Sans","Alexandria",sans-serif;color:#c0392b}
+.cf-nav{display:flex;gap:10px;margin-top:18px}
+.cf-back{flex:none;padding:15px 20px;border-radius:999px;border:1.5px solid #dfe6ee;background:#fff;cursor:pointer;font:700 15px/1 "Open Sans","Alexandria",sans-serif;color:var(--ink)}
+.cf-next{flex:1;padding:16px 20px;border-radius:999px;border:0;background:var(--acc);color:var(--on-acc);cursor:pointer;
+  font:800 15px/1 "Open Sans","Alexandria",sans-serif;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 10px 22px -12px rgba(10,40,70,.45)}
+.cf-next[disabled]{opacity:.55;cursor:default}
+.cf-back:focus-visible,.cf-next:focus-visible,.cf-chip:focus-visible,.cf-link:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.cf-link{appearance:none;border:0;background:none;padding:6px 0;margin-top:10px;cursor:pointer;font:700 15px/1 "Open Sans","Alexandria",sans-serif;color:var(--sky);text-decoration:underline;text-underline-offset:4px}
+.cf-done{text-align:center;padding:16px 0 6px}
+.cf-done::before{content:"💛";display:block;font-size:44px;margin-bottom:12px}
+.cf-step{animation:cfIn .3s ease}
+@keyframes cfIn{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion:reduce){.cf-step{animation:none}.cf-bar i{transition:none}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[dir=rtl] .cf-top,[dir=rtl] .cf-next{letter-spacing:0}
+[dir=rtl] .cf-q{letter-spacing:0;line-height:1.35}
+@media (max-width:760px){.cf{border-radius:18px}.cf-body{padding:22px 18px 20px}.cf-top{padding:16px 18px 12px}}
 </style>
 </head>
 <body>
@@ -453,6 +494,51 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   </div>
   </div>
 </section>
+<!-- CONTACT: one question at a time, sends to Abisto's email through Web3Forms (homepage only, nothing shared with the games) -->
+<section hidden class="sec sec-contact" id="contact" aria-labelledby="contact-h">
+  <h2 class="sec-head" id="contact-h"><span class="hl" data-i18n="contact">Say hi</span></h2>
+  <div class="cf" id="cf" aria-live="polite">
+    <div class="cf-top"><span class="cf-hint" data-c="hint"></span><span class="cf-count" id="cf-count" dir="ltr"></span></div>
+    <div class="cf-bar"><i id="cf-prog"></i></div>
+    <form class="cf-body" id="cf-form" novalidate>
+      <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="cf-step" data-step="topic">
+        <h3 class="cf-q" data-c="qTopic"></h3>
+        <div class="cf-chips" role="radiogroup">
+          <button type="button" class="cf-chip" data-topic="brand"><span aria-hidden="true">🤝</span><b data-c="tBrand"></b></button>
+          <button type="button" class="cf-chip" data-topic="street"><span aria-hidden="true">🎤</span><b data-c="tStreet"></b></button>
+          <button type="button" class="cf-chip" data-topic="media"><span aria-hidden="true">📰</span><b data-c="tMedia"></b></button>
+          <button type="button" class="cf-chip" data-topic="love"><span aria-hidden="true">💛</span><b data-c="tLove"></b></button>
+        </div>
+      </div>
+      <div class="cf-step" data-step="msg" hidden>
+        <h3 class="cf-q" id="cf-msg-q"></h3>
+        <label class="cf-field" id="cf-org-wrap"><span id="cf-org-l"></span><input id="cf-org" maxlength="80" autocomplete="organization"></label>
+        <label class="cf-field"><span class="sr" id="cf-msg-l"></span><textarea id="cf-msg" rows="4" maxlength="1500"></textarea></label>
+      </div>
+      <div class="cf-step" data-step="name" hidden>
+        <h3 class="cf-q" data-c="qName"></h3>
+        <label class="cf-field"><span class="sr" data-c="qName"></span><input id="cf-name" maxlength="60" autocomplete="name"></label>
+        <p class="cf-note" id="cf-anon" data-c="anon"></p>
+      </div>
+      <div class="cf-step" data-step="reach" hidden>
+        <h3 class="cf-q" data-c="qReach"></h3>
+        <label class="cf-field"><span class="sr" data-c="qReach"></span><input id="cf-reach" maxlength="120" autocomplete="email"></label>
+        <p class="cf-note" data-c="privacy"></p>
+      </div>
+      <div class="cf-step cf-done" data-step="done" hidden>
+        <h3 class="cf-q" id="cf-thanks"></h3>
+        <p class="cf-note" data-c="thanksSub"></p>
+        <button type="button" class="cf-link" id="cf-again" data-c="again"></button>
+      </div>
+      <p class="cf-err" id="cf-err" hidden></p>
+      <div class="cf-nav" id="cf-nav" hidden>
+        <button type="button" class="cf-back" id="cf-back" data-c="back"></button>
+        <button type="submit" class="cf-next" id="cf-next"></button>
+      </div>
+    </form>
+  </div>
+</section>
 </main>
 <footer>
   <nav class="socials" aria-label="Abisto on social media" data-i18n-aria="socials">
@@ -511,6 +597,93 @@ reels.addEventListener('scroll',updBtns,{passive:true});addEventListener('resize
   function load(){if(done)return;done=true;var t=document.createElement('script');t.async=true;t.src='https://www.instagram.com/embed.js';document.body.appendChild(t);}
   if(!('IntersectionObserver' in window)){load();return;}
   new IntersectionObserver(function(e,o){if(e[0].isIntersecting){load();o.disconnect();}},{rootMargin:'800px'}).observe(sec);
+})();
+</script>
+<script>
+/* ===== Contact form: one question at a time → Abisto's email via Web3Forms =====
+   The access key only lets this form send messages TO Abisto; his address is never in the page. */
+(function(){
+var WEB3FORMS_KEY = ""; /* paste the Web3Forms access key here */
+var C={
+ en:{hint:"One question at a time",qTopic:"What's it about?",tBrand:"Brands & sponsors",tStreet:"A question for the street",tMedia:"Media & events",tLove:"Just say something nice",
+  qBrand:"Tell me about your idea",qStreet:"What should I ask people?",qMedia:"What's it for?",qLove:"Say anything",
+  orgBrand:"Brand name",orgMedia:"Media or event name",qName:"Your name",anon:"Optional. Leave it empty to stay anonymous.",
+  qReach:"How can I reach you?",privacy:"Instagram, email or phone. Only used to reply to you, never shared.",
+  next:"Continue",send:"Send",back:"Back",sending:"Sending…",thanks:"Thank you{n}!",thanksSub:"Your message is on its way to Abisto.",again:"Send another one",
+  errEmpty:"Please write something first.",errReach:"Please tell me how to reach you.",errSend:"It didn't send. Check your connection and try again.",
+  topicMail:{brand:"Brand & sponsor",street:"Street question",media:"Media & event",love:"Nice message"}},
+ fr:{hint:"Une question à la fois",qTopic:"C'est à propos de quoi ?",tBrand:"Marques & sponsors",tStreet:"Une question pour la rue",tMedia:"Médias & événements",tLove:"Juste un petit mot",
+  qBrand:"Parle-moi de ton idée",qStreet:"Qu'est-ce que je demande aux gens ?",qMedia:"C'est pour quoi ?",qLove:"Dis ce que tu veux",
+  orgBrand:"Nom de la marque",orgMedia:"Nom du média ou de l'événement",qName:"Ton prénom",anon:"Facultatif. Laisse vide pour rester anonyme.",
+  qReach:"Comment te répondre ?",privacy:"Instagram, e-mail ou téléphone. Seulement pour te répondre, jamais partagé.",
+  next:"Continuer",send:"Envoyer",back:"Retour",sending:"Envoi…",thanks:"Merci{n} !",thanksSub:"Ton message est en route vers Abisto.",again:"Envoyer un autre message",
+  errEmpty:"Écris quelque chose d'abord.",errReach:"Dis-moi comment te répondre.",errSend:"L'envoi n'a pas marché. Vérifie ta connexion et réessaie.",
+  topicMail:{brand:"Marque & sponsor",street:"Question pour la rue",media:"Média & événement",love:"Petit mot"}},
+ ar:{hint:"سؤال واحد في كل مرة",qTopic:"ما الموضوع؟",tBrand:"العلامات التجارية والرعاة",tStreet:"سؤال للشارع",tMedia:"الإعلام والفعاليات",tLove:"فقط كلمة حلوة",
+  qBrand:"حدثني عن فكرتك",qStreet:"ماذا أسأل الناس؟",qMedia:"لأي غرض؟",qLove:"قل ما تشاء",
+  orgBrand:"اسم العلامة التجارية",orgMedia:"اسم الوسيلة الإعلامية أو الفعالية",qName:"اسمك",anon:"اختياري. اتركه فارغاً لتبقى مجهولاً.",
+  qReach:"كيف أتواصل معك؟",privacy:"إنستغرام أو بريد إلكتروني أو هاتف. فقط للرد عليك، ولن يُشارك أبداً.",
+  next:"متابعة",send:"إرسال",back:"رجوع",sending:"جارٍ الإرسال…",thanks:"شكراً{n}!",thanksSub:"رسالتك في الطريق إلى أبيستو.",again:"أرسل رسالة أخرى",
+  errEmpty:"اكتب شيئاً أولاً.",errReach:"أخبرني كيف أتواصل معك.",errSend:"لم يتم الإرسال. تحقق من الاتصال وحاول مجدداً.",
+  topicMail:{brand:"علامة تجارية وراعٍ",street:"سؤال للشارع",media:"إعلام وفعالية",love:"كلمة حلوة"}}
+};
+C.en.contact="Say hi";C.fr.contact="Écris-moi";C.ar.contact="راسلني";
+var FLOW={brand:["topic","msg","name","reach"],media:["topic","msg","name","reach"],street:["topic","msg","name"],love:["topic","msg","name"]};
+var $=function(id){return document.getElementById(id)};
+var form=$('cf-form'); if(!form) return;
+var st={topic:null,i:0,sent:false};
+function L(){return C[document.documentElement.lang]||C.en}
+function steps(){return st.topic?FLOW[st.topic]:["topic"]}
+function show(){
+  var d=L(),s=steps(),cur=st.sent?'done':s[st.i];
+  document.querySelectorAll('#cf [data-c]').forEach(function(e){e.textContent=d[e.dataset.c];});
+  document.querySelectorAll('[data-i18n="contact"]').forEach(function(e){e.textContent=d.contact;});
+  form.querySelectorAll('.cf-step').forEach(function(e){e.hidden=e.dataset.step!==cur;});
+  var t=st.topic||'brand';
+  $('cf-msg-q').textContent=d['q'+t.charAt(0).toUpperCase()+t.slice(1)];
+  $('cf-msg-l').textContent=$('cf-msg-q').textContent;
+  var org=(t==='brand'||t==='media'); $('cf-org-wrap').hidden=!org; $('cf-org-l').textContent=org?d[t==='brand'?'orgBrand':'orgMedia']:'';
+  $('cf-anon').hidden=!(t==='street'||t==='love');
+  var total=FLOW[t].length, n=st.sent?total:(st.topic?st.i+1:1);
+  $('cf-count').textContent=st.topic?(n+' / '+total):'';
+  $('cf-prog').style.width=(st.sent?100:Math.round(n/(st.topic?total:4)*100))+'%';
+  $('cf-nav').hidden=st.sent||cur==='topic';
+  $('cf-next').textContent=(st.i===s.length-1)?d.send:d.next;
+  var nm=$('cf-name').value.trim(); $('cf-thanks').textContent=d.thanks.replace('{n}',nm?(document.documentElement.lang==='ar'?' ':', ')+nm:'');
+  form.querySelectorAll('.cf-chip').forEach(function(b){b.setAttribute('aria-checked',b.dataset.topic===st.topic);b.setAttribute('role','radio');});
+}
+function err(m){var e=$('cf-err');e.textContent=m||'';e.hidden=!m;}
+function focusStep(){var s=form.querySelector('.cf-step:not([hidden])');var f=s&&s.querySelector('input:not([hidden]),textarea');if(f&&!f.closest('[hidden]'))setTimeout(function(){f.focus({preventScroll:true});},50);}
+form.querySelectorAll('.cf-chip').forEach(function(b){b.addEventListener('click',function(){st.topic=b.dataset.topic;st.i=1;err();show();focusStep();});});
+$('cf-back').addEventListener('click',function(){err();if(st.i>0)st.i--;if(st.i===0)st.topic=st.topic;show();focusStep();});
+$('cf-again').addEventListener('click',function(){form.reset();st={topic:null,i:0,sent:false};err();show();});
+form.addEventListener('submit',function(e){
+  e.preventDefault();var d=L(),s=steps(),cur=s[st.i];
+  if(cur==='msg'&&!$('cf-msg').value.trim())return err(d.errEmpty);
+  if(cur==='reach'&&!$('cf-reach').value.trim())return err(d.errReach);
+  err();
+  if(st.i<s.length-1){st.i++;show();focusStep();return;}
+  send();
+});
+function send(){
+  var d=L(),btn=$('cf-next');
+  if(form.botcheck.checked)return;               /* spam bot */
+  var body={access_key:WEB3FORMS_KEY,
+    subject:'abisto26.com · '+C.en.topicMail[st.topic]+($('cf-name').value.trim()?' · '+$('cf-name').value.trim():''),
+    from_name:'abisto26.com',
+    Topic:C.en.topicMail[st.topic],Language:document.documentElement.lang.toUpperCase(),
+    Name:$('cf-name').value.trim()||'(anonymous)',Message:$('cf-msg').value.trim()};
+  if(!$('cf-org-wrap').hidden&&$('cf-org').value.trim())body[st.topic==='brand'?'Brand':'Media / event']=$('cf-org').value.trim();
+  if(FLOW[st.topic].indexOf('reach')>-1)body['Reply to']=$('cf-reach').value.trim();
+  btn.disabled=true;btn.textContent=d.sending;
+  if(!WEB3FORMS_KEY){console.log('[contact] no key yet, not sent',body);setTimeout(done,500);return;}
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)})
+   .then(function(r){return r.json();}).then(function(j){if(j&&j.success)done();else fail();}).catch(fail);
+}
+function done(){st.sent=true;$('cf-next').disabled=false;show();}
+function fail(){$('cf-next').disabled=false;show();err(L().errSend);}
+new MutationObserver(show).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+show();
 })();
 </script>
 </body>
