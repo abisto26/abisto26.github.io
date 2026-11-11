@@ -387,6 +387,29 @@ html[lang=ar] .brand b{font-weight:800}
 [dir=rtl] .cf-top,[dir=rtl] .cf-next{letter-spacing:0}
 [dir=rtl] .cf-q{letter-spacing:0;line-height:1.35}
 @media (max-width:760px){.cf{border-radius:18px}.cf-body{padding:22px 18px 20px}.cf-top{padding:16px 18px 12px}}
+
+/* more breathing room: games, contact, footer */
+.sec-games{padding-top:72px!important;padding-bottom:96px!important}
+.sec-contact{padding-top:40px!important;padding-bottom:120px!important}
+.sec-games .sec-head,.sec-contact .sec-head{margin-bottom:52px!important}
+footer{padding:36px 4px calc(40px + env(safe-area-inset-bottom,0px))!important}
+@media (max-width:760px){
+  .sec-games{padding-top:56px!important;padding-bottom:72px!important}
+  .sec-contact{padding-bottom:96px!important}
+  .sec-games .sec-head,.sec-contact .sec-head{margin-bottom:40px!important}
+  footer{padding-top:28px!important}
+}
+/* contact intro */
+.cf.is-intro .cf-top,.cf.is-intro .cf-bar{display:none}
+.cf-intro{text-align:center;padding:14px 0 8px}
+.cf-intro .cf-note{margin-bottom:26px}
+.cf-start{display:inline-flex;align-items:center;justify-content:center;gap:14px;flex:none;padding:17px 30px}
+.cf-start svg{width:24px;height:12px;transition:transform .25s ease}
+.cf-start:hover svg{transform:translateX(5px)}
+[dir=rtl] .cf-start svg{transform:scaleX(-1)}
+[dir=rtl] .cf-start:hover svg{transform:scaleX(-1) translateX(5px)}
+
+.cf-count{direction:ltr;unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -503,7 +526,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
     <div class="cf-bar"><i id="cf-prog"></i></div>
     <form class="cf-body" id="cf-form" novalidate>
       <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="cf-step" data-step="topic">
+      <div class="cf-step cf-intro" data-step="intro">
+        <h3 class="cf-q" data-c="qIntro"></h3>
+        <p class="cf-note" data-c="introSub"></p>
+        <button type="button" class="cf-next cf-start" id="cf-start"><span data-c="start"></span>
+          <svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M0 7h26M20 1l6 6-6 6"/></svg></button>
+      </div>
+      <div class="cf-step" data-step="topic" hidden>
         <h3 class="cf-q" data-c="qTopic"></h3>
         <div class="cf-chips" role="radiogroup">
           <button type="button" class="cf-chip" data-topic="brand"><span aria-hidden="true">🤝</span><b data-c="tBrand"></b></button>
@@ -515,7 +544,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
       <div class="cf-step" data-step="msg" hidden>
         <h3 class="cf-q" id="cf-msg-q"></h3>
         <label class="cf-field" id="cf-org-wrap"><span id="cf-org-l"></span><input id="cf-org" maxlength="80" autocomplete="organization"></label>
-        <label class="cf-field"><span class="sr" id="cf-msg-l"></span><textarea id="cf-msg" rows="4" maxlength="1500"></textarea></label>
+        <label class="cf-field"><span id="cf-msg-l"></span><textarea id="cf-msg" rows="4" maxlength="1500"></textarea></label>
       </div>
       <div class="cf-step" data-step="name" hidden>
         <h3 class="cf-q" data-c="qName"></h3>
@@ -606,21 +635,21 @@ reels.addEventListener('scroll',updBtns,{passive:true});addEventListener('resize
 (function(){
 var WEB3FORMS_KEY = "f1645fe8-a6a5-4167-9e05-5e7b48a69388"; /* paste the Web3Forms access key here */
 var C={
- en:{hint:"One question at a time",qTopic:"What's it about?",tBrand:"Brands & sponsors",tStreet:"A question for the street",tMedia:"Media & events",tLove:"Just say something nice",
+ en:{hint:"One question at a time",qIntro:"Got something to say?",introSub:"An idea, a question or just some love. It takes 30 seconds.",start:"Write to me",yourMsg:"Your message",qTopic:"What's it about?",tBrand:"Brands & sponsors",tStreet:"A question for the street",tMedia:"Media & events",tLove:"Just say something nice",
   qBrand:"Tell me about your idea",qStreet:"What should I ask people?",qMedia:"What's it for?",qLove:"Say anything",
   orgBrand:"Brand name",orgMedia:"Media or event name",qName:"Your name",anon:"Optional. Leave it empty to stay anonymous.",
   qReach:"How can I reach you?",privacy:"Instagram, email or phone. Only used to reply to you, never shared.",
   next:"Continue",send:"Send",back:"Back",sending:"Sending…",thanks:"Thank you{n}!",thanksSub:"Your message is on its way to Abisto.",again:"Send another one",
   errEmpty:"Please write something first.",errReach:"Please tell me how to reach you.",errSend:"It didn't send. Check your connection and try again.",
   topicMail:{brand:"Brand & sponsor",street:"Street question",media:"Media & event",love:"Nice message"}},
- fr:{hint:"Une question à la fois",qTopic:"C'est à propos de quoi ?",tBrand:"Marques & sponsors",tStreet:"Une question pour la rue",tMedia:"Médias & événements",tLove:"Juste un petit mot",
+ fr:{hint:"Une question à la fois",qIntro:"Tu as quelque chose à me dire ?",introSub:"Une idée, une question ou juste un peu d'amour. Ça prend 30 secondes.",start:"M'écrire",yourMsg:"Ton message",qTopic:"C'est à propos de quoi ?",tBrand:"Marques & sponsors",tStreet:"Une question pour la rue",tMedia:"Médias & événements",tLove:"Juste un petit mot",
   qBrand:"Parle-moi de ton idée",qStreet:"Qu'est-ce que je demande aux gens ?",qMedia:"C'est pour quoi ?",qLove:"Dis ce que tu veux",
   orgBrand:"Nom de la marque",orgMedia:"Nom du média ou de l'événement",qName:"Ton prénom",anon:"Facultatif. Laisse vide pour rester anonyme.",
   qReach:"Comment te répondre ?",privacy:"Instagram, e-mail ou téléphone. Seulement pour te répondre, jamais partagé.",
   next:"Continuer",send:"Envoyer",back:"Retour",sending:"Envoi…",thanks:"Merci{n} !",thanksSub:"Ton message est en route vers Abisto.",again:"Envoyer un autre message",
   errEmpty:"Écris quelque chose d'abord.",errReach:"Dis-moi comment te répondre.",errSend:"L'envoi n'a pas marché. Vérifie ta connexion et réessaie.",
   topicMail:{brand:"Marque & sponsor",street:"Question pour la rue",media:"Média & événement",love:"Petit mot"}},
- ar:{hint:"سؤال واحد في كل مرة",qTopic:"ما الموضوع؟",tBrand:"العلامات التجارية والرعاة",tStreet:"سؤال للشارع",tMedia:"الإعلام والفعاليات",tLove:"فقط كلمة حلوة",
+ ar:{hint:"سؤال واحد في كل مرة",qIntro:"عندك شيء تقوله لي؟",introSub:"فكرة، سؤال، أو فقط كلمة حب. لن يأخذ أكثر من 30 ثانية.",start:"راسلني",yourMsg:"رسالتك",qTopic:"ما الموضوع؟",tBrand:"العلامات التجارية والرعاة",tStreet:"سؤال للشارع",tMedia:"الإعلام والفعاليات",tLove:"فقط كلمة حلوة",
   qBrand:"حدثني عن فكرتك",qStreet:"ماذا أسأل الناس؟",qMedia:"لأي غرض؟",qLove:"قل ما تشاء",
   orgBrand:"اسم العلامة التجارية",orgMedia:"اسم الوسيلة الإعلامية أو الفعالية",qName:"اسمك",anon:"اختياري. اتركه فارغاً لتبقى مجهولاً.",
   qReach:"كيف أتواصل معك؟",privacy:"إنستغرام أو بريد إلكتروني أو هاتف. فقط للرد عليك، ولن يُشارك أبداً.",
@@ -632,23 +661,24 @@ C.en.contact="Contact";C.fr.contact="Contact";C.ar.contact="تواصل";
 var FLOW={brand:["topic","msg","name","reach"],media:["topic","msg","name","reach"],street:["topic","msg","name"],love:["topic","msg","name"]};
 var $=function(id){return document.getElementById(id)};
 var form=$('cf-form'); if(!form) return;
-var st={topic:null,i:0,sent:false};
+var st={topic:null,i:0,sent:false,started:false};
 function L(){return C[document.documentElement.lang]||C.en}
 function steps(){return st.topic?FLOW[st.topic]:["topic"]}
 function show(){
-  var d=L(),s=steps(),cur=st.sent?'done':s[st.i];
+  var d=L(),s=steps(),cur=st.sent?'done':(st.started?s[st.i]:'intro');
   document.querySelectorAll('#cf [data-c]').forEach(function(e){e.textContent=d[e.dataset.c];});
   document.querySelectorAll('[data-i18n="contact"]').forEach(function(e){e.textContent=d.contact;});
   form.querySelectorAll('.cf-step').forEach(function(e){e.hidden=e.dataset.step!==cur;});
-  var t=st.topic||'brand';
+  var t=st.topic||'brand', org=(t==='brand'||t==='media');
   $('cf-msg-q').textContent=d['q'+t.charAt(0).toUpperCase()+t.slice(1)];
-  $('cf-msg-l').textContent=$('cf-msg-q').textContent;
-  var org=(t==='brand'||t==='media'); $('cf-org-wrap').hidden=!org; $('cf-org-l').textContent=org?d[t==='brand'?'orgBrand':'orgMedia']:'';
+  $('cf-msg-l').textContent=org?d.yourMsg:$('cf-msg-q').textContent; $('cf-msg-l').className=org?'':'sr';
+  $('cf-org-wrap').hidden=!org; $('cf-org-l').textContent=org?d[t==='brand'?'orgBrand':'orgMedia']:'';
   $('cf-anon').hidden=!(t==='street'||t==='love');
   var total=FLOW[t].length, n=st.sent?total:(st.topic?st.i+1:1);
-  $('cf-count').textContent=st.topic?(n+' / '+total):'';
+  $('cf-count').textContent=st.topic?('\u2066'+n+' / '+total+'\u2069'):'';
+  $('cf').classList.toggle('is-intro',cur==='intro');
   $('cf-prog').style.width=(st.sent?100:Math.round(n/(st.topic?total:4)*100))+'%';
-  $('cf-nav').hidden=st.sent||cur==='topic';
+  $('cf-nav').hidden=st.sent||cur==='topic'||cur==='intro';
   $('cf-next').textContent=(st.i===s.length-1)?d.send:d.next;
   var nm=$('cf-name').value.trim(); $('cf-thanks').textContent=d.thanks.replace('{n}',nm?(document.documentElement.lang==='ar'?' ':', ')+nm:'');
   form.querySelectorAll('.cf-chip').forEach(function(b){b.setAttribute('aria-checked',b.dataset.topic===st.topic);b.setAttribute('role','radio');});
@@ -657,7 +687,8 @@ function err(m){var e=$('cf-err');e.textContent=m||'';e.hidden=!m;}
 function focusStep(){var s=form.querySelector('.cf-step:not([hidden])');var f=s&&s.querySelector('input:not([hidden]),textarea');if(f&&!f.closest('[hidden]'))setTimeout(function(){f.focus({preventScroll:true});},50);}
 form.querySelectorAll('.cf-chip').forEach(function(b){b.addEventListener('click',function(){st.topic=b.dataset.topic;st.i=1;err();show();focusStep();});});
 $('cf-back').addEventListener('click',function(){err();if(st.i>0)st.i--;if(st.i===0)st.topic=st.topic;show();focusStep();});
-$('cf-again').addEventListener('click',function(){form.reset();st={topic:null,i:0,sent:false};err();show();});
+$('cf-again').addEventListener('click',function(){form.reset();st={topic:null,i:0,sent:false,started:true};err();show();});
+$('cf-start').addEventListener('click',function(){st.started=true;show();var c=form.querySelector('.cf-chip');if(c)c.focus({preventScroll:true});});
 form.addEventListener('submit',function(e){
   e.preventDefault();var d=L(),s=steps(),cur=s[st.i];
   if(cur==='msg'&&!$('cf-msg').value.trim())return err(d.errEmpty);
