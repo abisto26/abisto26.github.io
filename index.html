@@ -518,6 +518,19 @@ html{scroll-padding-bottom:var(--foot-h,56px)}
   body>footer .socials{gap:28px}
   body>footer .socials svg{width:19px;height:19px}
 }
+
+/* contact: everything centred both ways, smaller buttons */
+.cf-step{align-self:center!important;justify-self:stretch}
+.cf-chips{flex-direction:row!important;flex-wrap:wrap;justify-content:center;gap:10px!important}
+.cf-chip{width:auto!important;padding:10px 18px!important;font-size:15px!important;gap:8px!important;justify-content:center}
+.cf-q{margin-bottom:18px!important}
+.cf-nav{justify-content:center!important;gap:10px}
+.cf-next{flex:0 0 auto!important;min-width:150px;padding:12px 26px!important;font-size:13px!important}
+.cf-back{padding:12px 18px!important;font-size:14px!important}
+.cf-start{padding:13px 26px!important}
+.cf textarea{min-height:96px!important}
+#cf-msg-step.no-org textarea{min-height:120px!important}
+@media (max-width:760px){.cf-chip{padding:9px 15px!important;font-size:14px!important}}
 </style>
 </head>
 <body>
@@ -647,6 +660,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
           <button type="button" class="cf-chip" data-topic="media"><span aria-hidden="true">📰</span><b data-c="tMedia"></b></button>
           <button type="button" class="cf-chip" data-topic="street"><span aria-hidden="true">🎤</span><b data-c="tStreet"></b></button>
           <button type="button" class="cf-chip" data-topic="love"><span aria-hidden="true">💛</span><b data-c="tLove"></b></button>
+          <button type="button" class="cf-chip" data-topic="other"><span aria-hidden="true">✨</span><b data-c="tOther"></b></button>
         </div>
       </div>
       <div class="cf-step" data-step="msg" id="cf-msg-step">
@@ -743,36 +757,36 @@ reels.addEventListener('scroll',updBtns,{passive:true});addEventListener('resize
 (function(){
 var WEB3FORMS_KEY = "f1645fe8-a6a5-4167-9e05-5e7b48a69388"; /* paste the Web3Forms access key here */
 var C={
- en:{hint:"One question at a time",qIntro:"Got something to say?",introSub:"An idea, a question or just some love. It takes 30 seconds.",start:"Write to me",yourMsg:"Your message",qTopic:"What's it about?",tBrand:"Brands & sponsors",tStreet:"A question for the street",tMedia:"Media & events",tLove:"Just say something nice",
+ en:{hint:"One question at a time",qIntro:"Got something to say?",introSub:"An idea, a question or just some love. It takes 30 seconds.",start:"Write to me",yourMsg:"Your message",qTopic:"What's it about?",tBrand:"Brands & sponsors",tStreet:"A question for the street",tMedia:"Media & events",tLove:"Just say something nice",tOther:"Something else",qOther:"Tell me more",
   qBrand:"Tell me about your idea",qStreet:"What should I ask people?",qMedia:"What's it for?",qLove:"Say anything",
   orgBrand:"Brand name",orgMedia:"Media or event name",qName:"Your name",anon:"Optional. Leave it empty to stay anonymous.",
   qReach:"How can I reach you?",privacy:"Instagram, email or phone. Only used to reply to you, never shared.",
   next:"Continue",send:"Send",back:"Back",sending:"Sending…",thanks:"Thank you{n}!",thanksSub:"Your message is on its way to Abisto.",again:"Send another one",
   errEmpty:"Please write something first.",errReach:"Please tell me how to reach you.",errSend:"It didn't send. Check your connection and try again.",
-  topicMail:{brand:"Brand & sponsor",street:"Street question",media:"Media & event",love:"Nice message"}},
- fr:{hint:"Une question à la fois",qIntro:"Tu as quelque chose à me dire ?",introSub:"Une idée, une question ou juste un peu d'amour. Ça prend 30 secondes.",start:"M'écrire",yourMsg:"Ton message",qTopic:"C'est à propos de quoi ?",tBrand:"Marques & sponsors",tStreet:"Une question pour la rue",tMedia:"Médias & événements",tLove:"Juste un petit mot",
+  topicMail:{brand:"Brand & sponsor",street:"Street question",media:"Media & event",love:"Nice message",other:"Other"}},
+ fr:{hint:"Une question à la fois",qIntro:"Tu as quelque chose à me dire ?",introSub:"Une idée, une question ou juste un peu d'amour. Ça prend 30 secondes.",start:"M'écrire",yourMsg:"Ton message",qTopic:"C'est à propos de quoi ?",tBrand:"Marques & sponsors",tStreet:"Une question pour la rue",tMedia:"Médias & événements",tLove:"Juste un petit mot",tOther:"Autre chose",qOther:"Dis-m'en plus",
   qBrand:"Parle-moi de ton idée",qStreet:"Qu'est-ce que je demande aux gens ?",qMedia:"C'est pour quoi ?",qLove:"Dis ce que tu veux",
   orgBrand:"Nom de la marque",orgMedia:"Nom du média ou de l'événement",qName:"Ton prénom",anon:"Facultatif. Laisse vide pour rester anonyme.",
   qReach:"Comment te répondre ?",privacy:"Instagram, e-mail ou téléphone. Seulement pour te répondre, jamais partagé.",
   next:"Continuer",send:"Envoyer",back:"Retour",sending:"Envoi…",thanks:"Merci{n} !",thanksSub:"Ton message est en route vers Abisto.",again:"Envoyer un autre message",
   errEmpty:"Écris quelque chose d'abord.",errReach:"Dis-moi comment te répondre.",errSend:"L'envoi n'a pas marché. Vérifie ta connexion et réessaie.",
-  topicMail:{brand:"Marque & sponsor",street:"Question pour la rue",media:"Média & événement",love:"Petit mot"}},
- ar:{hint:"سؤال واحد في كل مرة",qIntro:"عندك شيء تقوله لي؟",introSub:"فكرة، سؤال، أو فقط كلمة حب. لن يأخذ أكثر من 30 ثانية.",start:"راسلني",yourMsg:"رسالتك",qTopic:"ما الموضوع؟",tBrand:"العلامات التجارية والرعاة",tStreet:"سؤال للشارع",tMedia:"الإعلام والفعاليات",tLove:"فقط كلمة حلوة",
+  topicMail:{brand:"Marque & sponsor",street:"Question pour la rue",media:"Média & événement",love:"Petit mot",other:"Autre"}},
+ ar:{hint:"سؤال واحد في كل مرة",qIntro:"عندك شيء تقوله لي؟",introSub:"فكرة، سؤال، أو فقط كلمة حب. لن يأخذ أكثر من 30 ثانية.",start:"راسلني",yourMsg:"رسالتك",qTopic:"ما الموضوع؟",tBrand:"العلامات التجارية والرعاة",tStreet:"سؤال للشارع",tMedia:"الإعلام والفعاليات",tLove:"فقط كلمة حلوة",tOther:"شيء آخر",qOther:"أخبرني أكثر",
   qBrand:"حدثني عن فكرتك",qStreet:"ماذا أسأل الناس؟",qMedia:"لأي غرض؟",qLove:"قل ما تشاء",
   orgBrand:"اسم العلامة التجارية",orgMedia:"اسم الوسيلة الإعلامية أو الفعالية",qName:"اسمك",anon:"اختياري. اتركه فارغاً لتبقى مجهولاً.",
   qReach:"كيف أتواصل معك؟",privacy:"إنستغرام أو بريد إلكتروني أو هاتف. فقط للرد عليك، ولن يُشارك أبداً.",
   next:"متابعة",send:"إرسال",back:"رجوع",sending:"جارٍ الإرسال…",thanks:"شكراً{n}!",thanksSub:"رسالتك في الطريق إلى أبيستو.",again:"أرسل رسالة أخرى",
   errEmpty:"اكتب شيئاً أولاً.",errReach:"أخبرني كيف أتواصل معك.",errSend:"لم يتم الإرسال. تحقق من الاتصال وحاول مجدداً.",
-  topicMail:{brand:"علامة تجارية وراعٍ",street:"سؤال للشارع",media:"إعلام وفعالية",love:"كلمة حلوة"}}
+  topicMail:{brand:"علامة تجارية وراعٍ",street:"سؤال للشارع",media:"إعلام وفعالية",love:"كلمة حلوة",other:"أخرى"}}
 };
 C.en.contact="Contact";C.fr.contact="Contact";C.ar.contact="تواصل";
-var FLOW={brand:["topic","msg","name","reach"],media:["topic","msg","name","reach"],street:["topic","msg","name"],love:["topic","msg","name"]};
+var FLOW={other:["topic","msg","name","reach"],brand:["topic","msg","name","reach"],media:["topic","msg","name","reach"],street:["topic","msg","name"],love:["topic","msg","name"]};
 var $=function(id){return document.getElementById(id)};
 var form=$('cf-form'); if(!form) return;
 var st={topic:null,i:0,sent:false,started:false};
 function L(){return C[document.documentElement.lang]||C.en}
 function steps(){return st.topic?FLOW[st.topic]:["topic"]}
-function show(){
+function show(){ratchet();
   var d=L(),s=steps(),cur=st.sent?'done':(st.started?s[st.i]:'intro');
   document.querySelectorAll('#cf [data-c]').forEach(function(e){e.textContent=d[e.dataset.c];});
   document.querySelectorAll('[data-i18n="contact"]').forEach(function(e){e.textContent=d.contact;});
@@ -822,14 +836,17 @@ function send(){
 }
 function done(){st.sent=true;$('cf-next').disabled=false;show();}
 function fail(){$('cf-next').disabled=false;show();err(L().errSend);}
+var maxRow=0;function setRow(h){h=Math.ceil(h);if(h>maxRow){maxRow=h;$('cf').style.setProperty('--cf-row',h+'px');}}
+function ratchet(){requestAnimationFrame(function(){setRow(parseFloat(getComputedStyle(form).gridTemplateRows)||0);});}
 function fit(){var st_=$('cf-msg-step'),w=$('cf-org-wrap'),l=$('cf-msg-l'),h=w.hidden,c=l.className,n=st_.classList.contains('no-org');
   w.hidden=false;l.className='';st_.classList.remove('no-org');
-  var t=w.getBoundingClientRect().height+parseFloat(getComputedStyle(w).marginBottom)+l.getBoundingClientRect().height+6+110,row=st_.getBoundingClientRect().height;
+  var t=w.getBoundingClientRect().height+parseFloat(getComputedStyle(w).marginBottom)+l.getBoundingClientRect().height+6+110,row=0;form.querySelectorAll('.cf-step').forEach(function(e){var x=e.hidden;e.hidden=false;row=Math.max(row,e.getBoundingClientRect().height);e.hidden=x;});
   w.hidden=h;l.className=c;st_.classList.toggle('no-org',n);
-  $('cf').style.setProperty('--cf-tall',Math.round(t)+'px');$('cf').style.setProperty('--cf-row',Math.ceil(row)+'px');}
-addEventListener('resize',fit);
+  $('cf').style.setProperty('--cf-tall',Math.round(t)+'px');setRow(row);}
+addEventListener('resize',function(){maxRow=0;fit();ratchet();});
 new MutationObserver(function(){show();fit();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 show();fit();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);addEventListener('load',fit);
 })();
 </script>
 <script>
