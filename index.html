@@ -458,6 +458,58 @@ main{padding-top:var(--bar-h)}
 /* very short screens: no forced paging, plain scroll (nothing hidden) */
 @media (max-height:620px){html{scroll-snap-type:none}.sec-games,.sec-contact{min-height:0!important}}
 @media (max-width:760px){.sec-contact{min-height:calc(100svh - var(--bar-h) - var(--foot-h,0px))!important}}
+
+/* more room under section titles */
+.sec-games .sec-head,.sec-contact .sec-head{margin-bottom:64px!important}
+@media (max-width:760px){.sec-games .sec-head{margin-bottom:48px!important}.sec-contact .sec-head{margin-bottom:36px!important}}
+/* richer page transitions: blur + scale + rise in, and the reverse when leaving */
+.rv{opacity:0;filter:blur(10px);transform:translateY(46px) scale(.96);
+  transition:opacity .7s ease,filter .7s ease,transform .9s cubic-bezier(.16,1,.3,1)!important}
+.in .rv{opacity:1;filter:none;transform:none}
+.sec-head.rv{transform:translateY(30px) scale(.9);letter-spacing:.25em}
+.in .sec-head.rv{transform:none;letter-spacing:normal;transition:opacity .7s ease,filter .7s ease,transform .9s cubic-bezier(.16,1,.3,1),letter-spacing .9s cubic-bezier(.16,1,.3,1)!important}
+[dir=rtl] .sec-head.rv{letter-spacing:0}
+.sec-head .hl::before{transform:scaleX(0);transform-origin:center;transition:transform .7s cubic-bezier(.16,1,.3,1) .35s}
+.in .sec-head .hl::before{transform:scaleX(1)}
+.in .rv.d1{transition-delay:.15s!important}.in .rv.d2{transition-delay:.27s!important}.in .rv.d3{transition-delay:.39s!important}
+.game.rv{transform:translateY(60px) scale(.8) rotate(-4deg)}
+.in .game.rv{transform:none}
+.hero-visual.rv{transform:translateY(70px) scale(.9) rotate(4deg)}
+.in .hero-visual.rv{transform:none}
+@media (prefers-reduced-motion:reduce){.rv,.in .rv{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}.sec-head .hl::before{transform:none;transition:none}}
+/* contact card: everything centred */
+.cf-top{justify-content:center;position:relative}
+.cf-count{position:absolute;inset-inline-end:24px}
+.cf-q,.cf-note,.cf-err{text-align:center}
+.cf-chip{justify-content:center;text-align:center}
+.cf-field>span:not(.sr){text-align:center}
+.cf input:not(.cf-hp),.cf textarea{text-align:center}
+.cf-nav{justify-content:center}
+.cf-next{flex:0 1 260px}
+
+/* leaving a page upward: content drifts up and blurs out */
+.past .rv{opacity:0;filter:blur(10px);transform:translateY(-46px) scale(.96)}
+.past .game.rv{transform:translateY(-50px) scale(.85) rotate(4deg)}
+.past .hero-visual.rv{transform:translateY(-60px) scale(.92) rotate(-3deg)}
+/* ===== Sticky transparent footer: always there, on every page ===== */
+body>footer{position:fixed!important;left:0;right:0;bottom:0;z-index:4;margin:0!important;
+  padding:14px max(20px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left))!important;
+  background:linear-gradient(to top,rgba(248,250,252,.92) 0,rgba(248,250,252,.72) 55%,rgba(248,250,252,0) 100%);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  -webkit-mask-image:linear-gradient(to top,#000 70%,transparent);mask-image:linear-gradient(to top,#000 70%,transparent);
+  scroll-snap-align:none!important}
+body>footer .legal,body>footer .tagline{font-size:12px}
+@media (max-width:760px){
+  body>footer{display:flex!important;flex-direction:row!important;justify-content:space-between;align-items:center;gap:12px!important}
+  body>footer .legal{order:1}
+  body>footer .socials{order:2;gap:18px}
+  body>footer .socials svg{width:17px;height:17px}
+}
+main{padding-bottom:var(--foot-h,56px)}
+html{scroll-padding-bottom:var(--foot-h,56px)}
+.hero{min-height:calc(100svh - var(--bar-h))!important}
+.sec-games,.sec-contact{min-height:calc(100svh - var(--bar-h) - var(--foot-h,56px))!important}
+@media (max-height:620px){.sec-games,.sec-contact{min-height:0!important}}
 </style>
 </head>
 <body>
@@ -780,7 +832,7 @@ show();fit();
     var b=document.querySelector('.bar');if(b)document.documentElement.style.setProperty('--bar-h',Math.round(b.getBoundingClientRect().height)+'px');}
   foot();addEventListener('resize',foot);
   if(!('IntersectionObserver' in window)){secs.forEach(function(s){s.classList.add('in');});return;}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('in',e.isIntersecting);});},{threshold:.35});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var t=e.target;t.classList.toggle('in',e.isIntersecting);t.classList.toggle('past',!e.isIntersecting&&e.boundingClientRect.top<0);});},{threshold:.35});
   secs.forEach(function(s){io.observe(s);});
   secs[0]&&secs[0].classList.add('in');
 })();
