@@ -510,6 +510,14 @@ html{scroll-padding-bottom:var(--foot-h,56px)}
 .hero{min-height:calc(100svh - var(--bar-h))!important}
 .sec-games,.sec-contact{min-height:calc(100svh - var(--bar-h) - var(--foot-h,56px))!important}
 @media (max-height:620px){.sec-games,.sec-contact{min-height:0!important}}
+
+/* phone footer: only the social icons, centred */
+@media (max-width:760px){
+  body>footer{justify-content:center!important}
+  body>footer .legal,body>footer .tagline{display:none!important}
+  body>footer .socials{gap:28px}
+  body>footer .socials svg{width:19px;height:19px}
+}
 </style>
 </head>
 <body>
