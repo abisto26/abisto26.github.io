@@ -400,7 +400,7 @@ footer{padding:36px 4px calc(40px + env(safe-area-inset-bottom,0px))!important}
   footer{padding-top:28px!important}
 }
 /* contact intro */
-.cf.is-intro .cf-top,.cf.is-intro .cf-bar{display:none}
+.cf.is-intro .cf-top,.cf.is-intro .cf-bar{visibility:hidden}
 .cf-intro{text-align:center;padding:14px 0 8px}
 .cf-intro .cf-note{margin-bottom:26px}
 .cf-start{display:inline-flex;align-items:center;justify-content:center;gap:14px;flex:none;padding:17px 30px}
@@ -410,6 +410,16 @@ footer{padding:36px 4px calc(40px + env(safe-area-inset-bottom,0px))!important}
 [dir=rtl] .cf-start:hover svg{transform:scaleX(-1) translateX(5px)}
 
 .cf-count{direction:ltr;unicode-bidi:isolate}
+
+/* contact card keeps ONE height for every step: no jumping, no scrolling */
+.cf-body{display:grid;grid-template-rows:minmax(var(--cf-row,0px),1fr) auto auto}
+.cf-step{grid-area:1/1;visibility:hidden;align-self:start}
+.cf-step.is-on{visibility:visible}
+.cf-intro,.cf-done{align-self:center}
+.cf-err{grid-row:2;min-height:1.5em;margin:6px 0 0}
+.cf-nav{grid-row:3}
+.cf-nav.is-off{visibility:hidden}
+#cf-msg-step.no-org textarea{min-height:150px}
 </style>
 </head>
 <body>
@@ -532,7 +542,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
         <button type="button" class="cf-next cf-start" id="cf-start"><span data-c="start"></span>
           <svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M0 7h26M20 1l6 6-6 6"/></svg></button>
       </div>
-      <div class="cf-step" data-step="topic" hidden>
+      <div class="cf-step" data-step="topic">
         <h3 class="cf-q" data-c="qTopic"></h3>
         <div class="cf-chips" role="radiogroup">
           <button type="button" class="cf-chip" data-topic="brand"><span aria-hidden="true">🤝</span><b data-c="tBrand"></b></button>
@@ -541,28 +551,28 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
           <button type="button" class="cf-chip" data-topic="love"><span aria-hidden="true">💛</span><b data-c="tLove"></b></button>
         </div>
       </div>
-      <div class="cf-step" data-step="msg" hidden>
+      <div class="cf-step" data-step="msg" id="cf-msg-step">
         <h3 class="cf-q" id="cf-msg-q"></h3>
         <label class="cf-field" id="cf-org-wrap"><span id="cf-org-l"></span><input id="cf-org" maxlength="80" autocomplete="organization"></label>
         <label class="cf-field"><span id="cf-msg-l"></span><textarea id="cf-msg" rows="4" maxlength="1500"></textarea></label>
       </div>
-      <div class="cf-step" data-step="name" hidden>
+      <div class="cf-step" data-step="name">
         <h3 class="cf-q" data-c="qName"></h3>
         <label class="cf-field"><span class="sr" data-c="qName"></span><input id="cf-name" maxlength="60" autocomplete="name"></label>
         <p class="cf-note" id="cf-anon" data-c="anon"></p>
       </div>
-      <div class="cf-step" data-step="reach" hidden>
+      <div class="cf-step" data-step="reach">
         <h3 class="cf-q" data-c="qReach"></h3>
         <label class="cf-field"><span class="sr" data-c="qReach"></span><input id="cf-reach" maxlength="120" autocomplete="email"></label>
         <p class="cf-note" data-c="privacy"></p>
       </div>
-      <div class="cf-step cf-done" data-step="done" hidden>
+      <div class="cf-step cf-done" data-step="done">
         <h3 class="cf-q" id="cf-thanks"></h3>
         <p class="cf-note" data-c="thanksSub"></p>
         <button type="button" class="cf-link" id="cf-again" data-c="again"></button>
       </div>
-      <p class="cf-err" id="cf-err" hidden></p>
-      <div class="cf-nav" id="cf-nav" hidden>
+      <p class="cf-err" id="cf-err" role="alert"></p>
+      <div class="cf-nav" id="cf-nav">
         <button type="button" class="cf-back" id="cf-back" data-c="back"></button>
         <button type="submit" class="cf-next" id="cf-next"></button>
       </div>
@@ -668,27 +678,27 @@ function show(){
   var d=L(),s=steps(),cur=st.sent?'done':(st.started?s[st.i]:'intro');
   document.querySelectorAll('#cf [data-c]').forEach(function(e){e.textContent=d[e.dataset.c];});
   document.querySelectorAll('[data-i18n="contact"]').forEach(function(e){e.textContent=d.contact;});
-  form.querySelectorAll('.cf-step').forEach(function(e){e.hidden=e.dataset.step!==cur;});
+  form.querySelectorAll('.cf-step').forEach(function(e){var on=e.dataset.step===cur;e.classList.toggle('is-on',on);e.inert=!on;e.setAttribute('aria-hidden',!on);});
   var t=st.topic||'brand', org=(t==='brand'||t==='media');
   $('cf-msg-q').textContent=d['q'+t.charAt(0).toUpperCase()+t.slice(1)];
   $('cf-msg-l').textContent=org?d.yourMsg:$('cf-msg-q').textContent; $('cf-msg-l').className=org?'':'sr';
-  $('cf-org-wrap').hidden=!org; $('cf-org-l').textContent=org?d[t==='brand'?'orgBrand':'orgMedia']:'';
+  $('cf-org-wrap').hidden=!org; $('cf-msg-step').classList.toggle('no-org',!org); $('cf-org-l').textContent=org?d[t==='brand'?'orgBrand':'orgMedia']:'';
   $('cf-anon').hidden=!(t==='street'||t==='love');
   var total=FLOW[t].length, n=st.sent?total:(st.topic?st.i+1:1);
   $('cf-count').textContent=st.topic?('\u2066'+n+' / '+total+'\u2069'):'';
   $('cf').classList.toggle('is-intro',cur==='intro');
   $('cf-prog').style.width=(st.sent?100:Math.round(n/(st.topic?total:4)*100))+'%';
-  $('cf-nav').hidden=st.sent||cur==='topic'||cur==='intro';
+  var noNav=st.sent||cur==='topic'||cur==='intro';$('cf-nav').classList.toggle('is-off',noNav);$('cf-nav').inert=noNav;
   $('cf-next').textContent=(st.i===s.length-1)?d.send:d.next;
   var nm=$('cf-name').value.trim(); $('cf-thanks').textContent=d.thanks.replace('{n}',nm?(document.documentElement.lang==='ar'?' ':', ')+nm:'');
   form.querySelectorAll('.cf-chip').forEach(function(b){b.setAttribute('aria-checked',b.dataset.topic===st.topic);b.setAttribute('role','radio');});
 }
-function err(m){var e=$('cf-err');e.textContent=m||'';e.hidden=!m;}
-function focusStep(){var s=form.querySelector('.cf-step:not([hidden])');var f=s&&s.querySelector('input:not([hidden]),textarea');if(f&&!f.closest('[hidden]'))setTimeout(function(){f.focus({preventScroll:true});},50);}
+function err(m){$('cf-err').textContent=m||'';}
+function focusStep(){var s=form.querySelector('.cf-step.is-on');var f=s&&s.querySelector('input:not([hidden]),textarea');if(f&&!f.closest('[hidden]'))setTimeout(function(){f.focus({preventScroll:true});},50);}
 form.querySelectorAll('.cf-chip').forEach(function(b){b.addEventListener('click',function(){st.topic=b.dataset.topic;st.i=1;err();show();focusStep();});});
 $('cf-back').addEventListener('click',function(){err();if(st.i>0)st.i--;if(st.i===0)st.topic=st.topic;show();focusStep();});
 $('cf-again').addEventListener('click',function(){form.reset();st={topic:null,i:0,sent:false,started:true};err();show();});
-$('cf-start').addEventListener('click',function(){st.started=true;show();var c=form.querySelector('.cf-chip');if(c)c.focus({preventScroll:true});});
+$('cf-start').addEventListener('click',function(){st.started=true;show();var r=$('cf').getBoundingClientRect();if(r.bottom>innerHeight||r.top<70)$('cf').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});var c=form.querySelector('.cf-chip');if(c)c.focus({preventScroll:true});});
 form.addEventListener('submit',function(e){
   e.preventDefault();var d=L(),s=steps(),cur=s[st.i];
   if(cur==='msg'&&!$('cf-msg').value.trim())return err(d.errEmpty);
@@ -714,8 +724,14 @@ function send(){
 }
 function done(){st.sent=true;$('cf-next').disabled=false;show();}
 function fail(){$('cf-next').disabled=false;show();err(L().errSend);}
-new MutationObserver(show).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-show();
+function fit(){var st_=$('cf-msg-step'),w=$('cf-org-wrap'),l=$('cf-msg-l'),h=w.hidden,c=l.className,n=st_.classList.contains('no-org');
+  w.hidden=false;l.className='';st_.classList.remove('no-org');
+  var t=w.getBoundingClientRect().height+parseFloat(getComputedStyle(w).marginBottom)+l.getBoundingClientRect().height+6+110,row=st_.getBoundingClientRect().height;
+  w.hidden=h;l.className=c;st_.classList.toggle('no-org',n);
+  $('cf').style.setProperty('--cf-tall',Math.round(t)+'px');$('cf').style.setProperty('--cf-row',Math.ceil(row)+'px');}
+addEventListener('resize',fit);
+new MutationObserver(function(){show();fit();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+show();fit();
 })();
 </script>
 </body>
