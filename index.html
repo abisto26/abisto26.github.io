@@ -336,11 +336,16 @@ html[lang=ar] .n-ar{display:inline}
 html[lang=ar] .n-lat{display:none}
 html[lang=ar] .brand{font-family:"Alexandria",sans-serif;font-size:17px}
 html[lang=ar] .brand b{font-weight:800}
+
+/* round photo next to the name */
+.brand{display:inline-flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;display:block;flex:none;
+  border:2px solid rgba(255,255,255,.9);box-shadow:0 4px 10px -4px rgba(10,40,70,.45)}
 </style>
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="/"><span class="n-lat" dir="ltr"><b>Abisto</b>26</span><span class="n-ar" dir="rtl" lang="ar"><b>أبيستو</b>26</span></a>
+  <a class="brand" href="/"><img class="avatar" src="assets/avatar.webp" width="80" height="80" alt=""><span class="n-lat" dir="ltr"><b>Abisto</b>26</span><span class="n-ar" dir="rtl" lang="ar"><b>أبيستو</b>26</span></a>
   <div class="bar-r">
     <div class="langs" role="group" aria-label="Language" dir="ltr">
       <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
