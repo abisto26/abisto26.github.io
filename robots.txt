@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abisto26.com/sitemap.xml
