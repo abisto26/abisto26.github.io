@@ -9,7 +9,7 @@
 <style>
 @font-face{font-family:"Mr Dafoe";src:url(../assets/fonts/mr-dafoe-latin-400-normal.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Mona Sans";font-weight:800;src:url(../assets/fonts/mona-sans-latin-800-normal.woff2) format("woff2");font-display:swap}
-@font-face{font-family:"Gilda Display";font-weight:400;src:url(../assets/fonts/gilda-display-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Brier;font-weight:400;src:url(../assets/fonts/brier-regular.woff2) format("woff2");font-display:swap}
 @font-face{font-family:Anton;src:url(../assets/fonts/anton-latin-400-normal.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Open Sans";font-weight:400;src:url(../assets/fonts/open-sans-latin-400-normal.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Open Sans";font-weight:800;src:url(../assets/fonts/open-sans-latin-800-normal.woff2) format("woff2");font-display:swap}
@@ -211,7 +211,8 @@ html[lang=ar] .biz{letter-spacing:0;font-size:14px}
   .msg-t{font-size:11.2vw}.htrack{gap:12vw;padding-inline:10vw 16vw}.tx{width:78vw}.qt{width:80vw}.p1{--h:40svh}.p2{--h:30svh}.p3{--h:52svh}.bio{font-size:16px}}
 /* ===== type v2: bold grotesk + elegant serif for the accent words (Latin only; Arabic keeps Alexandria) ===== */
 html:not([lang=ar]) .msg-t,html:not([lang=ar]) .h2x b,html:not([lang=ar]) .big b,html:not([lang=ar]) .cp-h b,html:not([lang=ar]) .m2{font-family:"Mona Sans","Open Sans",sans-serif;font-weight:800;letter-spacing:-.045em}
-html:not([lang=ar]) .msg-t em,html:not([lang=ar]) .h2x span,html:not([lang=ar]) .big em,html:not([lang=ar]) .cp-h em,html:not([lang=ar]) .m1,html:not([lang=ar]) .follow-h{font-family:"Gilda Display",Georgia,serif;font-weight:400;letter-spacing:-.05em}
+html:not([lang=ar]) .msg-t em,html:not([lang=ar]) .h2x span,html:not([lang=ar]) .big em,html:not([lang=ar]) .cp-h em,html:not([lang=ar]) .m1,html:not([lang=ar]) .follow-h{font-family:Brier,Georgia,serif;font-weight:400;letter-spacing:-.015em}
+html:not([lang=ar]) .msg-t em,html:not([lang=ar]) .big em{font-size:1.1em;line-height:.9}html:not([lang=ar]) .h2x span,html:not([lang=ar]) .cp-h em{font-size:1.08em}
 html:not([lang=ar]) .follow-h{letter-spacing:0}
 html:not([lang=ar]) .msg-t{line-height:.98}
 /* ===== tighter rhythm between sections ===== */
@@ -227,7 +228,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
 @media (max-width:700px){
   .htitle{display:block;position:absolute;z-index:5;inset-inline:0;top:calc(74px + env(safe-area-inset-top));text-align:center;color:var(--ink);pointer-events:none}
   .hn{display:block;font-size:9.4vw;line-height:1;text-transform:uppercase}
-  .hn i{font-style:normal;font-family:"Gilda Display",Georgia,serif;letter-spacing:-.04em}.hn b{font-family:"Mona Sans",sans-serif;font-weight:800;letter-spacing:-.04em}
+  .hn i{font-style:normal;font-family:Brier,Georgia,serif;letter-spacing:-.04em}.hn b{font-family:"Mona Sans",sans-serif;font-weight:800;letter-spacing:-.04em}
   html[lang=ar] .hn i,html[lang=ar] .hn b{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
   .htitle small{display:block;margin-top:8px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
   html[lang=ar] .htitle small{letter-spacing:0;font-size:12px}
