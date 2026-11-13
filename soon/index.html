@@ -121,6 +121,47 @@ html[lang=ar] .h2x span{font-weight:400}
 .follow-l a:hover::after{transform:scaleX(1)}
 .social.live .card{transition:none}
 
+/* ===== business enquiries page (opens over the site, address #contact) ===== */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.cpage{position:fixed;inset:0;z-index:40;background:linear-gradient(180deg,#ffe9a6 0,var(--sun) 45%);overflow:auto;-webkit-overflow-scrolling:touch;padding:clamp(8px,1.2vw,18px);transform:translateY(100%);transition:transform .6s cubic-bezier(.7,0,.2,1);display:flex}
+.cpage[hidden]{display:none}
+.cpage.open{transform:none}
+html.cp-lock{overflow:hidden}
+.cp-in{flex:1;min-height:min-content;background:var(--ink);color:var(--cloud);border-radius:clamp(20px,2.2vw,32px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(24px,5vw,80px);padding:clamp(70px,10svh,110px) clamp(20px,6vw,100px) clamp(30px,6svh,70px)}
+.cp-x{position:fixed;z-index:2;top:calc(clamp(8px,1.2vw,18px) + 16px);inset-inline-end:calc(clamp(8px,1.2vw,18px) + 16px);width:48px;height:48px;border-radius:12px;background:var(--sun);color:var(--ink);display:grid;place-items:center}
+.cp-x svg{width:20px;height:20px}
+.cp-sig{font-family:"Mr Dafoe",cursive;color:var(--sun);font-size:clamp(40px,5.4vw,88px);line-height:1;transform:rotate(-8deg);transform-origin:0 100%;margin-bottom:-.2em;direction:ltr;width:max-content}
+.cp-h{font-size:clamp(40px,6.2vw,104px);line-height:.96;text-transform:uppercase;font-weight:400}
+.cp-h b{display:block;font-weight:800;letter-spacing:-.03em}.cp-h em{display:block;font-style:normal;font-family:Anton,Impact,sans-serif;color:var(--sun);letter-spacing:.01em}
+html[lang=ar] .cp-h{line-height:1.25}html[lang=ar] .cp-h b,html[lang=ar] .cp-h em{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
+.cp-sub{margin-top:1.2em;max-width:34ch;font-size:clamp(14px,1.2vw,18px);line-height:1.5;opacity:.8}
+.cp-form{position:relative;background:var(--cloud);color:var(--ink);border-radius:22px;overflow:hidden;width:100%;max-width:520px;justify-self:end}
+.cp-hp{position:absolute;left:-9999px;opacity:0}
+.cp-top{display:flex;justify-content:space-between;padding:18px 24px 14px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
+html[lang=ar] .cp-top{letter-spacing:0;font-size:13px}
+.cp-bar{height:3px;background:#e3e9ef}.cp-bar i{display:block;height:100%;width:0;background:var(--sun);transition:width .35s}
+.cp-steps{display:grid;padding:26px 24px 0;min-height:300px}
+.cp-step{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .3s}
+.cp-step.is-on{visibility:visible;opacity:1}
+.cp-step h3{font-size:clamp(22px,2.2vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:20px}
+html[lang=ar] .cp-step h3{letter-spacing:0;line-height:1.35}
+.cp-step label{display:block;margin-bottom:16px}
+.cp-step label>span:not(.sr){display:block;font-size:13px;font-weight:800;opacity:.6;margin-bottom:6px}
+.cp-form input:not(.cp-hp),.cp-form textarea{width:100%;border:0;border-bottom:2px solid #d5dde6;background:transparent;padding:10px 2px;font:inherit;font-size:17px;color:var(--ink);border-radius:0;resize:none;outline:0}
+.cp-form input:focus,.cp-form textarea:focus{border-color:var(--sun)}
+.cp-note{font-size:14px;line-height:1.5;opacity:.7}
+.cp-done{text-align:center;align-self:center}
+.cp-link{margin-top:14px;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.cp-err{min-height:1.5em;padding:6px 24px 0;font-size:14px;font-weight:800;color:#c0392b}
+.cp-nav{display:flex;gap:10px;padding:10px 24px 24px}
+.cp-nav.is-off{visibility:hidden}
+.cp-back{padding:15px 20px;border-radius:10px;border:1.5px solid #d5dde6;font-weight:800;font-size:14px}
+.cp-back[hidden]{display:none}
+.cp-next{flex:1;padding:16px 20px;border-radius:10px;background:var(--sun);color:var(--ink);font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+html[lang=ar] .cp-next{letter-spacing:0;font-size:16px}
+.cp-next[disabled]{opacity:.55}
+@media (max-width:860px){.cp-in{grid-template-columns:1fr;align-content:start;gap:26px;padding:84px 16px 20px}.cp-form{justify-self:stretch;max-width:none}.cp-h{font-size:13.5vw}.cp-sig{font-size:14vw}.cp-steps{min-height:270px;padding:22px 18px 0}.cp-nav{padding:10px 18px 18px}.cp-top{padding:16px 18px 12px}.cp-err{padding-inline:18px}}
+
 /* ===== last page ===== */
 .last{position:relative;z-index:3;background:linear-gradient(180deg,var(--cloud) 0,#ffe9a6 22%,var(--sun) 55%);color:var(--cloud);padding:4svh clamp(8px,1.2vw,18px) clamp(8px,1.2vw,18px);min-height:100svh;display:flex;flex-direction:column}
 .notch{display:block;width:min(46vw,560px);height:44px;margin:0 auto -1px}.notch path{fill:var(--ink)}
@@ -223,26 +264,58 @@ html[lang=ar] .tab{letter-spacing:0;font-size:12px}
     <svg class="lines2" id="lines2" aria-hidden="true" preserveAspectRatio="none"></svg>
     <div class="sig2" aria-hidden="true">Abisto</div>
     <p class="big"><b data-i18n="fA">Always</b> <em data-i18n="fB">drawing</em><br><b data-i18n="fC">smiles</b><em>.</em></p>
-    <nav class="col l" aria-label="Pages"><small data-i18n="pages">Pages</small><a href="../" data-i18n="home">Home</a><a href="../globe/" data-i18n="globe">Globe</a><a href="../#contact" data-i18n="contact">Contact</a></nav>
+    <nav class="col l" aria-label="Pages"><small data-i18n="pages">Pages</small><a href="../" data-i18n="home">Home</a><a href="../globe/" data-i18n="globe">Globe</a><a href="#contact" data-i18n="contact">Contact</a></nav>
     <nav class="col r" aria-label="Social media"><small data-i18n="followOn">Follow on</small><a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a></nav>
     <div class="marquee" dir="ltr" aria-hidden="true"><div class="track"><span class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><span class="pt h-wide" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></span><span class="pt h-mid" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></span><span class="pt h-mid" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></span><span class="pt h-xwide" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></span><span class="pt h-round" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></span><span aria-hidden="true" class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-wide" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-xwide" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-round" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></span></div></div>
     <div class="rider"><img src="assets/helmet.webp" alt="" width="1536" height="1920"></div>
     <p class="tab l" dir="ltr">© 2026 Abisto26</p><p class="tab r" data-i18n="tagline">Smile. Play. Learn.</p>
-    <a class="biz" href="../#contact" data-i18n="biz">Work with me ↗</a>
+    <a class="biz" href="#contact" data-i18n="biz">Business enquiries ↗</a>
   </div>
 </footer>
 
+<div class="cpage" id="cpage" role="dialog" aria-modal="true" aria-labelledby="cp-h" hidden>
+  <button type="button" class="cp-x" id="cp-x" aria-label="Close" data-i18n-aria="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  <div class="cp-in">
+    <div class="cp-head">
+      <div class="cp-sig" aria-hidden="true">Abisto</div>
+      <h2 class="cp-h" id="cp-h"><b data-i18n="cpA">Business</b> <em data-i18n="cpB">enquiries</em></h2>
+      <p class="cp-sub" data-i18n="cpSub">Brands, sponsors and partnerships. Tell me about your idea and I’ll get back to you.</p>
+    </div>
+    <form class="cp-form" id="cp-form" novalidate aria-live="polite">
+      <input type="checkbox" name="botcheck" class="cp-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="cp-top"><span data-c="hint"></span><span id="cp-count" dir="ltr"></span></div>
+      <div class="cp-bar"><i id="cp-prog"></i></div>
+      <div class="cp-steps">
+        <div class="cp-step" data-step="0"><h3 data-c="qBrand"></h3>
+          <label><span data-c="orgBrand"></span><input id="cp-org" maxlength="80" autocomplete="organization"></label>
+          <label><span data-c="yourMsg"></span><textarea id="cp-msg" rows="4" maxlength="1500"></textarea></label></div>
+        <div class="cp-step" data-step="1"><h3 data-c="qName"></h3>
+          <label><span class="sr" data-c="qName"></span><input id="cp-name" maxlength="60" autocomplete="name"></label></div>
+        <div class="cp-step" data-step="2"><h3 data-c="qReach"></h3>
+          <label><span class="sr" data-c="qReach"></span><input id="cp-reach" maxlength="120" autocomplete="email"></label>
+          <p class="cp-note" data-c="privacy"></p></div>
+        <div class="cp-step cp-done" data-step="3"><h3 id="cp-thanks"></h3><p class="cp-note" data-c="thanksSub"></p>
+          <button type="button" class="cp-link" id="cp-again" data-c="again"></button></div>
+      </div>
+      <p class="cp-err" id="cp-err" role="alert"></p>
+      <div class="cp-nav" id="cp-nav"><button type="button" class="cp-back" id="cp-back" data-c="back"></button><button type="submit" class="cp-next" id="cp-next"></button></div>
+    </form>
+  </div>
+</div>
+
 <script>
 var T={
- en:{msgK:"Rider since the age of 14",msg:"Drawing *smiles* on people’s faces, from *Morocco* to the *world*. One *red light* at a time.",b1h:"Marrakech, 26",b2h:"Casablanca",b3h:"The red light",quote:"“Drawing smiles on people’s faces, Morocco to the world.”",bio1:"Abisto is a Moroccan rider and content creator who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since.",bio2:"Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.",bio3:"Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.",brand:'Abisto',role:'Moroccan rider & content creator',m1:'Drawing smiles on people’s faces',m2:'Morocco to the world',tap:'Tap to play',back:'Back to scroll',script:'Friends',pA:'Friends',pB:'& partners',pText:'Abisto is proud to ride with friends and brands who share his love of the road and of making people smile.',sA:'What’s up',sB:'on socials',follow:'Follow Abisto on social media',fA:'Always',fB:'drawing',fC:'smiles',pages:'Pages',home:'Home',globe:'Globe',contact:'Contact',followOn:'Follow on',biz:'Work with me ↗',tagline:'Smile. Play. Learn.',alt:'Abisto smiling'},
- fr:{msgK:"Motard depuis l’âge de 14 ans",msg:"Dessiner des *sourires* sur les visages, du *Maroc* au *monde*. Un *feu rouge* à la fois.",b1h:"Marrakech, 26",b2h:"Casablanca",b3h:"Le feu rouge",quote:"« Dessiner des sourires sur les visages des gens, du Maroc au monde. »",bio1:"Abisto est un motard et créateur de contenu marocain qui aime la vie, aime les gens et a toujours le sourire. Il a grandi à Marrakech, et c’est de là que vient le 26 : c’est le numéro de plaque de la ville. Il a eu sa première moto à 14 ans et ne s’est jamais arrêté depuis.",bio2:"Aujourd’hui, il vit à Casablanca, où la circulation est dense et les gens stressés. Alors il a commencé à parler aux conducteurs à côté de lui, aux feux rouges. Un jour, à un feu très long, il a proposé à un inconnu une partie de pierre-feuille-ciseaux. Au lieu des mots habituels, il a crié « TaTaHi ! ». La vidéo est devenue virale, et une habitude est née.",bio3:"Depuis, le feu rouge est sa scène. Il joue, pose des questions bizarres et fait rire les gens. Ces questions sont devenues ses jeux, parce qu’il pense que le fun est la meilleure façon d’apprendre. Aujourd’hui on le reconnaît partout, mais il n’a pas changé. Il le fait parce que ça le rend heureux, et il arrive bientôt dans d’autres villes.",brand:'Abisto',role:'Motard marocain & créateur de contenu',m1:'Dessiner des sourires sur les visages',m2:'Du Maroc au monde entier',tap:'Touche pour jouer',back:'Retour au défilement',script:'Amis',pA:'Amis',pB:'& partenaires',pText:'Abisto est fier de rouler avec des amis et des marques qui partagent son amour de la route et du sourire.',sA:'Quoi de neuf',sB:'sur les réseaux',follow:'Suivez Abisto sur les réseaux sociaux',fA:'Toujours',fB:'dessiner',fC:'des sourires',pages:'Pages',home:'Accueil',globe:'Globe',contact:'Contact',followOn:'Suivre sur',biz:'Travailler avec moi ↗',tagline:'Souriez. Jouez. Apprenez.',alt:'Abisto souriant'},
- ar:{msgK:"على الدراجة منذ سن الرابعة عشرة",msg:"رسم *الابتسامة* على وجوه الناس، من *المغرب* إلى *العالم*. *إشارة حمراء* تلو الأخرى.",b1h:"مراكش، 26",b2h:"الدار البيضاء",b3h:"الإشارة الحمراء",quote:"«رسم الابتسامة على وجوه الناس، من المغرب إلى العالم.»",bio1:"أبيستو سائق دراجة نارية وصانع محتوى مغربي يحب الحياة ويحب الناس، والابتسامة لا تفارقه. نشأ في مراكش، ومنها جاء الرقم 26: إنه رقم لوحات المدينة. حصل على أول دراجة نارية في سن الرابعة عشرة، ولم يتوقف عن القيادة منذ ذلك الحين.",bio2:"يعيش اليوم في الدار البيضاء، حيث الزحمة خانقة والناس متوترون. فبدأ يتحدث مع السائقين بجانبه عند الإشارات الحمراء. وذات يوم، عند إشارة طويلة جداً، اقترح على شخص لا يعرفه جولة حجرة ورقة مقص. وبدل الكلمات المعتادة صاح: «طاطاهي!». انتشر الفيديو بسرعة، ووُلدت عادة جديدة.",bio3:"ومنذ ذلك الحين صارت الإشارة الحمراء مسرحه. يلعب، ويطرح أسئلة غريبة، ويُضحك الناس. وتحولت هذه الأسئلة إلى ألعابه، لأنه يؤمن أن المرح أفضل طريقة للتعلم. اليوم يعرفه الناس في كل مكان، لكنه لم يتغير. يفعل ذلك لأنه يسعده، وسيزور مدناً أخرى قريباً.",brand:'أبيستو',role:'سائق دراجة نارية وصانع محتوى مغربي',m1:'رسم الابتسامة على وجوه الناس',m2:'من المغرب إلى العالم',tap:'المس للّعب',back:'العودة للتمرير',script:'أصدقاء',pA:'أصدقاء',pB:'وشركاء',pText:'أبيستو فخور بمرافقة أصدقاء وعلامات تشاركه حب الطريق ورسم الابتسامة على وجوه الناس.',sA:'جديدي',sB:'على مواقع التواصل',follow:'تابع أبيستو على مواقع التواصل',fA:'دائماً',fB:'نرسم',fC:'الابتسامة',pages:'الصفحات',home:'الرئيسية',globe:'العالم',contact:'تواصل',followOn:'تابعني على',biz:'اعمل معي ↖',tagline:'ابتسم. العب. تعلّم.',alt:'أبيستو مبتسماً'}
+ en:{msgK:"Rider since the age of 14",msg:"Drawing *smiles* on people’s faces, from *Morocco* to the *world*. One *red light* at a time.",b1h:"Marrakech, 26",b2h:"Casablanca",b3h:"The red light",quote:"“Drawing smiles on people’s faces, Morocco to the world.”",bio1:"Abisto is a Moroccan rider and content creator who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since.",bio2:"Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.",bio3:"Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.",brand:'Abisto',role:'Moroccan rider & content creator',m1:'Drawing smiles on people’s faces',m2:'Morocco to the world',tap:'Tap to play',back:'Back to scroll',script:'Friends',pA:'Friends',pB:'& partners',pText:'Abisto is proud to ride with friends and brands who share his love of the road and of making people smile.',sA:'What’s up',sB:'on socials',follow:'Follow Abisto on social media',fA:'Always',fB:'drawing',fC:'smiles',pages:'Pages',home:'Home',globe:'Globe game',contact:'Contact',followOn:'Follow on',biz:'Business enquiries ↗',cpA:'Business',cpB:'enquiries',cpSub:'Brands, sponsors and partnerships. Tell me about your idea and I’ll get back to you.',close:'Close',tagline:'Smile. Play. Learn.',alt:'Abisto smiling'},
+ fr:{msgK:"Motard depuis l’âge de 14 ans",msg:"Dessiner des *sourires* sur les visages, du *Maroc* au *monde*. Un *feu rouge* à la fois.",b1h:"Marrakech, 26",b2h:"Casablanca",b3h:"Le feu rouge",quote:"« Dessiner des sourires sur les visages des gens, du Maroc au monde. »",bio1:"Abisto est un motard et créateur de contenu marocain qui aime la vie, aime les gens et a toujours le sourire. Il a grandi à Marrakech, et c’est de là que vient le 26 : c’est le numéro de plaque de la ville. Il a eu sa première moto à 14 ans et ne s’est jamais arrêté depuis.",bio2:"Aujourd’hui, il vit à Casablanca, où la circulation est dense et les gens stressés. Alors il a commencé à parler aux conducteurs à côté de lui, aux feux rouges. Un jour, à un feu très long, il a proposé à un inconnu une partie de pierre-feuille-ciseaux. Au lieu des mots habituels, il a crié « TaTaHi ! ». La vidéo est devenue virale, et une habitude est née.",bio3:"Depuis, le feu rouge est sa scène. Il joue, pose des questions bizarres et fait rire les gens. Ces questions sont devenues ses jeux, parce qu’il pense que le fun est la meilleure façon d’apprendre. Aujourd’hui on le reconnaît partout, mais il n’a pas changé. Il le fait parce que ça le rend heureux, et il arrive bientôt dans d’autres villes.",brand:'Abisto',role:'Motard marocain & créateur de contenu',m1:'Dessiner des sourires sur les visages',m2:'Du Maroc au monde entier',tap:'Touche pour jouer',back:'Retour au défilement',script:'Amis',pA:'Amis',pB:'& partenaires',pText:'Abisto est fier de rouler avec des amis et des marques qui partagent son amour de la route et du sourire.',sA:'Quoi de neuf',sB:'sur les réseaux',follow:'Suivez Abisto sur les réseaux sociaux',fA:'Toujours',fB:'dessiner',fC:'des sourires',pages:'Pages',home:'Accueil',globe:'Jeu Globe',contact:'Contact',followOn:'Suivre sur',biz:'Contact professionnel ↗',cpA:'Contact',cpB:'professionnel',cpSub:'Marques, sponsors et partenariats. Parle-moi de ton idée et je te réponds.',close:'Fermer',tagline:'Souriez. Jouez. Apprenez.',alt:'Abisto souriant'},
+ ar:{msgK:"على الدراجة منذ سن الرابعة عشرة",msg:"رسم *الابتسامة* على وجوه الناس، من *المغرب* إلى *العالم*. *إشارة حمراء* تلو الأخرى.",b1h:"مراكش، 26",b2h:"الدار البيضاء",b3h:"الإشارة الحمراء",quote:"«رسم الابتسامة على وجوه الناس، من المغرب إلى العالم.»",bio1:"أبيستو سائق دراجة نارية وصانع محتوى مغربي يحب الحياة ويحب الناس، والابتسامة لا تفارقه. نشأ في مراكش، ومنها جاء الرقم 26: إنه رقم لوحات المدينة. حصل على أول دراجة نارية في سن الرابعة عشرة، ولم يتوقف عن القيادة منذ ذلك الحين.",bio2:"يعيش اليوم في الدار البيضاء، حيث الزحمة خانقة والناس متوترون. فبدأ يتحدث مع السائقين بجانبه عند الإشارات الحمراء. وذات يوم، عند إشارة طويلة جداً، اقترح على شخص لا يعرفه جولة حجرة ورقة مقص. وبدل الكلمات المعتادة صاح: «طاطاهي!». انتشر الفيديو بسرعة، ووُلدت عادة جديدة.",bio3:"ومنذ ذلك الحين صارت الإشارة الحمراء مسرحه. يلعب، ويطرح أسئلة غريبة، ويُضحك الناس. وتحولت هذه الأسئلة إلى ألعابه، لأنه يؤمن أن المرح أفضل طريقة للتعلم. اليوم يعرفه الناس في كل مكان، لكنه لم يتغير. يفعل ذلك لأنه يسعده، وسيزور مدناً أخرى قريباً.",brand:'أبيستو',role:'سائق دراجة نارية وصانع محتوى مغربي',m1:'رسم الابتسامة على وجوه الناس',m2:'من المغرب إلى العالم',tap:'المس للّعب',back:'العودة للتمرير',script:'أصدقاء',pA:'أصدقاء',pB:'وشركاء',pText:'أبيستو فخور بمرافقة أصدقاء وعلامات تشاركه حب الطريق ورسم الابتسامة على وجوه الناس.',sA:'جديدي',sB:'على مواقع التواصل',follow:'تابع أبيستو على مواقع التواصل',fA:'دائماً',fB:'نرسم',fC:'الابتسامة',pages:'الصفحات',home:'الرئيسية',globe:'لعبة العالم',contact:'تواصل',followOn:'تابعني على',biz:'للأعمال والشراكات ↖',cpA:'للأعمال',cpB:'والشراكات',cpSub:'علامات تجارية، رعاة وشراكات. حدثني عن فكرتك وسأرد عليك.',close:'إغلاق',tagline:'ابتسم. العب. تعلّم.',alt:'أبيستو مبتسماً'}
 };
 var lang='en',play=false;
 function setLang(l){
   lang=l;var d=T[l];document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
   document.querySelectorAll('[data-i18n]').forEach(function(e){e.textContent=d[e.dataset.i18n];});
   document.querySelectorAll('[data-i18n-alt]').forEach(function(e){e.alt=d[e.dataset.i18nAlt];});
+  document.querySelectorAll('[data-i18n-aria]').forEach(function(e){e.setAttribute('aria-label',d[e.dataset.i18nAria]);});
+  if(window.__cp)window.__cp();
   document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l);});
   var rep=function(s){var o='';for(var i=0;i<6;i++)o+=s+'  ·  ';return o;};
   document.getElementById('m1').textContent=rep(d.m1);document.getElementById('m2').textContent=rep(d.m2);
@@ -414,6 +487,64 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     requestAnimationFrame(frameTick);
   }
   requestAnimationFrame(frameTick);
+})();
+var WEB3FORMS_KEY = "f1645fe8-a6a5-4167-9e05-5e7b48a69388";
+var C={
+ en:{hint:"One question at a time",qIntro:"Got something to say?",introSub:"An idea, a question or just some love. It takes 30 seconds.",start:"Write to me",yourMsg:"Your message",qTopic:"What's it about?",tBrand:"Brands & sponsors",tStreet:"A question for the street",tMedia:"Media & events",tLove:"Just say something nice",tOther:"Something else",qOther:"Tell me more",
+  qBrand:"Tell me about your idea",qStreet:"What should I ask people?",qMedia:"What's it for?",qLove:"Say anything",
+  orgBrand:"Brand name",orgMedia:"Media or event name",qName:"Your name",anon:"Optional. Leave it empty to stay anonymous.",
+  qReach:"How can I reach you?",privacy:"Instagram, email or phone. Only used to reply to you, never shared.",
+  next:"Continue",send:"Send",back:"Back",sending:"Sending…",thanks:"Thank you{n}!",thanksSub:"Your message is on its way to Abisto.",again:"Send another one",
+  errEmpty:"Please write something first.",errReach:"Please tell me how to reach you.",errSend:"It didn't send. Check your connection and try again.",
+  topicMail:{brand:"Brand & sponsor",street:"Street question",media:"Media & event",love:"Nice message",other:"Other"}},
+ fr:{hint:"Une question à la fois",qIntro:"Tu as quelque chose à me dire ?",introSub:"Une idée, une question ou juste un peu d'amour. Ça prend 30 secondes.",start:"M'écrire",yourMsg:"Ton message",qTopic:"C'est à propos de quoi ?",tBrand:"Marques & sponsors",tStreet:"Une question pour la rue",tMedia:"Médias & événements",tLove:"Juste un petit mot",tOther:"Autre chose",qOther:"Dis-m'en plus",
+  qBrand:"Parle-moi de ton idée",qStreet:"Qu'est-ce que je demande aux gens ?",qMedia:"C'est pour quoi ?",qLove:"Dis ce que tu veux",
+  orgBrand:"Nom de la marque",orgMedia:"Nom du média ou de l'événement",qName:"Ton prénom",anon:"Facultatif. Laisse vide pour rester anonyme.",
+  qReach:"Comment te répondre ?",privacy:"Instagram, e-mail ou téléphone. Seulement pour te répondre, jamais partagé.",
+  next:"Continuer",send:"Envoyer",back:"Retour",sending:"Envoi…",thanks:"Merci{n} !",thanksSub:"Ton message est en route vers Abisto.",again:"Envoyer un autre message",
+  errEmpty:"Écris quelque chose d'abord.",errReach:"Dis-moi comment te répondre.",errSend:"L'envoi n'a pas marché. Vérifie ta connexion et réessaie.",
+  topicMail:{brand:"Marque & sponsor",street:"Question pour la rue",media:"Média & événement",love:"Petit mot",other:"Autre"}},
+ ar:{hint:"سؤال واحد في كل مرة",qIntro:"عندك شيء تقوله لي؟",introSub:"فكرة، سؤال، أو فقط كلمة حب. لن يأخذ أكثر من 30 ثانية.",start:"راسلني",yourMsg:"رسالتك",qTopic:"ما الموضوع؟",tBrand:"العلامات التجارية والرعاة",tStreet:"سؤال للشارع",tMedia:"الإعلام والفعاليات",tLove:"فقط كلمة حلوة",tOther:"شيء آخر",qOther:"أخبرني أكثر",
+  qBrand:"حدثني عن فكرتك",qStreet:"ماذا أسأل الناس؟",qMedia:"لأي غرض؟",qLove:"قل ما تشاء",
+  orgBrand:"اسم العلامة التجارية",orgMedia:"اسم الوسيلة الإعلامية أو الفعالية",qName:"اسمك",anon:"اختياري. اتركه فارغاً لتبقى مجهولاً.",
+  qReach:"كيف أتواصل معك؟",privacy:"إنستغرام أو بريد إلكتروني أو هاتف. فقط للرد عليك، ولن يُشارك أبداً.",
+  next:"متابعة",send:"إرسال",back:"رجوع",sending:"جارٍ الإرسال…",thanks:"شكراً{n}!",thanksSub:"رسالتك في الطريق إلى أبيستو.",again:"أرسل رسالة أخرى",
+  errEmpty:"اكتب شيئاً أولاً.",errReach:"أخبرني كيف أتواصل معك.",errSend:"لم يتم الإرسال. تحقق من الاتصال وحاول مجدداً.",
+  topicMail:{brand:"علامة تجارية وراعٍ",street:"سؤال للشارع",media:"إعلام وفعالية",love:"كلمة حلوة",other:"أخرى"}}
+};
+(function(){
+  var pg=document.getElementById('cpage'),form=document.getElementById('cp-form'),$=function(i){return document.getElementById(i);},st={i:0,sent:false},lastFocus=null;
+  function L(){return C[document.documentElement.lang]||C.en;}
+  function show(){var d=L(),cur=st.sent?3:st.i;
+    pg.querySelectorAll('[data-c]').forEach(function(e){e.textContent=d[e.dataset.c];});
+    form.querySelectorAll('.cp-step').forEach(function(e){var on=+e.dataset.step===cur;e.classList.toggle('is-on',on);e.inert=!on;e.setAttribute('aria-hidden',!on);});
+    $('cp-count').textContent='⁦'+(st.sent?3:st.i+1)+' / 3⁩';$('cp-prog').style.width=(st.sent?100:Math.round((st.i+1)/3*100))+'%';
+    $('cp-nav').classList.toggle('is-off',st.sent);$('cp-back').hidden=st.i===0;$('cp-next').textContent=st.i===2?d.send:d.next;
+    var nm=$('cp-name').value.trim();$('cp-thanks').textContent=d.thanks.replace('{n}',nm?(document.documentElement.lang==='ar'?' ':', ')+nm:'');}
+  window.__cp=show;
+  function err(m){$('cp-err').textContent=m||'';}
+  function focusStep(){var f=form.querySelector('.cp-step.is-on input,.cp-step.is-on textarea');if(f)setTimeout(function(){f.focus({preventScroll:true});},60);}
+  $('cp-back').addEventListener('click',function(){err();if(st.i>0)st.i--;show();focusStep();});
+  $('cp-again').addEventListener('click',function(){form.reset();st={i:0,sent:false};err();show();focusStep();});
+  form.addEventListener('submit',function(e){e.preventDefault();var d=L();
+    if(st.i===0&&!$('cp-msg').value.trim())return err(d.errEmpty);
+    if(st.i===2&&!$('cp-reach').value.trim())return err(d.errReach);
+    err();if(st.i<2){st.i++;show();focusStep();return;}send();});
+  function send(){var d=L(),btn=$('cp-next');if(form.botcheck.checked)return;
+    var nm=$('cp-name').value.trim(),body={access_key:WEB3FORMS_KEY,subject:'abisto26.com · '+C.en.topicMail.brand+(nm?' · '+nm:''),from_name:'abisto26.com',
+      Topic:C.en.topicMail.brand,Language:document.documentElement.lang.toUpperCase(),Name:nm||'(anonymous)',Message:$('cp-msg').value.trim(),'Reply to':$('cp-reach').value.trim()};
+    if($('cp-org').value.trim())body.Brand=$('cp-org').value.trim();
+    btn.disabled=true;btn.textContent=d.sending;
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)})
+      .then(function(r){return r.json();}).then(function(j){btn.disabled=false;if(j&&j.success){st.sent=true;show();}else{show();err(L().errSend);}})
+      .catch(function(){btn.disabled=false;show();err(L().errSend);});}
+  function open_(){if(pg.classList.contains('open'))return;lastFocus=document.activeElement;pg.hidden=false;document.documentElement.classList.add('cp-lock');pg.offsetHeight;pg.classList.add('open');show();setTimeout(focusStep,500);}
+  function close_(){if(!pg.classList.contains('open'))return;pg.classList.remove('open');document.documentElement.classList.remove('cp-lock');setTimeout(function(){pg.hidden=true;},650);if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});}
+  function route(){if(location.hash==='#contact')open_();else close_();}
+  document.querySelectorAll('a[href="#contact"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();if(location.hash!=='#contact'){try{history.pushState(null,'','#contact');}catch(x){location.hash='contact';}}open_();});});
+  function back(){if(location.hash==='#contact'){try{history.pushState(null,'',location.pathname+location.search);}catch(x){location.hash='';}}close_();}
+  $('cp-x').addEventListener('click',back);addEventListener('keydown',function(e){if(e.key==='Escape')back();});
+  addEventListener('hashchange',route);addEventListener('popstate',route);show();route();
 })();
 </script>
 </body>
