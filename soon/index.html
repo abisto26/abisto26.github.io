@@ -127,7 +127,7 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   var tmp=document.createElement('canvas'),tc=tmp.getContext('2d');
   var mk=document.createElement('canvas'),mx=mk.getContext('2d');
   var hel=new Image();hel.src='assets/helmet.webp';
-  var HX=.506,HY=.268;                       /* head centre inside the portrait (0..1) */
+  var HX=.499,HY=.365;                       /* head centre inside the portrait (0..1) */
   var FW=0,FH=0,MW=0,MH=0,W=0,H=0,sx=0,sy=0,sw=0,sh=0;
   var cur=null,prev=null,last=-1e9,prog=0;
   var still=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
