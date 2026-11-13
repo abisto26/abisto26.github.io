@@ -234,6 +234,18 @@ html:not([lang=ar]) .msg-t{line-height:.98}
   .stage{top:calc(23svh - var(--hs)*.103)}
   .brand span{display:none}
 }
+/* ===== calmer titles, like the reference ===== */
+.h2x{font-size:clamp(28px,4.4vw,70px)}
+@media (max-width:700px){
+  .h2x{font-size:7.6vw}html[lang=ar] .h2x{font-size:7vw}
+  html:not([lang=ar]) .msg-t{font-size:9.4vw}html[lang=ar] .msg-t{font-size:8.6vw}
+  .collab-top{flex-direction:row;align-items:flex-start;flex-wrap:nowrap;gap:5vw;padding-inline:16px}
+  .collab-top .h2x{flex:none}.collab-top p{font-size:13.5px;line-height:1.4;max-width:none;padding:0}
+  .collab{padding:13svh 0 10svh;gap:11svh}
+  .script-bg{place-items:start}.script-bg span{font-size:27vw;transform:rotate(-14deg) translate(-4%,58%)}
+  html[lang=ar] .script-bg span{font-size:20vw;transform:rotate(-10deg) translate(-2%,105%)}
+  .social{gap:5svh;padding-top:4svh}
+}
 </style>
 </head>
 <body>
