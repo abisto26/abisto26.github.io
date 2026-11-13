@@ -635,6 +635,11 @@ html{scroll-padding-bottom:var(--foot-h,56px)}
 [dir=rtl] .about-kicker{letter-spacing:0;font-size:14px;font-family:Alexandria,sans-serif}
 @media (max-width:760px){.about-kicker{order:-1;grid-column:1/-1;text-align:center;font-size:10.5px;margin:0 0 2px}}
 .about-kicker{color:#5b6b7a}.about-quote cite{color:#5b6b7a!important}.about-quote cite::before{color:var(--acc,#FFC629)}
+/* phones: English/French look like the Arabic page (italic quote kept for Latin) */
+@media (max-width:760px){.about-kicker{font-size:14px!important;letter-spacing:0!important;text-transform:none!important}
+.about-quote p{font-size:15px!important;line-height:1.5!important}html:not([dir=rtl]) .about-quote p{font-style:italic!important}
+.about-quote cite{font-size:13px!important;letter-spacing:0!important;text-transform:none!important}
+.about-story p{font-size:16px!important;line-height:1.85!important}}
 </style>
 </head>
 <body>
