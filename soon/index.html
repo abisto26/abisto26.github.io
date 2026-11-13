@@ -168,14 +168,14 @@ html[lang=ar] .cp-next{letter-spacing:0;font-size:16px}
 /* ===== last page ===== */
 .last{position:relative;z-index:3;background:linear-gradient(180deg,var(--cloud) 0,#ffe9a6 22%,var(--sun) 55%);color:var(--cloud);padding:4svh clamp(8px,1.2vw,18px) clamp(8px,1.2vw,18px);min-height:100svh;display:flex;flex-direction:column}
 .notch{display:block;width:min(46vw,560px);height:44px;margin:0 auto -1px}.notch path{fill:var(--ink)}
-.panel{position:relative;flex:1;min-height:80svh;background:var(--ink);border-radius:clamp(20px,2.2vw,32px) clamp(20px,2.2vw,32px) 0 0;overflow:hidden;text-align:center;padding-top:clamp(30px,7svh,70px)}
+.panel{position:relative;flex:1;min-height:80svh;background:var(--ink);border-radius:clamp(20px,2.2vw,32px);overflow:hidden;text-align:center;padding-top:clamp(30px,7svh,70px)}
 .lines2{position:absolute;inset:0;width:100%;height:100%;z-index:0}.lines2 path{fill:none;stroke:rgba(248,250,252,.07);stroke-width:1;vector-effect:non-scaling-stroke}
 .sig2{font-family:"Mr Dafoe",cursive;color:var(--sun);font-size:clamp(48px,7.6vw,124px);line-height:1;transform:rotate(-8deg) translateX(6%);margin-bottom:-.36em;position:relative;z-index:3;direction:ltr}
 .big{position:relative;z-index:2;font-size:clamp(36px,6.3vw,104px);line-height:.98;text-transform:uppercase}
 .big b{font-weight:800;letter-spacing:-.03em}.big em{font-style:normal;font-family:Anton,Impact,sans-serif;color:var(--sun);letter-spacing:.01em}
 html[lang=ar] .big{line-height:1.3}html[lang=ar] .big b,html[lang=ar] .big em{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
 .rider{position:absolute;z-index:3;left:50%;bottom:0;transform:translateX(-50%);height:61%;aspect-ratio:1/1;overflow:hidden;pointer-events:none}
-.rider img{position:absolute;left:50%;top:-13%;width:135%;height:auto;transform:translateX(-50%);display:block}
+.rider img{position:absolute;left:50%;top:-8%;width:120%;height:auto;transform:translateX(-50%);display:block}
 .col{position:absolute;z-index:4;top:54%;width:26%;display:flex;flex-direction:column;align-items:center;gap:2px}
 .col.l{inset-inline-start:6%}.col.r{inset-inline-end:6%}
 .col small{font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:10px}
@@ -189,12 +189,6 @@ html[lang=ar] .col a{font-family:Alexandria,sans-serif;font-weight:900}
 .panel .pt.h-sq .lg{height:clamp(24px,2.7vw,36px)}.panel .pt.h-xwide .lg{height:clamp(11px,1.3vw,17px)}.panel .pt.h-wide .lg{height:clamp(13px,1.5vw,20px)}
 .biz{position:absolute;z-index:5;left:50%;bottom:clamp(16px,3.4svh,32px);transform:translateX(-50%);background:var(--sun);color:var(--ink);text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 22px;border-radius:9px;white-space:nowrap}
 html[lang=ar] .biz{letter-spacing:0;font-size:14px}
-.tab{position:absolute;z-index:5;bottom:-1px;height:36px;display:flex;align-items:center;background:var(--sun);color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 16px 0;white-space:nowrap}
-html[lang=ar] .tab{letter-spacing:0;font-size:12px}
-.tab::after{content:"";position:absolute;top:0;width:30px;height:100%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36' preserveAspectRatio='none'%3E%3Cpath d='M0 0C17 0 13 36 30 36H0Z' fill='%23FFC629'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
-.tab.l{left:0}.tab.l::after{left:calc(100% - 1px)}
-.tab.r{right:0}.tab.r::after{right:calc(100% - 1px);transform:scaleX(-1)}
-
 @media (hover:none){.touchui{display:block}.role{display:none}}
 @media (max-width:700px){.sign{font-size:27vw}.m1{font-size:17vw}.m2{font-size:15.5vw}html[lang=ar] .m1,html[lang=ar] .m2{font-size:14vw}
   .collab-top{flex-direction:column;align-items:flex-start;gap:16px}.h2x{font-size:12.5vw}.script-bg span{font-size:31vw}html[lang=ar] .script-bg span{font-size:23vw}
@@ -206,9 +200,9 @@ html[lang=ar] .tab{letter-spacing:0;font-size:12px}
   .col{position:static;width:auto;margin-top:18px}.col a{font-size:16px;line-height:1.2}.col small{margin-bottom:5px}
   .panel .marquee{position:relative;bottom:auto;margin-top:18px}
   .rider{position:relative;left:auto;bottom:auto;transform:none;width:100%;height:auto;min-height:0;aspect-ratio:auto;margin-top:10px}
-  .rider img{height:162%;width:auto;max-width:none;top:-13%}
-  .biz{bottom:40px;font-size:11px;padding:12px 18px}
-  .notch{width:38vw;height:26px}.tab{font-size:9px;height:30px;padding:3px 10px 0}.tab::after{width:24px}
+  .rider img{height:136%;width:auto;max-width:none;top:-9%}
+  .biz{bottom:22px;font-size:11px;padding:12px 18px}
+  .notch{width:38vw;height:26px}
   .msg-t{font-size:11.2vw}.htrack{gap:12vw;padding-inline:10vw 16vw}.tx{width:78vw}.qt{width:80vw}.p1{--h:40svh}.p2{--h:30svh}.p3{--h:52svh}.bio{font-size:16px}}
 </style>
 </head>
@@ -286,8 +280,7 @@ html[lang=ar] .tab{letter-spacing:0;font-size:12px}
     <nav class="col l" aria-label="Pages"><small data-i18n="pages">Pages</small><a href="../" data-i18n="home">Home</a><a href="../globe/" data-i18n="globe">Globe</a><a href="#contact" data-i18n="contact">Contact</a></nav>
     <nav class="col r" aria-label="Social media"><small data-i18n="followOn">Follow on</small><a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a></nav>
     <div class="marquee" dir="ltr" aria-hidden="true"><div class="track"><span class="pt h-sq" role="img" aria-label="Scorpion EXO"><i class="lg" style="--u:url(../assets/partners/scorpion.webp);aspect-ratio:247/160"></i></span><span class="pt h-wide" aria-label="Insta360"><i class="lg" style="--u:url(../assets/partners/insta360.webp);aspect-ratio:752/160"></i></span><span class="pt h-mid" aria-label="Casa Custom Moto"><i class="lg" style="--u:url(../assets/partners/ccm.webp);aspect-ratio:431/160"></i></span><span class="pt h-mid" aria-label="Furygan"><i class="lg" style="--u:url(../assets/partners/furygan.webp);aspect-ratio:663/160"></i></span><span class="pt h-xwide" aria-label="RESO Pilot"><i class="lg" style="--u:url(../assets/partners/reso.webp);aspect-ratio:1440/160"></i></span><span class="pt h-round" aria-label="Midi Bikers"><i class="lg" style="--u:url(../assets/partners/midibikers.webp);aspect-ratio:160/160"></i></span><span aria-hidden="true" class="pt h-sq" role="img" aria-label="Scorpion EXO"><i class="lg" style="--u:url(../assets/partners/scorpion.webp);aspect-ratio:247/160"></i></span><span tabindex="-1" aria-hidden="true" class="pt h-wide" aria-label="Insta360"><i class="lg" style="--u:url(../assets/partners/insta360.webp);aspect-ratio:752/160"></i></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Casa Custom Moto"><i class="lg" style="--u:url(../assets/partners/ccm.webp);aspect-ratio:431/160"></i></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Furygan"><i class="lg" style="--u:url(../assets/partners/furygan.webp);aspect-ratio:663/160"></i></span><span tabindex="-1" aria-hidden="true" class="pt h-xwide" aria-label="RESO Pilot"><i class="lg" style="--u:url(../assets/partners/reso.webp);aspect-ratio:1440/160"></i></span><span tabindex="-1" aria-hidden="true" class="pt h-round" aria-label="Midi Bikers"><i class="lg" style="--u:url(../assets/partners/midibikers.webp);aspect-ratio:160/160"></i></span></div></div>
-    <div class="rider"><img src="assets/helmet.webp" alt="" width="1536" height="1920"></div>
-    <p class="tab l" dir="ltr">© 2026 Abisto26</p><p class="tab r" data-i18n="tagline">Smile. Play. Learn.</p>
+    <div class="rider"><img src="assets/face.webp" alt="" width="1536" height="1920"></div>
     <a class="biz" href="#contact" data-i18n="biz">Business enquiries ↗</a>
   </div>
 </footer>
