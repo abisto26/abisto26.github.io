@@ -571,6 +571,36 @@ html{scroll-padding-bottom:var(--foot-h,56px)}
 .marquee{transform:translateZ(0);isolation:isolate}
 .track{will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .pt img{-webkit-user-drag:none;user-select:none}
+/* about page, blue style, one screen */
+.sec-about{min-height:calc(100svh - var(--bar-h) - var(--foot-h,56px))!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;box-sizing:border-box;padding:16px 24px!important;scroll-margin-top:0}
+.sec-about .sec-head{margin-bottom:clamp(20px,4.5svh,48px)!important}
+.about{max-width:980px;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px 60px;align-items:center}
+.about-photo{border-radius:26px;border:5px solid #fff;box-shadow:0 18px 40px rgba(20,33,46,.16);box-sizing:border-box;max-height:min(54svh,400px);width:auto;max-width:100%;margin:0 auto}
+.about-quote{margin:0 0 22px}
+.about-quote p{font-size:24px!important;line-height:1.35!important;color:var(--ink)}
+.about-quote cite{color:var(--sky)}
+.about-text p{font-size:15.5px;line-height:1.7;margin:0 0 14px;color:#33414f}
+.story-dots{display:none}
+@media (max-width:760px){
+ .about{grid-template-columns:84px minmax(0,1fr);gap:16px;align-items:center;width:100%}
+ .about-text{display:contents}
+ .about-photo{width:84px;height:84px;max-height:none;aspect-ratio:1;border-radius:50%;border-width:3px;object-position:50% 20%;margin:0}
+ .about-quote{margin:0}
+ .about-quote p{font-size:17px!important;margin-bottom:6px}
+ .about-quote cite{font-size:10px}
+ .about-story{grid-column:1/-1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:12px;margin-top:6px;overscroll-behavior-x:contain}
+ .about-story::-webkit-scrollbar{display:none}
+ .about-story p{flex:0 0 100%;scroll-snap-align:center;box-sizing:border-box;margin:0;background:#fff;border-radius:22px;padding:20px 20px;border:1px solid #e3eaf0;font-size:15px;line-height:1.65;max-width:none}
+ [dir=rtl] .about-story p{font-size:16px;line-height:1.85}
+ .story-dots{grid-column:1/-1;display:flex;justify-content:center;gap:7px;margin-top:2px}
+ .story-dots i{width:7px;height:7px;border-radius:4px;background:#c8d3dd;transition:width .3s,background .3s}
+ .story-dots i.on{width:20px;background:var(--ink)}
+}
+.sec-about{scroll-snap-align:start;scroll-snap-stop:always}
+@media (max-height:620px){.sec-about{min-height:0!important}}
+@media (min-width:761px) and (max-height:820px){.about-photo{max-height:46svh}.about-quote{margin-bottom:14px}.about-quote p{font-size:20px!important}.about-text p{font-size:14.5px;line-height:1.6;margin-bottom:10px}.sec-about .sec-head{margin-bottom:18px!important}}
+@media (max-width:760px) and (max-height:720px){.about{grid-template-columns:68px minmax(0,1fr);gap:12px}.about-photo{width:68px;height:68px}.about-quote p{font-size:15px!important}.about-story p{font-size:14px;line-height:1.55;padding:16px}.sec-about .sec-head{margin-bottom:14px!important}}
+.about-story p:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -592,7 +622,7 @@ html{scroll-padding-bottom:var(--foot-h,56px)}
     <button class="menu-btn close" type="button" aria-label="Close menu" data-i18n-aria="close" onclick="toggleMenu(false)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
     </button>
-    <a hidden href="#about" onclick="toggleMenu(false)"><span class="hl" data-i18n="about">About</span></a>
+    <a href="#about" onclick="toggleMenu(false)"><span class="hl" data-i18n="about">About</span></a>
     <a hidden href="#videos" onclick="toggleMenu(false)"><span class="hl" data-i18n="videos">Viral videos</span></a>
     <a href="#games" onclick="toggleMenu(false)"><span class="hl" data-i18n="games">Games</span></a>
     <a href="#contact" onclick="toggleMenu(false)"><span class="hl" data-i18n="contact">Contact</span></a>
@@ -622,15 +652,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
   </a>
 </section>
 <!-- HIDDEN for now (remove "hidden" to show again) -->
-<section hidden class="sec sec-about" id="about" aria-labelledby="about-h">
-  <h2 class="sec-head" id="about-h"><span class="hl" data-i18n="about">About</span></h2>
-  <div class="about">
+<section class="sec sec-about" id="about" aria-labelledby="about-h">
+  <h2 class="sec-head rv" id="about-h"><span class="hl" data-i18n="about">About</span></h2>
+  <div class="about rv d2">
     <img class="about-photo" src="assets/abisto.webp" width="800" height="1000" loading="lazy" alt="Abisto in his helmet" data-i18n-alt="aboutAlt">
     <div class="about-text">
-      <blockquote class="about-quote"><p data-i18n="aboutQuote">“Fun is how I fix any problem. That’s the way I live.”</p><cite>Abisto</cite></blockquote>
-      <p data-i18n="aboutP1">Abisto is a Moroccan rider who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since. He even rode the whole coast of Morocco, all the way down to Laâyoune.</p>
+      <blockquote class="about-quote"><p data-i18n="aboutQuote">“Fun is how I fix any problem. That’s the way I live.”</p><cite data-i18n="aboutBy">Abisto</cite></blockquote>
+      <div class="about-story" id="about-story"><p data-i18n="aboutP1">Abisto is a Moroccan rider who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since. He even rode the whole coast of Morocco, all the way down to Laâyoune.</p>
       <p data-i18n="aboutP2">Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.</p>
-      <p data-i18n="aboutP3">Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.</p>
+      <p data-i18n="aboutP3">Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.</p></div><div class="story-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
     </div>
   </div>
 </section>
@@ -751,13 +781,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleMenu(f
 var T={
  en:{games:"Games",videos:"Viral videos",globe:"Globe",soual:"Soual",tatahi:"TaTaHi",watch:"Watch",more:"More",tagline:"Smile. Play. Learn.",
      menu:"Menu",close:"Close menu",playGlobe:"Play Globe by Abisto",moreAria:"More videos on Instagram",prev:"Previous videos",next:"Next videos",socials:"Abisto on social media",partners:"Friends & partners",contact:"Contact",heroA:"Know the",heroB:"world?",heroCta:"Play",heroShot:"assets/globe-play-en.webp",heroAlt:"Globe game on a phone: whose flag?",
-     about:"About",aboutQuote:"“Fun is how I fix any problem. That’s the way I live.”",aboutP1:"Abisto is a Moroccan rider who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since. He even rode the whole coast of Morocco, all the way down to Laâyoune.",aboutP2:"Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.",aboutP3:"Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.",aboutAlt:"Abisto in his helmet"},
+     aboutBy:"Abisto",about:"About",aboutQuote:"“Fun is how I fix any problem. That’s the way I live.”",aboutP1:"Abisto is a Moroccan rider who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since. He even rode the whole coast of Morocco, all the way down to Laâyoune.",aboutP2:"Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.",aboutP3:"Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.",aboutAlt:"Abisto in his helmet"},
  fr:{games:"Jeux",videos:"Vidéos virales",globe:"Globe",soual:"Soual",tatahi:"TaTaHi",watch:"Regarder",more:"Plus",tagline:"Souriez. Jouez. Apprenez.",
      menu:"Menu",close:"Fermer le menu",playGlobe:"Jouer à Globe par Abisto",moreAria:"Plus de vidéos sur Instagram",prev:"Vidéos précédentes",next:"Vidéos suivantes",socials:"Abisto sur les réseaux sociaux",partners:"Amis & partenaires",contact:"Contact",heroA:"Tu connais",heroB:"le monde ?",heroCta:"Jouer",heroShot:"assets/globe-play-fr.webp",heroAlt:"Le jeu Globe sur un téléphone : à qui ce drapeau ?",
-     about:"À propos",aboutQuote:"« Le fun, c’est ma façon de régler n’importe quel problème. C’est comme ça que je vis. »",aboutP1:"Abisto est un motard marocain qui aime la vie, aime les gens et a toujours le sourire. Il a grandi à Marrakech, et c’est de là que vient le 26 : c’est le numéro de plaque de la ville. Il a eu sa première moto à 14 ans et ne s’est jamais arrêté depuis. Il a même longé toute la côte marocaine, jusqu’à Laâyoune.",aboutP2:"Aujourd’hui, il vit à Casablanca, où la circulation est dense et les gens stressés. Alors il a commencé à parler aux conducteurs à côté de lui, aux feux rouges. Un jour, à un feu très long, il a proposé à un inconnu une partie de pierre-feuille-ciseaux. Au lieu des mots habituels, il a crié « TaTaHi ! ». La vidéo est devenue virale, et une habitude est née.",aboutP3:"Depuis, le feu rouge est sa scène. Il joue, pose des questions bizarres et fait rire les gens. Ces questions sont devenues ses jeux, parce qu’il pense que le fun est la meilleure façon d’apprendre. Aujourd’hui on le reconnaît partout, mais il n’a pas changé. Il le fait parce que ça le rend heureux, et il arrive bientôt dans d’autres villes.",aboutAlt:"Abisto avec son casque"},
+     aboutBy:"Abisto",about:"À propos",aboutQuote:"« Le fun, c’est ma façon de régler n’importe quel problème. C’est comme ça que je vis. »",aboutP1:"Abisto est un motard marocain qui aime la vie, aime les gens et a toujours le sourire. Il a grandi à Marrakech, et c’est de là que vient le 26 : c’est le numéro de plaque de la ville. Il a eu sa première moto à 14 ans et ne s’est jamais arrêté depuis. Il a même longé toute la côte marocaine, jusqu’à Laâyoune.",aboutP2:"Aujourd’hui, il vit à Casablanca, où la circulation est dense et les gens stressés. Alors il a commencé à parler aux conducteurs à côté de lui, aux feux rouges. Un jour, à un feu très long, il a proposé à un inconnu une partie de pierre-feuille-ciseaux. Au lieu des mots habituels, il a crié « TaTaHi ! ». La vidéo est devenue virale, et une habitude est née.",aboutP3:"Depuis, le feu rouge est sa scène. Il joue, pose des questions bizarres et fait rire les gens. Ces questions sont devenues ses jeux, parce qu’il pense que le fun est la meilleure façon d’apprendre. Aujourd’hui on le reconnaît partout, mais il n’a pas changé. Il le fait parce que ça le rend heureux, et il arrive bientôt dans d’autres villes.",aboutAlt:"Abisto avec son casque"},
  ar:{games:"الألعاب",videos:"فيديوهات رائجة",globe:"العالم",soual:"سؤال",tatahi:"طاطاهي",watch:"شاهد",more:"المزيد",tagline:"ابتسم. العب. تعلّم.",
      menu:"القائمة",close:"إغلاق القائمة",playGlobe:"العب العالم مع Abisto",moreAria:"المزيد من الفيديوهات على إنستغرام",prev:"الفيديوهات السابقة",next:"الفيديوهات التالية",socials:"Abisto على مواقع التواصل",partners:"أصدقاء وشركاء",contact:"تواصل",heroA:"هل تعرف",heroB:"العالم؟",heroCta:"العب",heroShot:"assets/globe-play-ar.webp",heroAlt:"لعبة العالم على الهاتف: علم أي دولة؟",
-     about:"عن Abisto",aboutQuote:"«المرح هو طريقتي في حل أي مشكلة. هكذا أعيش.»",aboutP1:"Abisto سائق دراجة نارية مغربي يحب الحياة ويحب الناس، والابتسامة لا تفارقه. نشأ في مراكش، ومنها جاء الرقم 26: إنه رقم لوحات المدينة. حصل على أول دراجة نارية في سن الرابعة عشرة، ولم يتوقف عن القيادة منذ ذلك الحين. بل جاب ساحل المغرب كله حتى العيون.",aboutP2:"يعيش اليوم في الدار البيضاء، حيث الزحمة خانقة والناس متوترون. فبدأ يتحدث مع السائقين بجانبه عند الإشارات الحمراء. وذات يوم، عند إشارة طويلة جداً، اقترح على شخص لا يعرفه جولة حجرة ورقة مقص. وبدل الكلمات المعتادة صاح: «طاطاهي!». انتشر الفيديو بسرعة، ووُلدت عادة جديدة.",aboutP3:"ومنذ ذلك الحين صارت الإشارة الحمراء مسرحه. يلعب، ويطرح أسئلة غريبة، ويُضحك الناس. وتحولت هذه الأسئلة إلى ألعابه، لأنه يؤمن أن المرح أفضل طريقة للتعلم. اليوم يعرفه الناس في كل مكان، لكنه لم يتغير. يفعل ذلك لأنه يسعده، وسيزور مدناً أخرى قريباً.",aboutAlt:"Abisto بخوذته"}
+     aboutBy:"أبيستو",about:"عن أبيستو",aboutQuote:"«المرح هو طريقتي في حل أي مشكلة. هكذا أعيش.»",aboutP1:"أبيستو سائق دراجة نارية مغربي يحب الحياة ويحب الناس، والابتسامة لا تفارقه. نشأ في مراكش، ومنها جاء الرقم 26: إنه رقم لوحات المدينة. حصل على أول دراجة نارية في سن الرابعة عشرة، ولم يتوقف عن القيادة منذ ذلك الحين. بل جاب ساحل المغرب كله حتى العيون.",aboutP2:"يعيش اليوم في الدار البيضاء، حيث الزحمة خانقة والناس متوترون. فبدأ يتحدث مع السائقين بجانبه عند الإشارات الحمراء. وذات يوم، عند إشارة طويلة جداً، اقترح على شخص لا يعرفه جولة حجرة ورقة مقص. وبدل الكلمات المعتادة صاح: «طاطاهي!». انتشر الفيديو بسرعة، ووُلدت عادة جديدة.",aboutP3:"ومنذ ذلك الحين صارت الإشارة الحمراء مسرحه. يلعب، ويطرح أسئلة غريبة، ويُضحك الناس. وتحولت هذه الأسئلة إلى ألعابه، لأنه يؤمن أن المرح أفضل طريقة للتعلم. اليوم يعرفه الناس في كل مكان، لكنه لم يتغير. يفعل ذلك لأنه يسعده، وسيزور مدناً أخرى قريباً.",aboutAlt:"أبيستو بخوذته"}
 };
 function setLang(l){
   if(!T[l])l='en';var d=T[l],h=document.documentElement;
@@ -896,7 +926,7 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);addEventL
 <script>
 /* pages: fade in when a section arrives, fade out when it leaves */
 (function(){
-  var secs=document.querySelectorAll('.hero,.sec-games,.sec-contact');
+  var secs=document.querySelectorAll('.hero,.sec-about,.sec-games,.sec-contact');
   function foot(){var f=document.querySelector('footer');if(f)document.documentElement.style.setProperty('--foot-h',Math.ceil(f.getBoundingClientRect().height)+'px');
     var b=document.querySelector('.bar');if(b)document.documentElement.style.setProperty('--bar-h',Math.round(b.getBoundingClientRect().height)+'px');}
   foot();addEventListener('resize',foot);
@@ -905,6 +935,11 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);addEventL
   secs.forEach(function(s){io.observe(s);});
   secs[0]&&secs[0].classList.add('in');
 })();
+
+(function(){var st=document.getElementById('about-story');if(!st||!('IntersectionObserver' in window))return;
+var ds=st.parentNode.querySelectorAll('.story-dots i'),ps=st.querySelectorAll('p');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>.6){var n=[].indexOf.call(ps,e.target);ds.forEach(function(d,k){d.classList.toggle('on',k===n)})}})},{root:st,threshold:[.6]});
+ps.forEach(function(p){io.observe(p)});})();
 </script>
 </body>
 </html>
