@@ -7,6 +7,7 @@
 <title>Abisto26 | Coming soon</title>
 <link rel="icon" href="../favicon-96.png">
 <style>
+@font-face{font-family:"Mr Dafoe";src:url(../assets/fonts/mr-dafoe-latin-400-normal.woff2) format("woff2");font-display:swap}
 @font-face{font-family:Anton;src:url(../assets/fonts/anton-latin-400-normal.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Open Sans";font-weight:400;src:url(../assets/fonts/open-sans-latin-400-normal.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Open Sans";font-weight:800;src:url(../assets/fonts/open-sans-latin-800-normal.woff2) format("woff2");font-display:swap}
@@ -54,14 +55,74 @@ html[lang=ar] .role{letter-spacing:0;font-size:13px}
 .touchui button{background:var(--ink);color:var(--cloud);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:11px 18px;border-radius:99px}
 html[lang=ar] .touchui button{letter-spacing:0;font-size:13px}
 .frame.play .touchui button{background:var(--sun);color:var(--ink)}
-.sign{position:absolute;z-index:3;left:50%;top:50%;width:min(46vw,62svh);transform:translate(-50%,-50%) rotate(-6deg);pointer-events:none;overflow:visible}
-.sign path{fill:none;stroke:var(--sun);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
-.end{position:relative;z-index:3;min-height:60svh;display:grid;place-items:center;text-align:center;padding:40px 20px}
-.end p{font-family:Anton,Impact,sans-serif;font-size:clamp(34px,7vw,96px);text-transform:uppercase;line-height:1}
-html[lang=ar] .end p{font-family:Alexandria,sans-serif;font-weight:900}
-.end p em{font-style:normal;color:var(--sun)}
+.sign{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);pointer-events:none;direction:ltr;white-space:nowrap;
+  font-family:"Mr Dafoe",cursive;font-size:min(19vw,30svh);line-height:1.2;color:var(--sun);padding:0 .15em;clip-path:inset(-30% 100% -30% -10%)}
+/* ===== Friends & partners ===== */
+.collab{position:relative;z-index:3;background:var(--cloud);color:var(--ink);min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(40px,9svh,90px);overflow:hidden;padding:14svh 0}
+.script-bg{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:0}
+.script-bg span{font-family:"Mr Dafoe",cursive;font-size:min(25vw,52svh);line-height:1.1;color:var(--sun);transform:rotate(-10deg) translateY(2%);white-space:nowrap;padding:0 .2em;
+  clip-path:inset(-30% 100% -30% 0);transition:clip-path 1.5s cubic-bezier(.6,0,.2,1)}
+html[lang=ar] .script-bg span{font-family:Alexandria,sans-serif;font-weight:900;font-size:min(26vw,48svh);clip-path:inset(-30% 0 -30% 100%)}
+.collab.in .script-bg span{clip-path:inset(-30% -10% -30% -10%)}
+.collab-top{position:relative;z-index:1;display:flex;align-items:flex-end;gap:clamp(24px,8vw,140px);padding-inline:clamp(16px,2.4vw,36px);flex-wrap:wrap}
+.h2x{font-size:clamp(34px,5.4vw,84px);line-height:.95;text-transform:uppercase;font-weight:400}
+.h2x b{display:block;font-weight:800;letter-spacing:-.03em}
+.h2x span{display:block;font-family:Anton,Impact,sans-serif;letter-spacing:.01em}
+html[lang=ar] .h2x{line-height:1.25}html[lang=ar] .h2x b,html[lang=ar] .h2x span{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
+html[lang=ar] .h2x span{font-weight:400}
+.collab-top p{max-width:30ch;font-size:clamp(14px,1.15vw,17px);line-height:1.45;padding-bottom:.6em}
+.marquee{position:relative;z-index:1;overflow:hidden;transform:translateZ(0)}
+.track{display:flex;align-items:center;gap:clamp(44px,7vw,110px);width:max-content;padding-inline-end:clamp(44px,7vw,110px);animation:slide 30s linear infinite;will-change:transform}
+.track:hover{animation-play-state:paused}
+@keyframes slide{to{transform:translate3d(-50%,0,0)}}
+.pt{display:block;flex:none;opacity:.9;transition:opacity .2s}.pt:hover{opacity:1}
+.pt img{display:block;height:clamp(34px,4.4vw,56px);width:auto}
+.pt.h-sq img{height:clamp(46px,6vw,76px)}.pt.h-xwide img{height:clamp(22px,2.8vw,36px)}.pt.h-wide img{height:clamp(26px,3.4vw,44px)}
+
+/* ===== What's up on socials ===== */
+.social{position:relative;z-index:3;background:var(--cloud);color:var(--ink);min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(20px,4svh,44px);padding:12svh 0 10svh;overflow:hidden;text-align:center}
+.fan{position:relative;width:100%;height:min(56svh,74vw);direction:ltr}
+.card{position:absolute;left:50%;top:6%;height:84%;aspect-ratio:3/4;margin-left:calc(min(56svh,74vw)*-.315);border-radius:clamp(16px,2vw,30px);overflow:hidden;background:#ccd;
+  box-shadow:0 18px 40px rgba(20,33,46,.22);transform:translate3d(0,0,0) rotate(0deg) scale(.9);transition:transform .9s cubic-bezier(.2,.8,.2,1);z-index:calc(10 - var(--a))}
+.social.in .card{transform:translate3d(calc(var(--i)*58%),calc(var(--a)*var(--a)*4.5%),0) rotate(calc(var(--i)*7deg))}
+.social.in .card:hover{z-index:20;transform:translate3d(calc(var(--i)*58%),calc(var(--a)*var(--a)*4.5% - 5%),0) rotate(calc(var(--i)*7deg)) scale(1.04)}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.card i{position:absolute;inset-inline-end:10px;bottom:10px;width:34px;height:34px;border-radius:50%;background:var(--cloud);color:var(--ink);display:grid;place-items:center}
+.card i svg{width:17px;height:17px}
+.follow{display:flex;align-items:center;gap:18px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+html[lang=ar] .follow{letter-spacing:0;font-size:14px}
+.follow a{color:var(--ink);display:grid;place-items:center;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:12px;transition:background .2s}
+.follow a:hover{background:var(--sun)}.follow svg{width:19px;height:19px}
+
+/* ===== last page ===== */
+.last{position:relative;z-index:3;background:linear-gradient(180deg,var(--cloud) 0,#ffe9a6 30%,var(--sun) 70%);color:var(--cloud);padding:9svh clamp(10px,1.6vw,24px) 0;min-height:100svh;display:flex;flex-direction:column}
+.notch{width:min(34vw,300px);height:30px;margin:0 auto -1px;background:var(--ink);border-radius:22px 22px 0 0}
+.panel{position:relative;flex:1;min-height:78svh;background:var(--ink);border-radius:clamp(20px,2.4vw,34px);overflow:hidden;text-align:center;padding-top:clamp(40px,9svh,90px)}
+.sig2{font-family:"Mr Dafoe",cursive;color:var(--sun);font-size:clamp(34px,5vw,74px);line-height:1;transform:rotate(-8deg);margin-bottom:-.28em;position:relative;z-index:3;direction:ltr}
+.big{position:relative;z-index:2;font-size:clamp(34px,5.6vw,88px);line-height:.98;text-transform:uppercase}
+.big b{font-weight:800;letter-spacing:-.03em}.big em{font-style:normal;font-family:Anton,Impact,sans-serif;color:var(--sun);letter-spacing:.01em}
+html[lang=ar] .big{line-height:1.3}html[lang=ar] .big b,html[lang=ar] .big em{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
+.rider{position:absolute;z-index:2;left:50%;bottom:0;transform:translateX(-50%);height:58%;aspect-ratio:1/1;overflow:hidden;pointer-events:none}
+.rider img{position:absolute;left:50%;top:-12%;width:125%;height:auto;transform:translateX(-50%);display:block}
+.col{position:absolute;z-index:3;top:50%;width:26%;display:flex;flex-direction:column;align-items:center;gap:2px}
+.col.l{inset-inline-start:4%}.col.r{inset-inline-end:4%}
+.col small{font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:8px}
+html[lang=ar] .col small{letter-spacing:0;font-size:12px}
+.col a{color:var(--cloud);text-decoration:none;font-family:Anton,Impact,sans-serif;font-size:clamp(17px,1.7vw,26px);text-transform:uppercase;line-height:1.25;transition:color .2s}
+html[lang=ar] .col a{font-family:Alexandria,sans-serif;font-weight:900}
+.col a:hover{color:var(--sun)}
+.panel .marquee{position:absolute;z-index:1;inset-inline:0;bottom:clamp(20px,5svh,48px)}
+.panel .pt img{filter:invert(1);height:clamp(22px,2.6vw,34px)}
+.panel .pt.h-sq img{height:clamp(30px,3.4vw,46px)}.panel .pt.h-xwide img{height:clamp(14px,1.7vw,22px)}.panel .pt.h-wide img{height:clamp(17px,2vw,27px)}
+.biz{position:absolute;z-index:4;left:50%;bottom:clamp(14px,3svh,28px);transform:translateX(-50%);background:var(--sun);color:var(--ink);text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:12px 18px;border-radius:8px;white-space:nowrap}
+html[lang=ar] .biz{letter-spacing:0;font-size:13px}
+.legal{display:flex;justify-content:space-between;gap:12px;color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:14px 8px calc(14px + env(safe-area-inset-bottom))}
+html[lang=ar] .legal{letter-spacing:0;font-size:12px}
 @media (hover:none){.touchui{display:block}.role{display:none}}
-@media (max-width:700px){.sign{width:74vw}.m1{font-size:17vw}.m2{font-size:15.5vw}html[lang=ar] .m1,html[lang=ar] .m2{font-size:14vw}}
+@media (max-width:700px){.sign{font-size:27vw}.m1{font-size:17vw}.m2{font-size:15.5vw}html[lang=ar] .m1,html[lang=ar] .m2{font-size:14vw}
+  .collab-top{flex-direction:column;align-items:flex-start;gap:16px}.h2x{font-size:12.5vw}.script-bg span{font-size:31vw}html[lang=ar] .script-bg span{font-size:23vw}
+  .fan{height:80vw}.card{margin-left:-23.4vw;height:78%;top:4%}.social.in .card{transform:translate3d(calc(var(--i)*46%),calc(var(--a)*var(--a)*4%),0) rotate(calc(var(--i)*7deg))}
+  .big{font-size:11.5vw}.sig2{font-size:15vw}.rider{height:auto;width:90%;aspect-ratio:1/1}.col{top:31%;width:30%}html[lang=ar] .col{top:37%}.col.l{inset-inline-start:2%}.col.r{inset-inline-end:2%}.col a{font-size:16px}.panel{min-height:84svh}}
 </style>
 </head>
 <body>
@@ -91,17 +152,44 @@ html[lang=ar] .end p{font-family:Alexandria,sans-serif;font-weight:900}
       <p class="role" data-i18n="role">Moroccan rider &amp; content creator</p>
       <div class="touchui"><button id="playbtn" data-i18n="tap">Tap to play</button></div>
     </div>
-    <svg class="sign" id="sign" viewBox="0 0 400 260" aria-hidden="true"><path pathLength="1" d="M38 232 L168 26 L206 214 M92 152 C150 118 236 108 252 140 C266 168 232 196 248 160 C260 134 292 118 302 150 C310 178 284 194 300 164 C312 140 338 128 348 152 C362 190 240 244 386 204"/></svg>
+    <div class="sign" id="sign" aria-hidden="true">Abisto</div>
   </div>
 </div>
-<section class="end"><p><span data-i18n="end1">More is</span> <em data-i18n="end2">coming soon</em></p></section>
+<section class="collab io" id="partners" aria-labelledby="pt-h">
+  <div class="script-bg" aria-hidden="true"><span data-i18n="script">Friends</span></div>
+  <div class="collab-top">
+    <h2 class="h2x" id="pt-h"><b data-i18n="pA">Friends</b><span data-i18n="pB">&amp; partners</span></h2>
+    <p data-i18n="pText">Abisto is proud to ride with friends and brands who share his love of the road and of making people smile.</p>
+  </div>
+  <div class="marquee" dir="ltr"><div class="track"><span class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><a class="pt h-wide" href="https://www.insta360.com/" target="_blank" rel="noopener" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></a><a class="pt h-mid" href="https://casacustommoto.com/" target="_blank" rel="noopener" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></a><a class="pt h-mid" href="https://www.furygan.com/" target="_blank" rel="noopener" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></a><a class="pt h-xwide" href="https://resopilot.com/" target="_blank" rel="noopener" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></a><a class="pt h-round" href="https://midibikers.ma/" target="_blank" rel="noopener" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></a><span aria-hidden="true" class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><a tabindex="-1" aria-hidden="true" class="pt h-wide" href="https://www.insta360.com/" target="_blank" rel="noopener" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></a><a tabindex="-1" aria-hidden="true" class="pt h-mid" href="https://casacustommoto.com/" target="_blank" rel="noopener" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></a><a tabindex="-1" aria-hidden="true" class="pt h-mid" href="https://www.furygan.com/" target="_blank" rel="noopener" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></a><a tabindex="-1" aria-hidden="true" class="pt h-xwide" href="https://resopilot.com/" target="_blank" rel="noopener" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></a><a tabindex="-1" aria-hidden="true" class="pt h-round" href="https://midibikers.ma/" target="_blank" rel="noopener" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></a></div></div>
+</section>
+
+<section class="social io" id="socials" aria-labelledby="so-h">
+  <h2 class="h2x" id="so-h"><b data-i18n="sA">What’s up</b><span data-i18n="sB">on socials</span></h2>
+  <div class="fan"><a class="card" style="--i:-2;--a:2" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/s3.webp" alt="" width="600" height="800"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388 5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552 1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388 5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912.056-1.28.07-1.69.063-4.948-.006-3.258-.02-3.667-.081-4.947-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123 5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895 3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228-.06-1.264-.072-1.644-.08-4.848-.006-3.204.006-3.583.061-4.848.05-1.169.246-1.805.408-2.228.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417 1.265-.06 1.644-.072 4.848-.08 3.203-.006 3.583.006 4.85.062 1.168.05 1.804.244 2.227.408.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227.06 1.265.074 1.645.08 4.848.005 3.203-.006 3.583-.061 4.848-.051 1.17-.245 1.805-.408 2.23-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442 1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024 6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16 4 4 0 0 1 8 12.008"/></svg></i></a><a class="card" style="--i:-1;--a:1" href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener" aria-label="TikTok"><img src="assets/s2.webp" alt="" width="600" height="800"><i><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"/></svg></i></a><a class="card" style="--i:0;--a:0" href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/s1.webp" alt="" width="600" height="800"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388 5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552 1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388 5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912.056-1.28.07-1.69.063-4.948-.006-3.258-.02-3.667-.081-4.947-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123 5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895 3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228-.06-1.264-.072-1.644-.08-4.848-.006-3.204.006-3.583.061-4.848.05-1.169.246-1.805.408-2.228.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417 1.265-.06 1.644-.072 4.848-.08 3.203-.006 3.583.006 4.85.062 1.168.05 1.804.244 2.227.408.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227.06 1.265.074 1.645.08 4.848.005 3.203-.006 3.583-.061 4.848-.051 1.17-.245 1.805-.408 2.23-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442 1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024 6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16 4 4 0 0 1 8 12.008"/></svg></i></a><a class="card" style="--i:1;--a:1" href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/s4.webp" alt="" width="600" height="800"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg></i></a><a class="card" style="--i:2;--a:2" href="https://www.facebook.com/abisto26" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/s5.webp" alt="" width="600" height="800"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a9 9 0 0 1 1.141.195v3.325a9 9 0 0 0-.653-.036 27 27 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.7 1.7 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647"/></svg></i></a></div>
+  <p class="follow"><span data-i18n="follow">Follow Abisto</span><a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388 5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552 1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388 5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912.056-1.28.07-1.69.063-4.948-.006-3.258-.02-3.667-.081-4.947-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123 5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895 3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228-.06-1.264-.072-1.644-.08-4.848-.006-3.204.006-3.583.061-4.848.05-1.169.246-1.805.408-2.228.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417 1.265-.06 1.644-.072 4.848-.08 3.203-.006 3.583.006 4.85.062 1.168.05 1.804.244 2.227.408.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227.06 1.265.074 1.645.08 4.848.005 3.203-.006 3.583-.061 4.848-.051 1.17-.245 1.805-.408 2.23-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442 1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024 6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16 4 4 0 0 1 8 12.008"/></svg></a><a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"/></svg></a><a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg></a><a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a9 9 0 0 1 1.141.195v3.325a9 9 0 0 0-.653-.036 27 27 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.7 1.7 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647"/></svg></a></p>
+</section>
 </main>
+
+<footer class="last">
+  <div class="notch"></div>
+  <div class="panel">
+    <div class="sig2" aria-hidden="true">Abisto</div>
+    <p class="big"><b data-i18n="fA">Always</b> <em data-i18n="fB">drawing</em><br><b data-i18n="fC">smiles</b><em>.</em></p>
+    <nav class="col l" aria-label="Pages"><small data-i18n="pages">Pages</small><a href="../" data-i18n="home">Home</a><a href="../globe/" data-i18n="globe">Globe</a><a href="../#contact" data-i18n="contact">Contact</a></nav>
+    <nav class="col r" aria-label="Social media"><small data-i18n="followOn">Follow on</small><a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a></nav>
+    <div class="marquee" dir="ltr" aria-hidden="true"><div class="track"><span class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><span class="pt h-wide" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></span><span class="pt h-mid" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></span><span class="pt h-mid" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></span><span class="pt h-xwide" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></span><span class="pt h-round" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></span><span aria-hidden="true" class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-wide" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-xwide" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-round" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></span></div></div>
+    <div class="rider"><img src="assets/helmet.webp" alt="" width="1536" height="1920"></div>
+    <a class="biz" href="../#contact" data-i18n="biz">Work with me ↗</a>
+  </div>
+  <div class="legal"><span dir="ltr">© 2026 Abisto26</span><span data-i18n="tagline">Smile. Play. Learn.</span></div>
+</footer>
 
 <script>
 var T={
- en:{brand:'Abisto',role:'Moroccan rider & content creator',m1:'Drawing smiles on people’s faces',m2:'Morocco to the world',tap:'Tap to play',back:'Back to scroll',end1:'More is',end2:'coming soon',alt:'Abisto smiling'},
- fr:{brand:'Abisto',role:'Motard marocain & créateur de contenu',m1:'Dessiner des sourires sur les visages',m2:'Du Maroc au monde entier',tap:'Touche pour jouer',back:'Retour au défilement',end1:'La suite',end2:'arrive bientôt',alt:'Abisto souriant'},
- ar:{brand:'أبيستو',role:'سائق دراجة نارية وصانع محتوى مغربي',m1:'رسم الابتسامة على وجوه الناس',m2:'من المغرب إلى العالم',tap:'المس للّعب',back:'العودة للتمرير',end1:'المزيد',end2:'قريباً',alt:'أبيستو مبتسماً'}
+ en:{brand:'Abisto',role:'Moroccan rider & content creator',m1:'Drawing smiles on people’s faces',m2:'Morocco to the world',tap:'Tap to play',back:'Back to scroll',script:'Friends',pA:'Friends',pB:'& partners',pText:'Abisto is proud to ride with friends and brands who share his love of the road and of making people smile.',sA:'What’s up',sB:'on socials',follow:'Follow Abisto',fA:'Always',fB:'drawing',fC:'smiles',pages:'Pages',home:'Home',globe:'Globe',contact:'Contact',followOn:'Follow on',biz:'Work with me ↗',tagline:'Smile. Play. Learn.',alt:'Abisto smiling'},
+ fr:{brand:'Abisto',role:'Motard marocain & créateur de contenu',m1:'Dessiner des sourires sur les visages',m2:'Du Maroc au monde entier',tap:'Touche pour jouer',back:'Retour au défilement',script:'Amis',pA:'Amis',pB:'& partenaires',pText:'Abisto est fier de rouler avec des amis et des marques qui partagent son amour de la route et du sourire.',sA:'Quoi de neuf',sB:'sur les réseaux',follow:'Suivre Abisto',fA:'Toujours',fB:'dessiner',fC:'des sourires',pages:'Pages',home:'Accueil',globe:'Globe',contact:'Contact',followOn:'Suivre sur',biz:'Travailler avec moi ↗',tagline:'Souriez. Jouez. Apprenez.',alt:'Abisto souriant'},
+ ar:{brand:'أبيستو',role:'سائق دراجة نارية وصانع محتوى مغربي',m1:'رسم الابتسامة على وجوه الناس',m2:'من المغرب إلى العالم',tap:'المس للّعب',back:'العودة للتمرير',script:'أصدقاء',pA:'أصدقاء',pB:'وشركاء',pText:'أبيستو فخور بمرافقة أصدقاء وعلامات تشاركه حب الطريق ورسم الابتسامة على وجوه الناس.',sA:'جديدي',sB:'على مواقع التواصل',follow:'تابع أبيستو',fA:'دائماً',fB:'نرسم',fC:'الابتسامة',pages:'الصفحات',home:'الرئيسية',globe:'العالم',contact:'تواصل',followOn:'تابعني على',biz:'اعمل معي ↖',tagline:'ابتسم. العب. تعلّم.',alt:'أبيستو مبتسماً'}
 };
 var lang='en',play=false;
 function setLang(l){
@@ -118,18 +206,20 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
 (function(){var l=null;try{l=localStorage.getItem('lang');}catch(e){}
   if(!l){var n=(navigator.language||'en').slice(0,2);l=T[n]?n:'en';}setLang(l);})();
 
+(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.3});
+  document.querySelectorAll('.io').forEach(function(e){io.observe(e);});})();
 (function(){
   var frame=document.getElementById('frame'),stage=document.getElementById('stage'),cv=document.getElementById('cv'),ctx=cv.getContext('2d');
   var bg=document.getElementById('bg'),bx=bg.getContext('2d'),pin=document.getElementById('pin'),bar=document.getElementById('bar');
   var marq=document.getElementById('marq'),m1=document.getElementById('m1'),m2=document.getElementById('m2'),veil=document.getElementById('veil');
-  var signP=document.querySelector('#sign path'),face=document.getElementById('face'),lines=document.getElementById('lines'),btn=document.getElementById('playbtn');
+  var signP=document.getElementById('sign'),face=document.getElementById('face'),lines=document.getElementById('lines'),btn=document.getElementById('playbtn');
   var acc=document.createElement('canvas'),ax=acc.getContext('2d',{willReadFrequently:true});
   var tmp=document.createElement('canvas'),tc=tmp.getContext('2d');
   var mk=document.createElement('canvas'),mx=mk.getContext('2d');
   var hel=new Image();hel.src='assets/helmet.webp';
   var HX=.501,HY=.344;                       /* head centre inside the portrait (0..1) */
   var FW=0,FH=0,MW=0,MH=0,W=0,H=0,sx=0,sy=0,sw=0,sh=0;
-  var cur=null,prev=null,last=-1e9,prog=0,streaks=[],nextBurst=0,nx=0,ny=0,tnx=0,tny=0;
+  var cur=null,prev=null,last=-1e9,prog=0,streaks=[],nextBurst=0,sp=0,nx=0,ny=0,tnx=0,tny=0;
   var still=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
   /* tileable noise that makes the edge of the shape organic */
   var N=new Float32Array(128*128);
@@ -141,7 +231,7 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     var dpr=Math.min(window.devicePixelRatio||1,1.5);
     W=cv.width=Math.round(sw*dpr);H=cv.height=Math.round(sh*dpr);
     MW=Math.max(80,Math.round(FW/5));MH=Math.max(60,Math.round(MW*FH/FW));
-    [acc,tmp,mk].forEach(function(c){c.width=MW;c.height=MH;});
+    [acc,tmp,mk].forEach(function(c){c.width=MW;c.height=MH;});ax.fillStyle='#000';ax.fillRect(0,0,MW,MH);
     bg.width=Math.round(FW/2);bg.height=Math.round(FH/2);
     lines.setAttribute('viewBox','0 0 '+FW+' '+FH);
   }
@@ -151,13 +241,17 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   frame.addEventListener('pointermove',point);
   frame.addEventListener('pointerdown',function(e){prev=null;point(e);});
   frame.addEventListener('pointerleave',function(){prev=null;cur=null;});
-  function burst(now){var hy=(sy+HY*sh)/FH*MH,hh=.481*sh/FH*MH,n=3+(Math.random()*3|0);
-    for(var i=0;i<n;i++)streaks.push({t0:now+i*140+Math.random()*80,dir:Math.random()<.5?1:-1,y:hy+(i/(n-1)-.5+(Math.random()-.5)*.25)*hh*.8,r:Math.min(MW,MH)*(.055+Math.random()*.045),dur:420+Math.random()*220,px:null,ph:Math.random()*6});}
+  function burst(now){var hx=(sx+HX*sw)/FW*MW,hy=(sy+HY*sh)/FH*MH,hh=.481*sh/FH*MH,k=Math.random(),i,n;
+    if(k<.2){streaks.push({kind:1,t0:now,dur:900+Math.random()*700,w:MH*(.05+Math.random()*.06),hx:hx,hy:hy,R:hh*(.2+Math.random()*.16),a0:Math.random()*6.28,turn:(Math.random()<.5?1:-1)*(3.5+Math.random()*3),px:null});return;}
+    n=k<.45?1+(Math.random()*2|0):3+(Math.random()*4|0);
+    var slope=(Math.random()-.5)*(Math.random()<.3?.5:.12),dir0=Math.random()<.5?1:-1,mixed=Math.random()<.5;
+    for(i=0;i<n;i++)streaks.push({kind:0,t0:now+i*(60+Math.random()*190),dir:mixed?(Math.random()<.5?1:-1):dir0,y:hy+(Math.random()-.5)*hh*.85,
+      slope:slope+(Math.random()-.5)*.05,w:MH*(.025+Math.random()*Math.random()*.16),dur:300+Math.random()*650,px:null,ph:Math.random()*6});}
   window.__burst=function(){burst(performance.now());};
   btn.addEventListener('click',function(e){e.stopPropagation();play=!play;frame.classList.toggle('play',play);btn.textContent=play?T[lang].back:T[lang].tap;});
 
-  function stamp(x,y,r,a){var g=ax.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba(255,255,255,'+a+')');g.addColorStop(.55,'rgba(255,255,255,'+a*.55+')');g.addColorStop(1,'rgba(255,255,255,0)');
-    ax.fillStyle=g;ax.beginPath();ax.arc(x,y,r,0,6.2832);ax.fill();}
+  function seg(x0,y0,x1,y1,w){for(var k=0;k<6;k++){var f=k/5,g=Math.round(122+133*f);ax.lineWidth=Math.max(1,w*(1-.78*f));ax.strokeStyle='rgb('+g+','+g+','+g+')';
+    ax.beginPath();ax.moveTo(x0,y0);ax.lineTo(x1,y1);ax.stroke();}}
 
   /* slow contour lines in the background */
   var blobs=[];for(var i=0;i<7;i++)blobs.push({cx:Math.random(),cy:Math.random(),r:.16+Math.random()*.3,ph:Math.random()*9,sp:.05+Math.random()*.06,el:document.createElementNS('http://www.w3.org/2000/svg','path')});
@@ -185,33 +279,33 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     marq.style.opacity=ease((prog-.04)/.15);
     m1.style.transform='translate3d('+(-prog*70-4)+'vw,0,0)';m2.style.transform='translate3d('+(prog*70-90)+'vw,0,0)';
     veil.style.opacity=(b*.9).toFixed(3);face.style.filter=b>0?'grayscale('+b.toFixed(2)+')':'';
-    signP.style.strokeDashoffset=(1-ease((prog-.62)/.3)).toFixed(4);
-    bar.classList.toggle('on-dark',prog>.12);
+    var sg=(100-100*ease((prog-.62)/.3)).toFixed(1);signP.style.clipPath='inset(-30% '+sg+'% -30% -10%)';signP.style.webkitClipPath=signP.style.clipPath;
+    bar.classList.toggle('on-dark',prog>.12&&pr.bottom>70);
 
     /* nobody is moving: every few seconds a burst of fast ribbons crosses the head */
     var idle=now-last>1800;
-    if(idle&&!still&&prog<.9){if(!nextBurst)nextBurst=now+900;if(now>nextBurst){nextBurst=now+3000+Math.random()*1400;burst(now);}tnx=.25*Math.sin(t*.5);tny=.15*Math.sin(t*.37+1);}
+    if(idle&&!still&&prog<.9){if(!nextBurst)nextBurst=now+900;if(now>nextBurst){nextBurst=now+900+Math.random()*Math.random()*5200;burst(now);}tnx=.12*Math.sin(t*.5);tny=.08*Math.sin(t*.37+1);}
     /* the portrait turns a little towards the pointer */
     if(!still){nx+=(tnx-nx)*.07;ny+=(tny-ny)*.07;
-      stage.style.transform='translateX(-50%) perspective(1200px) translate3d('+(nx*1.6).toFixed(2)+'%,'+(ny*.8).toFixed(2)+'%,0) rotateY('+(nx*11).toFixed(2)+'deg) rotateX('+(-ny*6).toFixed(2)+'deg)';}
+      stage.style.transform='translateX(-50%) perspective(1200px) translate3d('+(nx*.45).toFixed(2)+'%,'+(ny*.2).toFixed(2)+'%,0) rotateY('+(nx*3.2).toFixed(2)+'deg) rotateX('+(-ny*1.6).toFixed(2)+'deg)';}
 
-    /* fade and drift the old trail, then add the new stroke */
-    tc.globalCompositeOperation='copy';tc.globalAlpha=.972;tc.drawImage(acc,0,-.25);
-    ax.globalCompositeOperation='copy';ax.globalAlpha=1;ax.drawImage(tmp,0,0);ax.globalCompositeOperation='lighter';
+    /* fade the old trail, then add the new ribbons (kept as brightness: the brightest wins, so no beads) */
+    ax.globalCompositeOperation='source-over';ax.fillStyle='rgba(0,0,0,.024)';ax.fillRect(0,0,MW,MH);
+    ax.globalCompositeOperation='lighten';ax.lineCap='round';ax.lineJoin='round';
     if(cur){
       if(prev){var dx=cur.x-prev.x,dy=cur.y-prev.y,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist>.15){var r=Math.min(MW,MH)*(.17+Math.min(.1,dist*.006)),n=Math.max(1,Math.ceil(dist/(r*.35)));
-          for(var i=1;i<=n;i++)stamp(prev.x+dx*i/n,prev.y+dy*i/n,r,Math.min(.7,.3+dist*.04));}}
+        if(dist>.15){sp+=(dist-sp)*.25;seg(prev.x,prev.y,cur.x,cur.y,MH*(.03+Math.min(.14,sp*.012)));}}
       prev={x:cur.x,y:cur.y};
     }
-    for(var q=streaks.length-1;q>=0;q--){var S=streaks[q],u=(now-S.t0)/S.dur;if(u<0)continue;
-      var X=S.dir>0?(-.15+u*1.3)*MW:(1.15-u*1.3)*MW,Y=S.y+Math.sin(u*4+S.ph)*MH*.012;
-      if(S.px!==null){var ddx=X-S.px,nn=Math.max(1,Math.ceil(Math.abs(ddx)/(S.r*.35)));for(var j=1;j<=nn;j++)stamp(S.px+ddx*j/nn,Y,S.r,.55);}
-      S.px=X;if(u>=1)streaks.splice(q,1);}
+    for(var q=streaks.length-1;q>=0;q--){var S=streaks[q],u=(now-S.t0)/S.dur,X,Y;if(u<0)continue;
+      if(S.kind){var an=S.a0+u*S.turn;X=S.hx+Math.cos(an)*S.R*(1+.5*u);Y=S.hy+Math.sin(an)*S.R*.9;}
+      else{X=S.dir>0?(-.15+u*1.3)*MW:(1.15-u*1.3)*MW;Y=S.y+S.slope*(X-MW/2)+Math.sin(u*4+S.ph)*MH*.012;}
+      if(S.px!==null)seg(S.px,S.py,X,Y,S.w);
+      S.px=X;S.py=Y;if(u>=1)streaks.splice(q,1);}
     /* hard, wobbly edge */
     var im=ax.getImageData(0,0,MW,MH),d=im.data,ox=(t*9)&127,oy=(t*5)&127,x,y,i4=3,v;
-    for(y=0;y<MH;y++){var row=((y+oy)&127)<<7;for(x=0;x<MW;x++,i4+=4){v=d[i4];
-      if(v<24){d[i4]=0;continue;}v+=N[((x+ox)&127)+row]*42;d[i4]=v<118?0:v>134?255:(v-118)*16;d[i4-1]=d[i4-2]=d[i4-3]=255;}}
+    for(y=0;y<MH;y++){var row=((y+oy)&127)<<7;for(x=0;x<MW;x++,i4+=4){v=d[i4-3];
+      if(v<40){d[i4]=0;continue;}v+=N[((x+ox)&127)+row]*38;d[i4]=v<118?0:v>134?255:(v-118)*16;d[i4-1]=d[i4-2]=d[i4-3]=255;}}
     mx.putImageData(im,0,0);
 
     /* pale shape on the background, helmet inside the same shape */
