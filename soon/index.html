@@ -57,6 +57,33 @@ html[lang=ar] .touchui button{letter-spacing:0;font-size:13px}
 .frame.play .touchui button{background:var(--sun);color:var(--ink)}
 .sign{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);pointer-events:none;direction:ltr;white-space:nowrap;
   font-family:"Mr Dafoe",cursive;font-size:min(19vw,30svh);line-height:1.2;color:var(--sun);padding:0 .15em;clip-path:inset(-30% 100% -30% -10%)}
+/* ===== statement + sideways bio ===== */
+.msg{position:relative;z-index:3;background:var(--ink);color:var(--cloud);min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5svh;padding:14svh 5vw;text-align:center}
+.msg-k{display:flex;flex-direction:column;align-items:center;gap:12px;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+html[lang=ar] .msg-k{letter-spacing:0;font-size:13px}
+.msg-k img{width:44px;height:44px;border-radius:50%;border:2px solid var(--sun)}
+.msg-t{font-weight:800;font-size:clamp(30px,6.4vw,106px);line-height:1.03;text-transform:uppercase;letter-spacing:-.02em;max-width:15em}
+.msg-t span,.msg-t em{opacity:.13;transition:opacity .4s}
+.msg-t .on{opacity:1}
+.msg-t em{font-style:normal;font-family:Anton,Impact,sans-serif;font-weight:400;color:var(--sun);letter-spacing:.01em}
+html[lang=ar] .msg-t{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0;line-height:1.3;font-size:clamp(28px,5.4vw,90px)}
+html[lang=ar] .msg-t em{font-family:Alexandria,sans-serif;font-weight:900}
+.hpin{position:relative;z-index:3;background:var(--ink)}
+.hscene{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--ink);color:var(--cloud)}
+.htrack{position:absolute;top:0;inset-inline-start:0;height:100%;width:max-content;display:flex;gap:clamp(40px,7vw,120px);padding-inline:14vw 22vw;will-change:transform}
+.hi{flex:none;align-self:center;margin:0}
+.ph img{display:block;height:var(--h);width:auto;border-radius:6px}
+.p1{--h:46svh;align-self:flex-start;margin-top:15svh}.p2{--h:34svh;align-self:flex-end;margin-bottom:9svh}.p3{--h:62svh}
+.tint img{filter:grayscale(1) contrast(.9);opacity:.8}
+.tx{width:min(36vw,480px)}.t2{align-self:flex-start;margin-top:17svh}.t3{align-self:flex-end;margin-bottom:13svh}
+.tx small{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--sun)}
+.tx h3{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(28px,3.7vw,58px);text-transform:uppercase;line-height:1;margin:.15em 0 .45em}
+html[lang=ar] .tx h3{font-family:Alexandria,sans-serif;font-weight:900;line-height:1.3}
+.bio{font-size:clamp(15px,1.25vw,19px);line-height:1.6}
+.bio span{opacity:.12;transition:opacity .35s}.bio span.on{opacity:1}
+.qt{width:min(42vw,560px);font-size:clamp(20px,2.5vw,38px);line-height:1.25}
+.qs{display:inline-block;font-family:"Mr Dafoe",cursive;color:var(--sun);font-size:1.7em;line-height:1;transform:rotate(-6deg);margin-top:.25em;direction:ltr;-webkit-text-stroke:.5px rgba(20,33,46,.25)}
+
 /* ===== Friends & partners ===== */
 .collab{position:relative;z-index:3;background:var(--cloud);color:var(--ink);min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(40px,9svh,90px);overflow:hidden;padding:14svh 0}
 .script-bg{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:0}
@@ -72,8 +99,7 @@ html[lang=ar] .h2x{line-height:1.25}html[lang=ar] .h2x b,html[lang=ar] .h2x span
 html[lang=ar] .h2x span{font-weight:400}
 .collab-top p{max-width:30ch;font-size:clamp(14px,1.15vw,17px);line-height:1.45;padding-bottom:.6em}
 .marquee{position:relative;z-index:1;overflow:hidden;transform:translateZ(0);pointer-events:none}
-.track{display:flex;align-items:center;gap:clamp(44px,7vw,110px);width:max-content;padding-inline-end:clamp(44px,7vw,110px);animation:slide 80s linear infinite;will-change:transform}
-@keyframes slide{to{transform:translate3d(-50%,0,0)}}
+.track{display:flex;align-items:center;gap:clamp(44px,7vw,110px);width:max-content;padding-inline-end:clamp(44px,7vw,110px);will-change:transform}
 .pt{display:block;flex:none;opacity:.9}
 .pt img{display:block;height:clamp(24px,3vw,40px);width:auto}
 .pt.h-sq img{height:clamp(32px,4vw,52px)}.pt.h-xwide img{height:clamp(15px,1.9vw,25px)}.pt.h-wide img{height:clamp(18px,2.3vw,30px)}
@@ -96,34 +122,39 @@ html[lang=ar] .h2x span{font-weight:400}
 .social.live .card{transition:none}
 
 /* ===== last page ===== */
-.last{position:relative;z-index:3;background:linear-gradient(180deg,var(--cloud) 0,#ffe9a6 30%,var(--sun) 70%);color:var(--cloud);padding:9svh clamp(10px,1.6vw,24px) 0;min-height:100svh;display:flex;flex-direction:column}
-.notch{width:min(34vw,300px);height:30px;margin:0 auto -1px;background:var(--ink);border-radius:22px 22px 0 0}
-.panel{position:relative;flex:1;min-height:78svh;background:var(--ink);border-radius:clamp(20px,2.4vw,34px);overflow:hidden;text-align:center;padding-top:clamp(40px,9svh,90px)}
-.sig2{font-family:"Mr Dafoe",cursive;color:var(--sun);font-size:clamp(34px,5vw,74px);line-height:1;transform:rotate(-8deg);margin-bottom:-.28em;position:relative;z-index:3;direction:ltr}
-.big{position:relative;z-index:2;font-size:clamp(34px,5.6vw,88px);line-height:.98;text-transform:uppercase}
+.last{position:relative;z-index:3;background:linear-gradient(180deg,var(--cloud) 0,#ffe9a6 22%,var(--sun) 55%);color:var(--cloud);padding:4svh clamp(8px,1.2vw,18px) clamp(8px,1.2vw,18px);min-height:100svh;display:flex;flex-direction:column}
+.notch{display:block;width:min(46vw,560px);height:44px;margin:0 auto -1px}.notch path{fill:var(--ink)}
+.panel{position:relative;flex:1;min-height:80svh;background:var(--ink);border-radius:clamp(20px,2.2vw,32px);overflow:hidden;text-align:center;padding-top:clamp(30px,7svh,70px)}
+.lines2{position:absolute;inset:0;width:100%;height:100%;z-index:0}.lines2 path{fill:none;stroke:rgba(248,250,252,.07);stroke-width:1;vector-effect:non-scaling-stroke}
+.sig2{font-family:"Mr Dafoe",cursive;color:var(--sun);font-size:clamp(48px,7.6vw,124px);line-height:1;transform:rotate(-8deg) translateX(6%);margin-bottom:-.36em;position:relative;z-index:3;direction:ltr}
+.big{position:relative;z-index:2;font-size:clamp(36px,6.3vw,104px);line-height:.98;text-transform:uppercase}
 .big b{font-weight:800;letter-spacing:-.03em}.big em{font-style:normal;font-family:Anton,Impact,sans-serif;color:var(--sun);letter-spacing:.01em}
 html[lang=ar] .big{line-height:1.3}html[lang=ar] .big b,html[lang=ar] .big em{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
-.rider{position:absolute;z-index:2;left:50%;bottom:0;transform:translateX(-50%);height:58%;aspect-ratio:1/1;overflow:hidden;pointer-events:none}
-.rider img{position:absolute;left:50%;top:-12%;width:125%;height:auto;transform:translateX(-50%);display:block}
-.col{position:absolute;z-index:3;top:50%;width:26%;display:flex;flex-direction:column;align-items:center;gap:2px}
-.col.l{inset-inline-start:4%}.col.r{inset-inline-end:4%}
-.col small{font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:8px}
+.rider{position:absolute;z-index:3;left:50%;bottom:0;transform:translateX(-50%);height:61%;aspect-ratio:1/1;overflow:hidden;pointer-events:none}
+.rider img{position:absolute;left:50%;top:-13%;width:135%;height:auto;transform:translateX(-50%);display:block}
+.col{position:absolute;z-index:4;top:54%;width:26%;display:flex;flex-direction:column;align-items:center;gap:2px}
+.col.l{inset-inline-start:6%}.col.r{inset-inline-end:6%}
+.col small{font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:10px}
 html[lang=ar] .col small{letter-spacing:0;font-size:12px}
-.col a{color:var(--cloud);text-decoration:none;font-family:Anton,Impact,sans-serif;font-size:clamp(17px,1.7vw,26px);text-transform:uppercase;line-height:1.25;transition:color .2s}
+.col a{color:var(--cloud);text-decoration:none;font-family:Anton,Impact,sans-serif;font-size:clamp(18px,2.05vw,32px);text-transform:uppercase;line-height:1.22;transition:color .2s}
 html[lang=ar] .col a{font-family:Alexandria,sans-serif;font-weight:900}
 .col a:hover{color:var(--sun)}
-.panel .marquee{position:absolute;z-index:1;inset-inline:0;bottom:clamp(20px,5svh,48px)}
-.panel .pt img{filter:invert(1);height:clamp(18px,2vw,26px)}
+.panel .marquee{position:absolute;z-index:1;inset-inline:0;bottom:clamp(54px,9svh,86px)}
+.panel .pt{opacity:1}
+.panel .pt img{filter:brightness(0) invert(79%) sepia(52%) saturate(1049%) hue-rotate(343deg) brightness(104%) contrast(101%);height:clamp(18px,2vw,26px)}
 .panel .pt.h-sq img{height:clamp(24px,2.7vw,36px)}.panel .pt.h-xwide img{height:clamp(11px,1.3vw,17px)}.panel .pt.h-wide img{height:clamp(13px,1.5vw,20px)}
-.biz{position:absolute;z-index:4;left:50%;bottom:clamp(14px,3svh,28px);transform:translateX(-50%);background:var(--sun);color:var(--ink);text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:12px 18px;border-radius:8px;white-space:nowrap}
-html[lang=ar] .biz{letter-spacing:0;font-size:13px}
-.legal{display:flex;justify-content:space-between;gap:12px;color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:14px 8px calc(14px + env(safe-area-inset-bottom))}
-html[lang=ar] .legal{letter-spacing:0;font-size:12px}
+.biz{position:absolute;z-index:5;left:50%;bottom:clamp(16px,3.4svh,32px);transform:translateX(-50%);background:var(--sun);color:var(--ink);text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 22px;border-radius:9px;white-space:nowrap}
+html[lang=ar] .biz{letter-spacing:0;font-size:14px}
+.tab{position:absolute;z-index:5;bottom:0;background:var(--sun);color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:13px 20px 6px;white-space:nowrap}
+html[lang=ar] .tab{letter-spacing:0;font-size:12px}
+.tab.l{left:0;border-radius:0 24px 0 0}.tab.r{right:0;border-radius:24px 0 0 0}
+
 @media (hover:none){.touchui{display:block}.role{display:none}}
 @media (max-width:700px){.sign{font-size:27vw}.m1{font-size:17vw}.m2{font-size:15.5vw}html[lang=ar] .m1,html[lang=ar] .m2{font-size:14vw}
   .collab-top{flex-direction:column;align-items:flex-start;gap:16px}.h2x{font-size:12.5vw}.script-bg span{font-size:31vw}html[lang=ar] .script-bg span{font-size:23vw}
   .fan{height:80vw}.card{margin-left:-23.4vw;height:78%;top:4%}.social.in .card{transform:translate3d(calc(var(--i)*46%),calc(var(--a)*var(--a)*4%),0) rotate(calc(var(--i)*7deg))}
-  .big{font-size:11.5vw}.sig2{font-size:15vw}.rider{height:auto;width:90%;aspect-ratio:1/1}.col{top:31%;width:30%}html[lang=ar] .col{top:37%}.col.l{inset-inline-start:2%}.col.r{inset-inline-end:2%}.col a{font-size:16px}.panel{min-height:84svh}}
+  .big{font-size:12vw}.sig2{font-size:15vw;margin-bottom:-.2em;transform:rotate(-8deg) translateX(-14%)}.rider{height:auto;width:96%;aspect-ratio:1/1}.col{top:34%;width:30%}html[lang=ar] .col{top:39%}.col.l{inset-inline-start:2%}.col.r{inset-inline-end:2%}.col a{font-size:17px}.notch{width:62vw;height:30px}.tab{font-size:9px;padding:10px 12px 4px}
+  .msg-t{font-size:11.2vw}.htrack{gap:12vw;padding-inline:10vw 16vw}.tx{width:78vw}.qt{width:80vw}.p1{--h:40svh}.p2{--h:30svh}.p3{--h:52svh}.bio{font-size:16px}}
 </style>
 </head>
 <body>
@@ -156,6 +187,20 @@ html[lang=ar] .legal{letter-spacing:0;font-size:12px}
     <div class="sign" id="sign" aria-hidden="true">Abisto</div>
   </div>
 </div>
+<section class="msg" id="about" aria-labelledby="msgT">
+  <p class="msg-k"><img src="../assets/avatar.webp" alt="" width="44" height="44"><span data-i18n="msgK">Rider since the age of 14</span></p>
+  <h2 class="msg-t" id="msgT"></h2>
+</section>
+<div class="hpin" id="hpin"><div class="hscene" id="hscene"><div class="htrack" id="htrack">
+  <figure class="hi ph p1"><img src="../assets/abisto.webp" alt="" width="800" height="1000"></figure>
+  <div class="hi tx t1"><small>01</small><h3 data-i18n="b1h">Marrakech, 26</h3><p class="bio" data-bio="bio1"></p></div>
+  <figure class="hi ph p2 tint"><img src="assets/s3.webp" alt="" width="600" height="800"></figure>
+  <div class="hi tx t2"><small>02</small><h3 data-i18n="b2h">Casablanca</h3><p class="bio" data-bio="bio2"></p></div>
+  <figure class="hi ph p3"><img src="assets/s4.webp" alt="" width="600" height="800"></figure>
+  <div class="hi tx t3"><small>03</small><h3 data-i18n="b3h">The red light</h3><p class="bio" data-bio="bio3"></p></div>
+  <div class="hi qt"><p data-i18n="quote">“Drawing smiles on people’s faces, Morocco to the world.”</p><span class="qs" aria-hidden="true">Abisto</span></div>
+</div></div></div>
+
 <section class="collab io" id="partners" aria-labelledby="pt-h">
   <div class="script-bg" aria-hidden="true"><span data-i18n="script">Friends</span></div>
   <div class="collab-top">
@@ -173,24 +218,25 @@ html[lang=ar] .legal{letter-spacing:0;font-size:12px}
 </main>
 
 <footer class="last">
-  <div class="notch"></div>
-  <div class="panel">
+  <svg class="notch" viewBox="0 0 560 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C80 44 96 0 170 0H390C464 0 480 44 560 44Z"/></svg>
+  <div class="panel" id="panel">
+    <svg class="lines2" id="lines2" aria-hidden="true" preserveAspectRatio="none"></svg>
     <div class="sig2" aria-hidden="true">Abisto</div>
     <p class="big"><b data-i18n="fA">Always</b> <em data-i18n="fB">drawing</em><br><b data-i18n="fC">smiles</b><em>.</em></p>
     <nav class="col l" aria-label="Pages"><small data-i18n="pages">Pages</small><a href="../" data-i18n="home">Home</a><a href="../globe/" data-i18n="globe">Globe</a><a href="../#contact" data-i18n="contact">Contact</a></nav>
     <nav class="col r" aria-label="Social media"><small data-i18n="followOn">Follow on</small><a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a></nav>
     <div class="marquee" dir="ltr" aria-hidden="true"><div class="track"><span class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><span class="pt h-wide" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></span><span class="pt h-mid" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></span><span class="pt h-mid" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></span><span class="pt h-xwide" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></span><span class="pt h-round" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></span><span aria-hidden="true" class="pt h-sq" role="img" aria-label="Scorpion EXO"><img src="../assets/partners/scorpion.webp" alt="Scorpion EXO" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-wide" aria-label="Insta360"><img src="../assets/partners/insta360.webp" alt="Insta360" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Casa Custom Moto"><img src="../assets/partners/ccm.webp" alt="Casa Custom Moto" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-mid" aria-label="Furygan"><img src="../assets/partners/furygan.webp" alt="Furygan" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-xwide" aria-label="RESO Pilot"><img src="../assets/partners/reso.webp" alt="RESO Pilot" decoding="async"></span><span tabindex="-1" aria-hidden="true" class="pt h-round" aria-label="Midi Bikers"><img src="../assets/partners/midibikers.webp" alt="Midi Bikers" decoding="async"></span></div></div>
     <div class="rider"><img src="assets/helmet.webp" alt="" width="1536" height="1920"></div>
+    <p class="tab l" dir="ltr">© 2026 Abisto26</p><p class="tab r" data-i18n="tagline">Smile. Play. Learn.</p>
     <a class="biz" href="../#contact" data-i18n="biz">Work with me ↗</a>
   </div>
-  <div class="legal"><span dir="ltr">© 2026 Abisto26</span><span data-i18n="tagline">Smile. Play. Learn.</span></div>
 </footer>
 
 <script>
 var T={
- en:{brand:'Abisto',role:'Moroccan rider & content creator',m1:'Drawing smiles on people’s faces',m2:'Morocco to the world',tap:'Tap to play',back:'Back to scroll',script:'Friends',pA:'Friends',pB:'& partners',pText:'Abisto is proud to ride with friends and brands who share his love of the road and of making people smile.',sA:'What’s up',sB:'on socials',follow:'Follow Abisto on social media',fA:'Always',fB:'drawing',fC:'smiles',pages:'Pages',home:'Home',globe:'Globe',contact:'Contact',followOn:'Follow on',biz:'Work with me ↗',tagline:'Smile. Play. Learn.',alt:'Abisto smiling'},
- fr:{brand:'Abisto',role:'Motard marocain & créateur de contenu',m1:'Dessiner des sourires sur les visages',m2:'Du Maroc au monde entier',tap:'Touche pour jouer',back:'Retour au défilement',script:'Amis',pA:'Amis',pB:'& partenaires',pText:'Abisto est fier de rouler avec des amis et des marques qui partagent son amour de la route et du sourire.',sA:'Quoi de neuf',sB:'sur les réseaux',follow:'Suivez Abisto sur les réseaux sociaux',fA:'Toujours',fB:'dessiner',fC:'des sourires',pages:'Pages',home:'Accueil',globe:'Globe',contact:'Contact',followOn:'Suivre sur',biz:'Travailler avec moi ↗',tagline:'Souriez. Jouez. Apprenez.',alt:'Abisto souriant'},
- ar:{brand:'أبيستو',role:'سائق دراجة نارية وصانع محتوى مغربي',m1:'رسم الابتسامة على وجوه الناس',m2:'من المغرب إلى العالم',tap:'المس للّعب',back:'العودة للتمرير',script:'أصدقاء',pA:'أصدقاء',pB:'وشركاء',pText:'أبيستو فخور بمرافقة أصدقاء وعلامات تشاركه حب الطريق ورسم الابتسامة على وجوه الناس.',sA:'جديدي',sB:'على مواقع التواصل',follow:'تابع أبيستو على مواقع التواصل',fA:'دائماً',fB:'نرسم',fC:'الابتسامة',pages:'الصفحات',home:'الرئيسية',globe:'العالم',contact:'تواصل',followOn:'تابعني على',biz:'اعمل معي ↖',tagline:'ابتسم. العب. تعلّم.',alt:'أبيستو مبتسماً'}
+ en:{msgK:"Rider since the age of 14",msg:"Drawing *smiles* on people’s faces, from *Morocco* to the *world*. One *red light* at a time.",b1h:"Marrakech, 26",b2h:"Casablanca",b3h:"The red light",quote:"“Drawing smiles on people’s faces, Morocco to the world.”",bio1:"Abisto is a Moroccan rider and content creator who loves life, loves people and is always smiling. He grew up in Marrakech, and that’s where the 26 comes from: it’s the city’s plate number. He got his first motorcycle at 14 and has been riding ever since.",bio2:"Today he lives in Casablanca, where the traffic is heavy and people are stressed. So he started talking to the drivers next to him at red lights. One day, at a very long light, he asked a stranger to play rock paper scissors. Instead of the usual words, he shouted “TaTaHi!” The video went viral, and a new habit was born.",bio3:"Since then, the red light has been his stage. He plays, asks strange questions and makes people laugh. Those questions became his games, because he believes fun is the best way to learn. People now recognise him everywhere, but he hasn’t changed. He does it because it makes him happy, and he’s coming to more cities soon.",brand:'Abisto',role:'Moroccan rider & content creator',m1:'Drawing smiles on people’s faces',m2:'Morocco to the world',tap:'Tap to play',back:'Back to scroll',script:'Friends',pA:'Friends',pB:'& partners',pText:'Abisto is proud to ride with friends and brands who share his love of the road and of making people smile.',sA:'What’s up',sB:'on socials',follow:'Follow Abisto on social media',fA:'Always',fB:'drawing',fC:'smiles',pages:'Pages',home:'Home',globe:'Globe',contact:'Contact',followOn:'Follow on',biz:'Work with me ↗',tagline:'Smile. Play. Learn.',alt:'Abisto smiling'},
+ fr:{msgK:"Motard depuis l’âge de 14 ans",msg:"Dessiner des *sourires* sur les visages, du *Maroc* au *monde*. Un *feu rouge* à la fois.",b1h:"Marrakech, 26",b2h:"Casablanca",b3h:"Le feu rouge",quote:"« Dessiner des sourires sur les visages des gens, du Maroc au monde. »",bio1:"Abisto est un motard et créateur de contenu marocain qui aime la vie, aime les gens et a toujours le sourire. Il a grandi à Marrakech, et c’est de là que vient le 26 : c’est le numéro de plaque de la ville. Il a eu sa première moto à 14 ans et ne s’est jamais arrêté depuis.",bio2:"Aujourd’hui, il vit à Casablanca, où la circulation est dense et les gens stressés. Alors il a commencé à parler aux conducteurs à côté de lui, aux feux rouges. Un jour, à un feu très long, il a proposé à un inconnu une partie de pierre-feuille-ciseaux. Au lieu des mots habituels, il a crié « TaTaHi ! ». La vidéo est devenue virale, et une habitude est née.",bio3:"Depuis, le feu rouge est sa scène. Il joue, pose des questions bizarres et fait rire les gens. Ces questions sont devenues ses jeux, parce qu’il pense que le fun est la meilleure façon d’apprendre. Aujourd’hui on le reconnaît partout, mais il n’a pas changé. Il le fait parce que ça le rend heureux, et il arrive bientôt dans d’autres villes.",brand:'Abisto',role:'Motard marocain & créateur de contenu',m1:'Dessiner des sourires sur les visages',m2:'Du Maroc au monde entier',tap:'Touche pour jouer',back:'Retour au défilement',script:'Amis',pA:'Amis',pB:'& partenaires',pText:'Abisto est fier de rouler avec des amis et des marques qui partagent son amour de la route et du sourire.',sA:'Quoi de neuf',sB:'sur les réseaux',follow:'Suivez Abisto sur les réseaux sociaux',fA:'Toujours',fB:'dessiner',fC:'des sourires',pages:'Pages',home:'Accueil',globe:'Globe',contact:'Contact',followOn:'Suivre sur',biz:'Travailler avec moi ↗',tagline:'Souriez. Jouez. Apprenez.',alt:'Abisto souriant'},
+ ar:{msgK:"على الدراجة منذ سن الرابعة عشرة",msg:"رسم *الابتسامة* على وجوه الناس، من *المغرب* إلى *العالم*. *إشارة حمراء* تلو الأخرى.",b1h:"مراكش، 26",b2h:"الدار البيضاء",b3h:"الإشارة الحمراء",quote:"«رسم الابتسامة على وجوه الناس، من المغرب إلى العالم.»",bio1:"أبيستو سائق دراجة نارية وصانع محتوى مغربي يحب الحياة ويحب الناس، والابتسامة لا تفارقه. نشأ في مراكش، ومنها جاء الرقم 26: إنه رقم لوحات المدينة. حصل على أول دراجة نارية في سن الرابعة عشرة، ولم يتوقف عن القيادة منذ ذلك الحين.",bio2:"يعيش اليوم في الدار البيضاء، حيث الزحمة خانقة والناس متوترون. فبدأ يتحدث مع السائقين بجانبه عند الإشارات الحمراء. وذات يوم، عند إشارة طويلة جداً، اقترح على شخص لا يعرفه جولة حجرة ورقة مقص. وبدل الكلمات المعتادة صاح: «طاطاهي!». انتشر الفيديو بسرعة، ووُلدت عادة جديدة.",bio3:"ومنذ ذلك الحين صارت الإشارة الحمراء مسرحه. يلعب، ويطرح أسئلة غريبة، ويُضحك الناس. وتحولت هذه الأسئلة إلى ألعابه، لأنه يؤمن أن المرح أفضل طريقة للتعلم. اليوم يعرفه الناس في كل مكان، لكنه لم يتغير. يفعل ذلك لأنه يسعده، وسيزور مدناً أخرى قريباً.",brand:'أبيستو',role:'سائق دراجة نارية وصانع محتوى مغربي',m1:'رسم الابتسامة على وجوه الناس',m2:'من المغرب إلى العالم',tap:'المس للّعب',back:'العودة للتمرير',script:'أصدقاء',pA:'أصدقاء',pB:'وشركاء',pText:'أبيستو فخور بمرافقة أصدقاء وعلامات تشاركه حب الطريق ورسم الابتسامة على وجوه الناس.',sA:'جديدي',sB:'على مواقع التواصل',follow:'تابع أبيستو على مواقع التواصل',fA:'دائماً',fB:'نرسم',fC:'الابتسامة',pages:'الصفحات',home:'الرئيسية',globe:'العالم',contact:'تواصل',followOn:'تابعني على',biz:'اعمل معي ↖',tagline:'ابتسم. العب. تعلّم.',alt:'أبيستو مبتسماً'}
 };
 var lang='en',play=false;
 function setLang(l){
@@ -201,6 +247,10 @@ function setLang(l){
   var rep=function(s){var o='';for(var i=0;i<6;i++)o+=s+'  ·  ';return o;};
   document.getElementById('m1').textContent=rep(d.m1);document.getElementById('m2').textContent=rep(d.m2);
   document.getElementById('playbtn').textContent=play?d.back:d.tap;
+  var mt=document.getElementById('msgT');mt.textContent='';var em=false;
+  d.msg.split(' ').forEach(function(w){var st=w.charAt(0)==='*',en=/\*[.,،]?$/.test(w);if(st)em=true;var sp=document.createElement(em?'em':'span');sp.textContent=w.replace(/\*/g,'');mt.appendChild(sp);mt.appendChild(document.createTextNode(' '));if(en)em=false;});
+  document.querySelectorAll('[data-bio]').forEach(function(el){el.textContent='';el._n=-1;d[el.dataset.bio].split(' ').forEach(function(w){var sp=document.createElement('span');sp.textContent=w;el.appendChild(sp);el.appendChild(document.createTextNode(' '));});});
+  if(window.__relayout)window.__relayout();
   try{localStorage.setItem('lang',l);}catch(e){}
 }
 document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
@@ -234,6 +284,10 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   var FW=0,FH=0,MW=0,MH=0,W=0,H=0,sx=0,sy=0,sw=0,sh=0;
   var cur=null,prev=null,last=-1e9,prog=0,streaks=[],nextBurst=0,sp=0,nx=0,ny=0,tnx=0,tny=0;
   var still=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var msg=document.getElementById('about'),msgT=document.getElementById('msgT'),hpin=document.getElementById('hpin'),hscene=document.getElementById('hscene'),htrack=document.getElementById('htrack'),
+      panel=document.getElementById('panel'),tracks=[].slice.call(document.querySelectorAll('.track')),bios=[].slice.call(document.querySelectorAll('[data-bio]')),
+      hdist=0,lastY=window.scrollY,lastNow=0,mdir=1,mv=40,mpos=0;
+  function lit(el,n){if(el._n===n)return;el._n=n;var k=el.children;for(var i=0;i<k.length;i++)k[i].classList.toggle('on',i<n);}
   /* tileable noise that makes the edge of the shape organic */
   var N=new Float32Array(128*128);
   (function(){var k=6.2832/128;for(var y=0;y<128;y++)for(var x=0;x<128;x++)
@@ -247,7 +301,10 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     [acc,tmp,mk].forEach(function(c){c.width=MW;c.height=MH;});ax.fillStyle='#000';ax.fillRect(0,0,MW,MH);
     bg.width=Math.round(FW/2);bg.height=Math.round(FH/2);
     lines.setAttribute('viewBox','0 0 '+FW+' '+FH);
+    hdist=Math.max(0,htrack.scrollWidth-innerWidth);hpin.style.height=(innerHeight+hdist)+'px';
+    tracks.forEach(function(tr){tr._half=tr.scrollWidth/2;});
   }
+  window.__relayout=function(){size();};addEventListener('load',size);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(size);
   size();addEventListener('resize',size);
 
   function point(e){tnx=e.clientX/innerWidth*2-1;tny=e.clientY/innerHeight*2-1;var r=frame.getBoundingClientRect();cur={x:(e.clientX-r.left)/r.width*MW,y:(e.clientY-r.top)/r.height*MH};last=performance.now();}
@@ -280,6 +337,13 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
       b.el.setAttribute('d',d+'Z');});
   }
   contours(0);
+  (function(){var sv=document.getElementById('lines2'),W2=1000,H2=600,d='';sv.setAttribute('viewBox','0 0 1000 600');
+    for(var b=0;b<7;b++){var cx=Math.random()*W2,cy=Math.random()*H2,r0=90+Math.random()*190,ph=Math.random()*9,pts=[],n=9,i;
+      for(i=0;i<n;i++){var a=i/n*6.2832,rr=r0*(1+.32*Math.sin(a*2+ph)+.2*Math.sin(a*3-ph*2));pts.push([cx+Math.cos(a)*rr*1.3,cy+Math.sin(a)*rr]);}
+      for(i=0;i<n;i++){var p0=pts[(i+n-1)%n],p1=pts[i],p2=pts[(i+1)%n],p3=pts[(i+2)%n];if(!i)d+='M'+p1[0].toFixed(0)+' '+p1[1].toFixed(0);
+        d+='C'+(p1[0]+(p2[0]-p0[0])/6).toFixed(0)+' '+(p1[1]+(p2[1]-p0[1])/6).toFixed(0)+' '+(p2[0]-(p3[0]-p1[0])/6).toFixed(0)+' '+(p2[1]-(p3[1]-p1[1])/6).toFixed(0)+' '+p2[0].toFixed(0)+' '+p2[1].toFixed(0);}
+      d+='Z';}
+    var pa=document.createElementNS('http://www.w3.org/2000/svg','path');pa.setAttribute('d',d);sv.appendChild(pa);})();
 
   function ease(x){return x<0?0:x>1?1:x*x*(3-2*x);}
   var fcount=0;
@@ -294,7 +358,20 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     m1.style.transform='translate3d('+(-prog*70-4)+'vw,0,0)';m2.style.transform='translate3d('+(prog*70-90)+'vw,0,0)';
     veil.style.opacity=(b*.9).toFixed(3);face.style.filter=b>0?'grayscale('+b.toFixed(2)+')':'';
     var sg=(100-100*ease((prog-.62)/.3)).toFixed(1);signP.style.clipPath='inset(-30% '+sg+'% -30% -10%)';signP.style.webkitClipPath=signP.style.clipPath;
-    bar.classList.toggle('on-dark',prog>.12&&pr.bottom>70);
+    /* statement: words light up as you scroll into it */
+    var vh=innerHeight,vw=innerWidth,rtl=document.documentElement.dir==='rtl',mr=msg.getBoundingClientRect(),hr=hpin.getBoundingClientRect(),hp=0,hc=0;
+    if(mr.top<vh&&mr.bottom>0)lit(msgT,Math.floor(Math.max(0,(vh*.9-mr.top)/(vh*.8))*msgT.children.length));
+    /* bio: the page slides sideways while you scroll down, the text fills in as it arrives */
+    if(hr.top<vh&&hr.bottom>0){hp=hdist?Math.min(1,Math.max(0,-hr.top/hdist)):0;hc=ease((hp-.3)/.35);
+      htrack.style.transform='translate3d('+((rtl?1:-1)*hp*hdist).toFixed(1)+'px,0,0)';
+      hscene.style.background='rgb('+Math.round(20+228*hc)+','+Math.round(33+217*hc)+','+Math.round(46+206*hc)+')';hscene.style.color=hc>.5?'#14212e':'#F8FAFC';
+      bios.forEach(function(el){var r=el.getBoundingClientRect(),q=rtl?(r.right-vw*.05)/(vw*.55):(vw*.95-r.left)/(vw*.55);lit(el,Math.floor(Math.max(0,q)*el.children.length*1.1));});}
+    /* partner logos drift with the scroll direction */
+    var dt=Math.min(.05,(now-lastNow)/1000||0),sy=window.scrollY,ds=sy-lastY;lastNow=now;lastY=sy;if(ds>0)mdir=1;else if(ds<0)mdir=-1;
+    mv+=(mdir*42-mv)*.06;mpos+=mv*dt+ds*.25;
+    tracks.forEach(function(tr){var h=tr._half||1,x=((mpos%h)+h)%h-h;tr.style.transform='translate3d('+x.toFixed(1)+'px,0,0)';});
+    var pn=panel.getBoundingClientRect();
+    bar.classList.toggle('on-dark',(prog>.12&&pr.bottom>70)||(mr.top<40&&mr.bottom>70)||(hr.top<40&&hr.bottom>70&&hc<.5)||(pn.top<40&&pn.bottom>70));
 
     /* nobody is moving: every few seconds a burst of fast ribbons crosses the head */
     var idle=now-last>1800;
@@ -304,11 +381,11 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
       stage.style.transform='translateX(-50%) perspective(1200px) translate3d('+(nx*.45).toFixed(2)+'%,'+(ny*.2).toFixed(2)+'%,0) rotateY('+(nx*3.2).toFixed(2)+'deg) rotateX('+(-ny*1.6).toFixed(2)+'deg)';}
 
     /* fade the old trail, then add the new ribbons (kept as brightness: the brightest wins, so no beads) */
-    ax.globalCompositeOperation='source-over';ax.fillStyle='rgba(0,0,0,.024)';ax.fillRect(0,0,MW,MH);
+    ax.globalCompositeOperation='source-over';ax.fillStyle='rgba(0,0,0,.017)';ax.fillRect(0,0,MW,MH);
     ax.globalCompositeOperation='lighten';ax.lineCap='round';ax.lineJoin='round';
     if(cur){
       if(prev){var dx=cur.x-prev.x,dy=cur.y-prev.y,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist>.15){sp+=(dist-sp)*.25;seg(prev.x,prev.y,cur.x,cur.y,MH*(.03+Math.min(.14,sp*.012)));}}
+        if(dist>.15){sp+=(dist-sp)*.25;seg(prev.x,prev.y,cur.x,cur.y,MH*(.075+Math.min(.24,sp*.022)));}}
       prev={x:cur.x,y:cur.y};
     }
     for(var q=streaks.length-1;q>=0;q--){var S=streaks[q],u=(now-S.t0)/S.dur,X,Y;if(u<0)continue;
