@@ -61,7 +61,7 @@ html[lang=ar] .touchui button{letter-spacing:0;font-size:13px}
 html[lang=ar] .end p{font-family:Alexandria,sans-serif;font-weight:900}
 .end p em{font-style:normal;color:var(--sun)}
 @media (hover:none){.touchui{display:block}.role{display:none}}
-@media (max-width:700px){.sign{width:74vw}.m1{font-size:17vw}.m2{font-size:15.5vw}html[lang=ar] .m1,html[lang=ar] .m2{font-size:14vw}}
+@media (max-width:700px){.stage{height:min(97svh,172vw)}.sign{width:74vw}.m1{font-size:17vw}.m2{font-size:15.5vw}html[lang=ar] .m1,html[lang=ar] .m2{font-size:14vw}}
 </style>
 </head>
 <body>
@@ -83,8 +83,8 @@ html[lang=ar] .end p{font-family:Alexandria,sans-serif;font-weight:900}
       <svg class="lines" id="lines" aria-hidden="true" preserveAspectRatio="none"></svg>
       <canvas id="bg" aria-hidden="true"></canvas>
       <div class="stage" id="stage">
-        <img id="face" src="assets/face.webp" alt="Abisto smiling" data-i18n-alt="alt" width="800" height="1000">
-        <img class="ghost" src="assets/helmet.webp" alt="" width="800" height="1000">
+        <img id="face" src="assets/face.webp" alt="Abisto smiling" data-i18n-alt="alt" width="1200" height="1500">
+        <img class="ghost" src="assets/ghost.webp" alt="" width="1200" height="1500">
         <canvas id="cv" aria-hidden="true"></canvas>
       </div>
       <div class="veil" id="veil"></div>
@@ -127,7 +127,7 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   var tmp=document.createElement('canvas'),tc=tmp.getContext('2d');
   var mk=document.createElement('canvas'),mx=mk.getContext('2d');
   var hel=new Image();hel.src='assets/helmet.webp';
-  var HX=.499,HY=.365;                       /* head centre inside the portrait (0..1) */
+  var HX=.501,HY=.344;                       /* head centre inside the portrait (0..1) */
   var FW=0,FH=0,MW=0,MH=0,W=0,H=0,sx=0,sy=0,sw=0,sh=0;
   var cur=null,prev=null,last=-1e9,prog=0;
   var still=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
