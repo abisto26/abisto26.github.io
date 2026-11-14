@@ -255,16 +255,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
   -webkit-mask-position:0 35%;mask-position:0 35%;animation:scan 2.3s cubic-bezier(.4,0,.6,1) infinite}
 @keyframes scan{0%{-webkit-mask-position:0 35%;mask-position:0 35%}72%,100%{-webkit-mask-position:0 -7%;mask-position:0 -7%}}
 @media (prefers-reduced-motion:reduce){.stage .mesh{animation:none;-webkit-mask-image:none;mask-image:none;opacity:.2}}
-/* Abisto's own signature, drawn in the current colour */
-.sg{display:block;width:3.9em;aspect-ratio:3/1;background:currentColor;-webkit-mask:url(assets/sign.webp) center/contain no-repeat;mask:url(assets/sign.webp) center/contain no-repeat}
-.sign{transform:translate(-50%,-50%) rotate(-3deg);text-shadow:none;filter:drop-shadow(.02em .035em 0 rgba(20,33,46,.9)) drop-shadow(.04em .07em .1em rgba(20,33,46,.5))}
-.sign .sg{width:3.3em}
-.sig2{transform:rotate(-3deg);margin-bottom:-.42em}.sig2 .sg{margin-inline:auto;width:4.4em}
-.qs{transform:rotate(-2deg);margin-top:.1em}.qs .sg{width:4.2em}
-.cp-sig{transform:rotate(-3deg);margin-bottom:-.3em}.cp-sig .sg{width:4.4em;margin-inline-start:-.5em}
 .touchui{transition:opacity .25s}.frame.scrolled .touchui{opacity:0;pointer-events:none}
-@media (max-width:860px){.cp-sig .sg{margin-inline-start:-.15em;width:4em}}
-@media (max-width:700px){.sign .sg{width:3.3em}.sig2{transform:rotate(-3deg);margin:14px 0 -.42em}}
 </style>
 </head>
 <body>
@@ -295,7 +286,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
       <p class="role" data-i18n="role">Moroccan rider &amp; content creator</p>
       <div class="touchui"><button id="playbtn" type="button"><span id="playlbl">Tap to lock</span><i aria-hidden="true"><svg class="ic-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.2a5 5 0 0 1-3.9-1.9L4.6 16a1.6 1.6 0 0 1 2.5-2L9 15.5V11"/></svg><svg class="ic-scroll" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5"/></svg></i></button></div>
     </div>
-    <div class="sign" id="sign" aria-hidden="true"><i class="sg"></i></div>
+    <div class="sign" id="sign" aria-hidden="true">Abisto</div>
   </div>
 </div>
 <section class="msg" id="about" aria-labelledby="msgT">
@@ -313,7 +304,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
   <figure class="hi ph lgo p1"><img src="../assets/soual-logo.webp" alt="سؤال خفيف ضريف"></figure>
   <div class="hi tx t2"><small>05</small><h3 data-i18n="b6h">Quick question</h3><p class="bio" data-bio="bio6"></p><p class="b6s" lang="ar" dir="rtl">سؤال خفيف ضريف</p></div>
   <div class="hi tx t3"><small>06</small><h3 data-i18n="b5h">Kindness</h3><p class="bio" data-bio="bio5"></p></div>
-  <div class="hi qt"><p><span data-i18n="quote">“Drawing smiles on people’s faces, Morocco to the world.”</span> <span class="qs" aria-hidden="true"><i class="sg"></i></span></p></div>
+  <div class="hi qt"><p><span data-i18n="quote">“Drawing smiles on people’s faces, Morocco to the world.”</span> <span class="qs" aria-hidden="true">Abisto</span></p></div>
 </div></div></div>
 
 <section class="collab io" id="partners" aria-labelledby="pt-h">
@@ -336,7 +327,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
   <svg class="notch" viewBox="0 0 560 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C80 44 96 0 170 0H390C464 0 480 44 560 44Z"/></svg>
   <div class="panel" id="panel">
     <svg class="lines2" id="lines2" aria-hidden="true" preserveAspectRatio="none"></svg>
-    <div class="sig2" aria-hidden="true"><i class="sg"></i></div>
+    <div class="sig2" aria-hidden="true">Abisto</div>
     <p class="big"><b data-i18n="fA">Always</b> <em data-i18n="fB">drawing</em><br><b data-i18n="fC">smiles</b><em>.</em></p>
     <nav class="col l" aria-label="Pages"><small data-i18n="pages">Pages</small><a href="../" data-i18n="home">Home</a><a href="../globe/" data-i18n="globe">Globe</a><a href="#contact" data-i18n="contact">Contact</a></nav>
     <nav class="col r" aria-label="Social media"><small data-i18n="followOn">Follow on</small><a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a></nav>
@@ -352,7 +343,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
   <button type="button" class="cp-x" id="cp-x" aria-label="Close" data-i18n-aria="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
   <div class="cp-in">
     <div class="cp-head">
-      <div class="cp-sig" aria-hidden="true"><i class="sg"></i></div>
+      <div class="cp-sig" aria-hidden="true">Abisto</div>
       <h2 class="cp-h" id="cp-h"><b data-i18n="cpA">Business</b> <em data-i18n="cpB">enquiries</em></h2>
       <p class="cp-sub" data-i18n="cpSub">Brands, sponsors and partnerships. Tell me about your idea and I’ll get back to you.</p>
     </div>
