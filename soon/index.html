@@ -260,6 +260,17 @@ html:not([lang=ar]) .msg-t{line-height:.98}
 .card{position:absolute;left:50%;top:0;width:var(--cw);aspect-ratio:356/622;margin-left:calc(var(--cw)*-.5);border-radius:calc(var(--cw)*.166);overflow:hidden;background:#cfd6dd;will-change:transform,opacity;transform:translate3d(0,60%,0) scale(.8);opacity:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 @media (max-width:700px){.fan{--cw:31vw}}
+/* last page tabs, measured on the reference: small trapezoid on top, wide shallow one below, small button */
+.notch{width:250px;height:26px}
+@media (max-width:700px){
+  .last .notch{width:84px;height:9px}
+  .last .panel{border-radius:14px}.last .lines2{border-radius:14px}
+  .last .notch.bot{width:calc(100% - 84px);height:14px;margin:-1px auto 0}
+  .last .rider{border-radius:0;margin-bottom:-14px;clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 43px) calc(100% - 14px),calc(100% - 48px) calc(100% - 13px),calc(100% - 51px) calc(100% - 10.5px),calc(100% - 61px) calc(100% - 2.2px),calc(100% - 64px) calc(100% - .6px),calc(100% - 68px) 100%,68px 100%,64px calc(100% - .6px),61px calc(100% - 2.2px),51px calc(100% - 10.5px),48px calc(100% - 13px),43px calc(100% - 14px),0 calc(100% - 14px))}
+  .last .biz{bottom:-2px;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:13px;letter-spacing:.03em;line-height:1.2;padding:9px 15px;border-radius:5px}
+  html[lang=ar] .last .biz{font-family:Alexandria,sans-serif;font-weight:800;font-size:13px;letter-spacing:0}
+  .last .legal{padding-top:10px}
+}
 </style>
 </head>
 <body>
@@ -328,7 +339,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
 </main>
 
 <footer class="last">
-  <svg class="notch" viewBox="0 0 560 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C80 44 96 0 170 0H390C464 0 480 44 560 44Z"/></svg>
+  <svg class="notch" viewBox="0 0 84 9" preserveAspectRatio="none" aria-hidden="true"><path d="M0 9Q4 9 6.5 6.8L13 2.2Q15.5 0 19.5 0H64.5Q68.5 0 71 2.2L77.5 6.8Q80 9 84 9Z"/></svg>
   <div class="panel" id="panel">
     <svg class="lines2" id="lines2" aria-hidden="true" preserveAspectRatio="none"></svg>
     <div class="sig2" aria-hidden="true">Abisto</div>
@@ -339,7 +350,7 @@ html:not([lang=ar]) .msg-t{line-height:.98}
     <div class="rider"><img src="assets/helmet.webp" alt="" width="1536" height="1920"></div>
     <a class="biz" href="#contact" data-i18n="biz">Business enquiries ↗</a>
   </div>
-  <svg class="notch bot" viewBox="0 0 560 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H560L512 35Q500 44 484 44H76Q60 44 48 35Z"/></svg>
+  <svg class="notch bot" viewBox="0 0 283 14" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0Q5 0 8 3L18 11.5Q21 14 25 14H258Q262 14 265 11.5L275 3Q278 0 283 0Z"/></svg>
   <p class="legal"><span dir="ltr">© 2026 Abisto26.</span> <span data-i18n="rights">All rights reserved</span></p>
 </footer>
 
