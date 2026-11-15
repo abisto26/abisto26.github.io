@@ -350,6 +350,28 @@ html.mlock{overflow:hidden}
 }
 @media (max-width:360px){.msoc{gap:10px}.msoc a{font-size:10.5px}}
 @media (prefers-reduced-motion:reduce){.menu,.menu.open,.ml,.menu.open .ml,.mimg,.menu.open .mimg{transition-duration:.01s!important;transition-delay:0s!important}}
+
+/* 15 Nov: hero title on computers too, above the face like on phones (the bottom-left role line goes) */
+@media (min-width:701px){
+  .htitle{display:block;position:absolute;z-index:5;inset-inline:0;top:calc(72px + 1.5svh);text-align:center;color:var(--ink);pointer-events:none}
+  .hn{display:block;font-size:clamp(44px,4.6vw,76px);line-height:1;text-transform:uppercase}
+  .hn i{font-style:normal;font-family:Brier,Georgia,serif;letter-spacing:-.04em}.hn b{font-family:"Mona Sans",sans-serif;font-weight:800;letter-spacing:-.04em}
+  html[lang=ar] .hn i,html[lang=ar] .hn b{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
+  .htitle small{display:block;margin-top:12px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  html[lang=ar] .htitle small{letter-spacing:0;font-size:14px}
+  .role{display:none}
+  .stage{top:calc(max(23svh,200px) - var(--hs)*.103)}
+}
+/* 15 Nov: every text link rolls its letters on hover, like the menu words */
+.rl{display:inline-block;overflow:hidden;vertical-align:top;line-height:1.2;padding-inline:.02em;white-space:nowrap}
+.rl span{display:inline-block;white-space:pre;text-shadow:0 1.2em 0 var(--rlc,currentColor);transition:transform .6s cubic-bezier(.3,.85,.3,1) calc(var(--i)*18ms)}
+html[lang=ar] .rl{line-height:1.6}html[lang=ar] .rl span{text-shadow:0 1.6em 0 var(--rlc,currentColor)}
+@media (hover:hover){.roll:hover .rl span,.roll:focus-visible .rl span{transform:translateY(-1.2em)}
+  html[lang=ar] .roll:hover .rl span,html[lang=ar] .roll:focus-visible .rl span{transform:translateY(-1.6em)}}
+.msoc a.roll,.col a.roll{--rlc:var(--sun)}.msoc a:hover,.col a:hover{color:var(--cloud)}
+.menu .langs button.roll{--rlc:var(--sun)}
+.follow-l a.roll::after{display:none}.follow-l a.roll{--rlc:#c99700}
+@media (prefers-reduced-motion:reduce){.rl span{transition:none}}
 </style>
 </head>
 <body>
@@ -370,7 +392,6 @@ html.mlock{overflow:hidden}
         <a class="ml" href="../globe/"><span class="mt" data-roll="globe">Globe game</span></a>
         <a class="ml" href="#contact"><span class="mt" data-roll="contact">Contact</span></a>
       </nav>
-      <div class="mbadge"><img src="../assets/avatar.webp" alt="" width="44" height="44"><small data-i18n="m2">Morocco to the world</small></div>
       <div class="mfoot">
         <div class="langs mreveal" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="fr">FR</button><button data-lang="ar">AR</button></div>
         <div class="msoc mreveal"><a href="https://www.tiktok.com/@abisto26" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/abisto26" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@abisto26" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/abisto26" target="_blank" rel="noopener">Facebook</a></div>
@@ -501,6 +522,11 @@ function setLang(l){
   document.querySelectorAll('[data-bio]').forEach(function(el){el.textContent='';el._n=-1;d[el.dataset.bio].split(' ').forEach(function(w){var sp=document.createElement('span');sp.textContent=w;el.appendChild(sp);el.appendChild(document.createTextNode(' '));});});
   document.querySelectorAll('[data-roll]').forEach(function(el){var t=d[el.dataset.roll];el.textContent='';el.setAttribute('aria-label',t);var parts=l==='ar'?t.split(/( )/):Array.from(t);parts.forEach(function(c,i){if(!c)return;var sp=document.createElement('span');sp.setAttribute('aria-hidden','true');sp.textContent=c;sp.style.setProperty('--i',i);el.appendChild(sp);});});
   if(window.__menuLbl)window.__menuLbl();
+  document.querySelectorAll('.menu .langs button,.msoc a,.follow-l a,.col a,.biz>span').forEach(function(el){var host=el.classList.contains('biz')?el:el;var t=el.textContent;if(!t.trim())return;
+    (el.tagName==='SPAN'?el.parentNode:el).classList.add('roll');if(el.tagName!=='SPAN')el.setAttribute('aria-label',t);
+    var w=document.createElement('span');w.className='rl';w.setAttribute('aria-hidden',el.tagName!=='SPAN'?'true':'false');
+    (l==='ar'&&/[\u0600-\u06FF]/.test(t)?t.split(/( )/):Array.from(t)).forEach(function(c,i){if(!c)return;var sp=document.createElement('span');sp.textContent=c;sp.style.setProperty('--i',i);w.appendChild(sp);});
+    el.textContent='';el.appendChild(w);});
   if(window.__relayout)window.__relayout();
   try{localStorage.setItem('lang',l);}catch(e){}
 }
