@@ -389,6 +389,11 @@ html[lang=ar] .rl{line-height:1.6}html[lang=ar] .rl span{text-shadow:0 1.6em 0 v
 .menu.open .mshape{transform:none;transition:transform .85s cubic-bezier(.16,1,.3,1)}
 .mshape .menu-lines{inset:auto;position:absolute;left:70vw;top:80vh;width:100vw;height:100vh}
 @media (prefers-reduced-motion:reduce){.mshape,.menu.open .mshape{transition-duration:.01s!important;transition-delay:0s!important}}
+
+/* 15 Nov: Arabic page. English names (TikTok, Instagram...) keep their Latin font and left-to-right letters */
+html[lang=ar] .col.r a{font-family:Anton,Impact,sans-serif;font-weight:400}
+html[lang=ar] .rl[dir=ltr]{line-height:1.2}html[lang=ar] .rl[dir=ltr] span{text-shadow:0 1.2em 0 var(--rlc,currentColor)}
+@media (hover:hover){html[lang=ar] .roll:hover .rl[dir=ltr] span{transform:translateY(-1.2em)}}
 </style>
 <script>/* older Safari (before 15.4) does not know svh: use vh there, or the pinned sections collapse */
 if(window.CSS&&CSS.supports&&!CSS.supports('height','1svh')){[].forEach.call(document.querySelectorAll('style'),function(st){st.textContent=st.textContent.replace(/(\d|\.)svh/g,'$1vh');});document.documentElement.classList.add('no-svh');}
@@ -540,11 +545,11 @@ function setLang(l){
   var mt=document.getElementById('msgT');mt.textContent='';var em=false;
   d.msg.split(' ').forEach(function(w){var st=w.charAt(0)==='*',en=/\*[.,،]?$/.test(w);if(st)em=true;var sp=document.createElement(em?'em':'span');sp.textContent=w.replace(/\*/g,'');mt.appendChild(sp);mt.appendChild(document.createTextNode(' '));if(en)em=false;});
   document.querySelectorAll('[data-bio]').forEach(function(el){el.textContent='';el._n=-1;d[el.dataset.bio].split(' ').forEach(function(w){var sp=document.createElement('span');sp.textContent=w;el.appendChild(sp);el.appendChild(document.createTextNode(' '));});});
-  document.querySelectorAll('[data-roll]').forEach(function(el){var t=d[el.dataset.roll];el.textContent='';el.setAttribute('aria-label',t);var parts=l==='ar'?t.split(/( )/):Array.from(t);parts.forEach(function(c,i){if(!c)return;var sp=document.createElement('span');sp.setAttribute('aria-hidden','true');sp.textContent=c;sp.style.setProperty('--i',i);el.appendChild(sp);});});
+  document.querySelectorAll('[data-roll]').forEach(function(el){var t=d[el.dataset.roll];el.textContent='';el.setAttribute('aria-label',t);el.dir=/[\u0600-\u06FF]/.test(t)?'rtl':'ltr';var parts=l==='ar'?t.split(/( )/):Array.from(t);parts.forEach(function(c,i){if(!c)return;var sp=document.createElement('span');sp.setAttribute('aria-hidden','true');sp.textContent=c;sp.style.setProperty('--i',i);el.appendChild(sp);});});
   if(window.__menuLbl)window.__menuLbl();
   document.querySelectorAll('.menu .langs button,.msoc a,.follow-l a,.col a,.biz>span').forEach(function(el){var host=el.classList.contains('biz')?el:el;var t=el.textContent;if(!t.trim())return;
     (el.tagName==='SPAN'?el.parentNode:el).classList.add('roll');if(el.tagName!=='SPAN')el.setAttribute('aria-label',t);
-    var w=document.createElement('span');w.className='rl';w.setAttribute('aria-hidden',el.tagName!=='SPAN'?'true':'false');
+    var w=document.createElement('span');w.className='rl';w.dir=/[\u0600-\u06FF]/.test(t)?'rtl':'ltr';w.setAttribute('aria-hidden',el.tagName!=='SPAN'?'true':'false');
     (l==='ar'&&/[\u0600-\u06FF]/.test(t)?t.split(/( )/):Array.from(t)).forEach(function(c,i){if(!c)return;var sp=document.createElement('span');sp.textContent=c;sp.style.setProperty('--i',i);w.appendChild(sp);});
     el.textContent='';el.appendChild(w);});
   if(window.__relayout)window.__relayout();
