@@ -380,6 +380,15 @@ html[lang=ar] .rl{line-height:1.6}html[lang=ar] .rl span{text-shadow:0 1.6em 0 v
 .track{gap:clamp(70px,11vw,170px);padding-inline-end:clamp(70px,11vw,170px)}
 @media (min-width:701px){.rider{aspect-ratio:1.3/1}.rider img{width:auto;height:168.75%}}
 .follow-l a.roll{--rlc:var(--sun)}
+
+/* 15 Nov: the curved reveal is now a big dark oval that grows (transform only). Animating clip-path on the full-screen menu
+   left unpainted boxes in Chrome/Brave while it moved. Same shape as ellipse(120% 100% at 50% 20%), same timings. */
+.menu,.menu.open,.menu.open.done{clip-path:none;transition:none;background:transparent;transform:none;will-change:auto}
+.mshape{position:absolute;left:-70vw;top:-80vh;width:240vw;height:200vh;border-radius:50%;background:var(--ink);overflow:hidden;
+  transform:translateY(-20vh) scaleY(.0001);transition:transform .7s cubic-bezier(.65,0,.35,1) .28s;will-change:transform}
+.menu.open .mshape{transform:none;transition:transform .85s cubic-bezier(.16,1,.3,1)}
+.mshape .menu-lines{inset:auto;position:absolute;left:70vw;top:80vh;width:100vw;height:100vh}
+@media (prefers-reduced-motion:reduce){.mshape,.menu.open .mshape{transition-duration:.01s!important;transition-delay:0s!important}}
 </style>
 </head>
 <body>
@@ -388,7 +397,7 @@ html[lang=ar] .rl{line-height:1.6}html[lang=ar] .rl span{text-shadow:0 1.6em 0 v
   <button class="mbtn" id="mbtn" aria-expanded="false" aria-controls="menu" data-i18n-aria="menuOpen" aria-label="Menu"><i></i><i></i></button>
 </header>
 <div class="menu" id="menu" data-lenis-prevent hidden>
-  <svg class="menu-lines" id="menuLines" aria-hidden="true" preserveAspectRatio="none"></svg>
+  <div class="mshape" aria-hidden="true"><svg class="menu-lines" id="menuLines" preserveAspectRatio="none"></svg></div>
   <div class="menu-grid">
     <div class="menu-imgs" aria-hidden="true">
       <div class="mcol"><div class="mimg"><img src="assets/c2.webp" alt="" loading="lazy"></div><div class="mimg"><img src="assets/c4.webp" alt="" loading="lazy"></div></div>
