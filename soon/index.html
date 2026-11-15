@@ -298,7 +298,8 @@ html:not([lang=ar]) .msg-t{line-height:.98}
 .menu{position:fixed;inset:0;z-index:19;background:var(--ink);color:var(--cloud);overflow:hidden;
   clip-path:ellipse(120% 0% at 50% 0%);transition:clip-path .7s cubic-bezier(.65,0,.35,1) .28s}
 .menu.open{clip-path:ellipse(120% 100% at 50% 20%);transition:clip-path .85s cubic-bezier(.16,1,.3,1)}
-.menu.open.done{clip-path:none;transition:none}/* Chrome sometimes leaves big clipped layers half painted (Lando's site too): drop the clip once open */
+.menu.open.done{clip-path:none;transition:none}
+.menu{transform:translateZ(0);will-change:clip-path}/* own layer, and the hero stops redrawing while the menu is open (its moving lines painted through) *//* Chrome sometimes leaves big clipped layers half painted (Lando's site too): drop the clip once open */
 .menu-lines{position:absolute;inset:0;width:100%;height:100%}.menu-lines path{fill:none;stroke:rgba(248,250,252,.06);stroke-width:1;vector-effect:non-scaling-stroke}
 .menu-grid{position:relative;height:100%;display:flex;padding:calc(76px + env(safe-area-inset-top)) clamp(16px,4.1vw,60px) clamp(16px,2.4vw,32px)}
 .menu-imgs{flex:0 0 50%;display:flex;gap:3.4vw;align-items:center}
@@ -554,6 +555,7 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   document.addEventListener('click',function(){sel=null;});
   function back(u){u=u<0?0:u>1?1:u;var c=1.45;u-=1;return 1+(c+1)*u*u*u+c*u*u;}
   function tick(now){
+    if(window.__menuPause){requestAnimationFrame(tick);return;}
     var r=sec.getBoundingClientRect();
     if(r.bottom>0&&r.top<innerHeight){
       if(sec.classList.contains('in')&&!t0)t0=now;
@@ -668,6 +670,7 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
   var fcount=0;
   var lenis=null;try{if(window.Lenis&&!still&&matchMedia('(hover:hover) and (pointer:fine)').matches){lenis=new Lenis({lerp:.11,wheelMultiplier:1.15});window.__lenis=lenis;}}catch(e){}
   function frameTick(now){
+    if(window.__menuPause){requestAnimationFrame(frameTick);return;}
     if(lenis)lenis.raf(now);
     var t=now/1000;fcount++;
     /* scroll progress through the pinned scene */
@@ -820,11 +823,11 @@ var C={
   function lbl(){var d=T[lang]||T.en;btn.setAttribute('aria-label',isOpen?d.menuClose:d.menuOpen);}window.__menuLbl=lbl;
   function open_(){if(isOpen)return;isOpen=true;clearTimeout(tm);lastF=document.activeElement;
     var src=document.getElementById('lines2'),dst=document.getElementById('menuLines');if(src&&!dst.innerHTML){dst.setAttribute('viewBox',src.getAttribute('viewBox')||'0 0 1000 600');dst.innerHTML=src.innerHTML;}
-    m.hidden=false;m.offsetHeight;m.classList.remove('done');m.classList.add('open');clearTimeout(m._dt);m._dt=setTimeout(function(){if(isOpen)m.classList.add('done');},950);bar.classList.add('mopen');btn.setAttribute('aria-expanded','true');lbl();
+    window.__menuPause=true;m.hidden=false;m.offsetHeight;m.classList.remove('done');m.classList.add('open');clearTimeout(m._dt);m._dt=setTimeout(function(){if(isOpen)m.classList.add('done');},950);bar.classList.add('mopen');btn.setAttribute('aria-expanded','true');lbl();
     document.documentElement.classList.add('mlock');if(window.__lenis)window.__lenis.stop();}
   function close_(now){if(!isOpen)return;isOpen=false;clearTimeout(m._dt);if(m.classList.contains('done')){m.classList.remove('done');m.offsetHeight;}m.classList.remove('open');bar.classList.remove('mopen');btn.setAttribute('aria-expanded','false');lbl();
     document.documentElement.classList.remove('mlock');if(window.__lenis&&!document.documentElement.classList.contains('cp-lock'))window.__lenis.start();
-    tm=setTimeout(function(){m.hidden=true;},now?0:1100);if(!now&&lastF&&lastF.focus)lastF.focus();}
+    tm=setTimeout(function(){m.hidden=true;window.__menuPause=false;},now?0:1100);if(!now&&lastF&&lastF.focus)lastF.focus();}
   btn.addEventListener('click',function(){isOpen?close_():open_();});
   addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen)close_();});
   m.querySelector('.ml.cur').addEventListener('click',function(e){e.preventDefault();close_();setTimeout(function(){if(window.__lenis)window.__lenis.scrollTo(0,{immediate:true});else scrollTo(0,0);},700);});
