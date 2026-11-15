@@ -394,14 +394,17 @@ html[lang=ar] .rl{line-height:1.6}html[lang=ar] .rl span{text-shadow:0 1.6em 0 v
 html[lang=ar] .col.r a{font-family:Anton,Impact,sans-serif;font-weight:400}
 html[lang=ar] .rl[dir=ltr]{line-height:1.2}html[lang=ar] .rl[dir=ltr] span{text-shadow:0 1.2em 0 var(--rlc,currentColor)}
 @media (hover:hover){html[lang=ar] .roll:hover .rl[dir=ltr] span{transform:translateY(-1.2em)}}
+
+/* 15 Nov: top bar and the contact page close button stay in the same place in every language (only "Tap to lock" follows Arabic) */
+.cp-x{inset-inline-end:auto;right:calc(clamp(8px,1.2vw,18px) + 16px)}
 </style>
 <script>/* older Safari (before 15.4) does not know svh: use vh there, or the pinned sections collapse */
 if(window.CSS&&CSS.supports&&!CSS.supports('height','1svh')){[].forEach.call(document.querySelectorAll('style'),function(st){st.textContent=st.textContent.replace(/(\d|\.)svh/g,'$1vh');});document.documentElement.classList.add('no-svh');}
 </script>
 </head>
 <body>
-<header class="bar" id="bar">
-  <a class="brand" href="../" aria-label="Abisto26"><img src="../assets/avatar.webp" alt="" width="36" height="36"><span><b data-i18n="brand">Abisto</b>26</span></a>
+<header class="bar" id="bar" dir="ltr">
+  <a class="brand" href="../" aria-label="Abisto26"><img src="../assets/avatar.webp" alt="" width="36" height="36"><span dir="auto"><b data-i18n="brand">Abisto</b>26</span></a>
   <button class="mbtn" id="mbtn" aria-expanded="false" aria-controls="menu" data-i18n-aria="menuOpen" aria-label="Menu"><i></i><i></i></button>
 </header>
 <div class="menu" id="menu" data-lenis-prevent hidden>
