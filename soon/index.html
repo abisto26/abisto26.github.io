@@ -342,7 +342,7 @@ html[dir=rtl] .mreveal{clip-path:inset(0 0 0 100%)}
 .msoc{display:flex;gap:clamp(18px,1.7vw,26px);flex-wrap:wrap;justify-content:center}
 .msoc a{color:var(--cloud);text-decoration:none;font-family:"Mona Sans","Open Sans",sans-serif;font-weight:800;font-size:12px;letter-spacing:.02em;text-transform:uppercase;transition:color .25s}
 .msoc a:hover{color:var(--sun)}
-html.mlock{overflow:hidden}
+/* no overflow lock: on iPhone it broke the pinned hero after a language change. The menu blocks touch and wheel itself */
 @media (max-width:700px){
   .menu-imgs{display:none}
   .menu-grid{padding:calc(76px + env(safe-area-inset-top)) 16px calc(22px + env(safe-area-inset-bottom))}
@@ -844,8 +844,10 @@ var C={
     document.documentElement.classList.add('mlock');if(window.__lenis)window.__lenis.stop();}
   function close_(now){if(!isOpen)return;isOpen=false;clearTimeout(m._dt);if(m.classList.contains('done')){m.classList.remove('done');m.offsetHeight;}m.classList.remove('open');bar.classList.remove('mopen');btn.setAttribute('aria-expanded','false');lbl();
     document.documentElement.classList.remove('mlock');if(window.__lenis&&!document.documentElement.classList.contains('cp-lock'))window.__lenis.start();
-    tm=setTimeout(function(){m.hidden=true;window.__menuPause=false;},now?0:1100);if(!now&&lastF&&lastF.focus)lastF.focus();}
+    tm=setTimeout(function(){m.hidden=true;window.__menuPause=false;if(window.__relayout)window.__relayout();},now?0:1100);if(!now&&lastF&&lastF.focus)lastF.focus();}
   btn.addEventListener('click',function(){isOpen?close_():open_();});
+  m.addEventListener('touchmove',function(e){if(isOpen)e.preventDefault();},{passive:false});
+  m.addEventListener('wheel',function(e){if(isOpen)e.preventDefault();},{passive:false});
   addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen)close_();});
   m.querySelector('.ml.cur').addEventListener('click',function(e){e.preventDefault();close_();setTimeout(function(){if(window.__lenis)window.__lenis.scrollTo(0,{immediate:true});else scrollTo(0,0);},700);});
   m.querySelectorAll('a[href="#contact"]').forEach(function(a){a.addEventListener('click',function(){close_(true);});});
