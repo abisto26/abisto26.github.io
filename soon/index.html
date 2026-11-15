@@ -351,6 +351,8 @@ html.mlock{overflow:hidden}
 @media (max-width:360px){.msoc{gap:10px}.msoc a{font-size:10.5px}}
 @media (prefers-reduced-motion:reduce){.menu,.menu.open,.ml,.menu.open .ml,.mimg,.menu.open .mimg{transition-duration:.01s!important;transition-delay:0s!important}}
 
+/* the title on top replaces the bottom-left role line everywhere */
+.role{display:none!important}
 /* 15 Nov: hero title on computers too, above the face like on phones (the bottom-left role line goes) */
 @media (min-width:701px){
   .htitle{display:block;position:absolute;z-index:5;inset-inline:0;top:calc(72px + 1.5svh);text-align:center;color:var(--ink);pointer-events:none}
@@ -359,7 +361,6 @@ html.mlock{overflow:hidden}
   html[lang=ar] .hn i,html[lang=ar] .hn b{font-family:Alexandria,sans-serif;font-weight:900;letter-spacing:0}
   .htitle small{display:block;margin-top:12px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
   html[lang=ar] .htitle small{letter-spacing:0;font-size:14px}
-  .role{display:none}
   .stage{top:calc(max(23svh,200px) - var(--hs)*.103)}
 }
 /* 15 Nov: every text link rolls its letters on hover, like the menu words */
