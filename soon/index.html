@@ -272,6 +272,16 @@ html:not([lang=ar]) .msg-t{line-height:.98}
   .last .legal{padding-top:10px}
 }
 .biz{display:inline-flex;align-items:center;gap:.5em}.biz svg{width:1em;height:1em;flex:none}html[dir=rtl] .biz svg{transform:scaleX(-1)}
+/* last page, 15 Nov: plain rounded rectangle (no tabs), no copyright line, more room for the button */
+.last .notch{display:none!important}
+.last .panel{margin-top:26px}
+@media (max-width:700px){
+  .last{padding-bottom:14px}
+  .last .legal{display:none}
+  .last .panel{overflow:hidden;margin-top:12px}
+  .last .rider{clip-path:none;margin-bottom:0;border-radius:0}
+  .last .biz{bottom:22px}
+}
 </style>
 </head>
 <body>
