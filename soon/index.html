@@ -415,6 +415,13 @@ html[lang=ar] .rl[dir=ltr]{line-height:1.2}html[lang=ar] .rl[dir=ltr] span{text-
 @keyframes mband{0%{transform:translateY(-51.85%)}72%,100%{transform:translateY(103.7%)}}
 @keyframes mbandi{0%{transform:translateY(28%)}72%,100%{transform:translateY(-56%)}}
 @media (prefers-reduced-motion:reduce){.stage .mband{display:none}.stage .mesh{opacity:.2}}
+
+/* 16 Nov: mesh scan in random directions (down, up, sideways, diagonal, ring in/out). The window (.mband, 3x the stage)
+   carries the soft band; its picture gets the exact inverse transform, so the mesh stays still. Transform only. */
+.stage .mband{left:-100%;top:-100%;width:300%;height:300%;overflow:visible;animation:none;transform-origin:50% 50%}
+.stage .mband img{left:33.333%;top:33.333%;width:33.333%;height:33.333%;animation:none;transform-origin:50% 50%}
+.stage .mband.lin{-webkit-mask-image:linear-gradient(180deg,transparent 43%,#000 50%,#000 52%,transparent 61%);mask-image:linear-gradient(180deg,transparent 43%,#000 50%,#000 52%,transparent 61%)}
+.stage .mband.ring{-webkit-mask-image:radial-gradient(closest-side,transparent 62%,#000 76%,#000 80%,transparent 90%);mask-image:radial-gradient(closest-side,transparent 62%,#000 76%,#000 80%,transparent 90%)}
 </style>
 <script>/* older Safari (before 15.4) does not know svh: use vh there, or the pinned sections collapse */
 if(window.CSS&&CSS.supports&&!CSS.supports('height','1svh')){[].forEach.call(document.querySelectorAll('style'),function(st){st.textContent=st.textContent.replace(/(\d|\.)svh/g,'$1vh');});document.documentElement.classList.add('no-svh');}
@@ -879,6 +886,31 @@ var C={
   if(matchMedia('(hover:hover) and (pointer:fine)').matches)m.addEventListener('mousemove',function(e){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
     if(cols[0])cols[0].style.transform='translate('+(x*-18)+'px,'+(y*-26)+'px)';if(cols[1])cols[1].style.transform='translate('+(x*18)+'px,'+(y*30+40)+'px)';});
   if(cols[1])cols[1].style.transform='translateY(40px)';
+})();
+</script>
+<script>
+/* mesh scan: a new random direction every pass (first pass always top to bottom) */
+(function(){var mb=document.querySelector('.stage .mband');if(!mb||!mb.animate)return;var mi=mb.querySelector('img');
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var CX=0,CY=-.1565,AX=.194,AY=.24;            /* head centre and half size, in stage heights, from the centre */
+  var P=[{a:0},{a:180},{a:-90},{a:90},{a:-45},{a:45},{r:'in'},{r:'out'}],lastI=-1,first=true;
+  function ease(x){/* cubic-bezier(.4,0,.6,1), close enough */return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
+  function f(n){return n.toFixed(4);}
+  function lin(a){var t=a*Math.PI/180,nx=-Math.sin(t),ny=Math.cos(t),c=CX*nx+CY*ny,R=Math.sqrt(AX*AX*nx*nx+AY*AY*ny*ny),d0=c-R-.16,d1=c+R+.2;
+    mb.className='mband lin';var w=[],i=[];
+    [d0,d1].forEach(function(d){w.push({transform:'rotate('+a+'deg) translateY('+f(d/3*100)+'%)'});i.push({transform:'translateY('+f(-d*100)+'%) rotate('+(-a)+'deg)'});});
+    return [w,i,'cubic-bezier(.4,0,.6,1)'];}
+  function ring(dir){mb.className='mband ring';var w=[],i=[],s0=.36,s1=.03,n=24;
+    for(var k=0;k<=n;k++){var u=ease(k/n),s=dir==='in'?s0+(s1-s0)*u:s1+(s0-s1)*u;
+      w.push({offset:k/n,transform:'translateY('+f(CY/3*100)+'%) scale('+f(s)+')'});i.push({offset:k/n,transform:'scale('+f(1/s)+') translateY('+f(-CY*100)+'%)'});}
+    return [w,i,'linear'];}
+  var A=[],tm=0;
+  function run(k){A.forEach(function(x){x.cancel();});var p=P[k],r=p.r?ring(p.r):lin(p.a),o={duration:1656,easing:r[2],fill:'both'};
+    A=[mb.animate(r[0],o),mi.animate(r[1],o)];return A;}
+  function pass(){var k;if(first){k=0;first=false;}else{do{k=Math.floor(Math.random()*P.length);}while(k===lastI);}lastI=k;
+    run(k);tm=setTimeout(pass,2300);}
+  window.__meshTest=function(k,ms){clearTimeout(tm);run(k).forEach(function(x){x.pause();x.currentTime=ms;});};
+  pass();
 })();
 </script>
 </body>
