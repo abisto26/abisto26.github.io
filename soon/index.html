@@ -404,6 +404,17 @@ html[lang=ar] .rl[dir=ltr]{line-height:1.2}html[lang=ar] .rl[dir=ltr] span{text-
   .last .rider{overflow:visible;clip-path:inset(-60% 0 0 0)}
   .last .rider img{transform:translateX(-50%) translateY(-4.5svh)}
 }
+
+/* perf 16 Nov: the mesh scan moved a mask over a huge image, so Chrome repainted it every frame (hero 8 fps, 35 without it).
+   Now a soft band window slides down while its picture slides up by the same amount: same look, moved by the graphics card only. */
+.stage .mesh{animation:none;-webkit-mask-image:none;mask-image:none;opacity:.11}
+.stage .mband{position:absolute;left:0;top:0;width:100%;height:54%;overflow:hidden;pointer-events:none;opacity:.44;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 38.9%,#000 50%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 38.9%,#000 50%,transparent 100%);
+  will-change:transform;animation:mband 2.3s cubic-bezier(.4,0,.6,1) infinite}
+.stage .mband img{inset:auto;left:0;top:0;width:100%;height:185.19%;will-change:transform;animation:mbandi 2.3s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes mband{0%{transform:translateY(-51.85%)}72%,100%{transform:translateY(103.7%)}}
+@keyframes mbandi{0%{transform:translateY(28%)}72%,100%{transform:translateY(-56%)}}
+@media (prefers-reduced-motion:reduce){.stage .mband{display:none}.stage .mesh{opacity:.2}}
 </style>
 <script>/* older Safari (before 15.4) does not know svh: use vh there, or the pinned sections collapse */
 if(window.CSS&&CSS.supports&&!CSS.supports('height','1svh')){[].forEach.call(document.querySelectorAll('style'),function(st){st.textContent=st.textContent.replace(/(\d|\.)svh/g,'$1vh');});document.documentElement.classList.add('no-svh');}
@@ -448,6 +459,7 @@ if(window.CSS&&CSS.supports&&!CSS.supports('height','1svh')){[].forEach.call(doc
       <div class="stage" id="stage">
         <img id="face" src="assets/face.webp" alt="Abisto smiling" data-i18n-alt="alt" width="1200" height="1500">
         <img class="mesh" src="assets/mesh.webp" alt="" width="1152" height="1440">
+        <div class="mband" aria-hidden="true"><img src="assets/mesh.webp" alt="" width="1152" height="1440"></div>
         <canvas id="cv" aria-hidden="true"></canvas>
       </div>
       <div class="veil" id="veil"></div>
@@ -705,7 +717,7 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     var a=ease(prog/.4),b=ease((prog-.45)/.4);
     var s=1-.16*a-.44*b;
     frame.style.transform='scale('+s.toFixed(4)+')';
-    marq.style.opacity=ease((prog-.04)/.15);
+    var mo=ease((prog-.04)/.15);marq.style.opacity=mo;marq.style.visibility=mo>0?'visible':'hidden';
     m1.style.transform='translate3d('+(-prog*70-4)+'vw,0,0)';m2.style.transform='translate3d('+(prog*70-90)+'vw,0,0)';
     veil.style.opacity=(b*.9).toFixed(3);veil.style.visibility=b>0?'visible':'hidden';face.classList.toggle('bw',b>.35);
     var sg=(100-100*ease((prog-.62)/.3)).toFixed(1);signP.style.clipPath='inset(-30% '+sg+'% -30% -10%)';signP.style.webkitClipPath=signP.style.clipPath;
