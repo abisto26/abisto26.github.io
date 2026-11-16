@@ -794,7 +794,7 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     }
     }
     maskEmpty=bx1<0?(maskEmpty||0)+1:0;}
-    if(!still&&fcount%3===0)contours(t);
+    if(!still&&fcount%4===0)contours(t);/* perf: slow lines, 15 updates a second is enough */
     }
     requestAnimationFrame(frameTick);
   }
