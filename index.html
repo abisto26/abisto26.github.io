@@ -496,6 +496,15 @@ html[lang=ar] .rl[dir=ltr]{line-height:1.2}html[lang=ar] .rl[dir=ltr] span{text-
   .card{border-radius:calc(var(--cw)*.266)}.mbtn{border-radius:clamp(16px,1.47vw,21px)}
   @media (max-width:700px){.biz{border-radius:13px}.lines2{border-radius:35px}.last .panel,.last .lines2{border-radius:22px}.last .biz{border-radius:8px}}
 }
+
+/* 18 Nov: phones start locked; the button pulses 4 times after the intro so people see how to scroll. Transform/opacity only. */
+.touchui i{position:relative}
+.touchui i::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid var(--sun);opacity:0;pointer-events:none}
+.frame.play.hint .touchui i::after{animation:tpulse 1.4s cubic-bezier(.2,.6,.3,1) 3.6s 4}
+.frame.play.hint .touchui i{animation:tbump 1.4s ease-in-out 3.6s 4}
+@keyframes tpulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+@keyframes tbump{0%,100%{transform:scale(1)}18%{transform:scale(1.08)}36%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.frame.play.hint .touchui i,.frame.play.hint .touchui i::after{animation:none}}
 </style>
 <script>/* older Safari (before 15.4) does not know svh: use vh there, or the pinned sections collapse */
 if(window.CSS&&CSS.supports&&!CSS.supports('height','1svh')){[].forEach.call(document.querySelectorAll('style'),function(st){st.textContent=st.textContent.replace(/(\d|\.)svh/g,'$1vh');});document.documentElement.classList.add('no-svh');}
@@ -761,8 +770,8 @@ document.querySelectorAll('.langs button').forEach(function(b){b.addEventListene
     for(i=0;i<n;i++)streaks.push({kind:0,t0:now+i*(60+Math.random()*190),dir:mixed?(Math.random()<.5?1:-1):dir0,y:hy+(Math.random()-.5)*hh*.85,
       slope:slope+(Math.random()-.5)*.05,w:MH*(.025+Math.random()*Math.random()*.16),dur:300+Math.random()*650,px:null,ph:Math.random()*6});}
   window.__burst=function(){burst(performance.now());};
-  frame.classList.toggle('play',play);
-  btn.addEventListener('click',function(e){e.stopPropagation();play=!play;frame.classList.toggle('play',play);document.getElementById('playlbl').textContent=play?T[lang].back:T[lang].tap;});
+  frame.classList.toggle('play',play);if(play)frame.classList.add('hint');
+  btn.addEventListener('click',function(e){e.stopPropagation();frame.classList.remove('hint');play=!play;frame.classList.toggle('play',play);document.getElementById('playlbl').textContent=play?T[lang].back:T[lang].tap;});
 
   function seg(x0,y0,x1,y1,w){for(var k=0;k<6;k++){var f=k/5,g=Math.round(122+133*f);ax.lineWidth=Math.max(1,w*(1-.78*f));ax.strokeStyle='rgb('+g+','+g+','+g+')';
     ax.beginPath();ax.moveTo(x0,y0);ax.lineTo(x1,y1);ax.stroke();}}
